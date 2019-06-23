@@ -16,22 +16,14 @@ function App() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav>
-              <Nav.Link as={NavLink} to="/" exact>
-                Home
-              </Nav.Link>
-              <Nav.Link as={NavLink} to="/journal">
-                Journal
-              </Nav.Link>
-              <Nav.Link as={NavLink} to="/schedule">
-                Schedule
-              </Nav.Link>
-              <Nav.Link as={NavLink} to="/reminders">
-                Reminders
-              </Nav.Link>
+              <Nav.Link as={NavLink} to="/" exact>Home</Nav.Link>
+              <Nav.Link as={NavLink} to="/journal">Journal</Nav.Link>
+              <Nav.Link as={NavLink} to="/schedule">Schedule</Nav.Link>
+              <Nav.Link as={NavLink} to="/reminders">Reminders</Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          <Navbar.Brand><span style={{color: "skyblue"}}>
-            M</span>otiv
+          <Navbar.Brand>
+            <span style={{color: "skyblue"}}>M</span>otiv
           </Navbar.Brand>
         </Navbar>
         <Route path="/" exact component={Home} />

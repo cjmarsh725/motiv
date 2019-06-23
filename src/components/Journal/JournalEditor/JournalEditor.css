@@ -1,0 +1,27 @@
+.journaleditor-container {
+  width: 100%;
+  align-self: stretch;
+  box-sizing: border-box;
+  padding: 20px;
+  white-space: pre;
+}
+
+.journaleditor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--secondary);
+  margin-bottom: 6px;
+}
+
+.journaleditor-entryname {
+  font-size: 21px;
+}
+
+.journaleditor-trash {
+  cursor: pointer;
+}
+
+.ql-toolbar.ql-snow, .ql-container.ql-snow {
+  border-color: var(--background-accent);
+}

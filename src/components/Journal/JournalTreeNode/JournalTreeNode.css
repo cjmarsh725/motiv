@@ -1,0 +1,26 @@
+.journaltreenode-container {
+  width: 100%;
+}
+
+.journaltreenode-bg {
+  display: flex;
+  width: 100%;
+  padding-left: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.journaltreenode-bg:hover {
+  color: white;
+  background-color: var(--secondary-accent);
+}
+
+.journaltreenode-label {
+  display: flex;
+  
+}
+
+.journaltreennode-icon {
+  margin-right: 6px;
+}

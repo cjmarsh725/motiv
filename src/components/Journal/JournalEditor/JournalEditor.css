@@ -25,8 +25,9 @@
 }
 
 .journaleditor-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  align-self: stretch;
   box-sizing: border-box;
   padding: 20px;
   white-space: pre;

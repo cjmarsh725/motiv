@@ -1,5 +1,7 @@
 .journal-container {
   display: flex;
+  height: 100%;
+  height: calc(100% - 56px);
 }
 
 .journal-journaleditor {
@@ -10,6 +12,7 @@
 .journal-journalsidebar {
   width: 70%;
   overflow: hidden;
+  display: flex;
   transition: width 0.2s ease-in-out;
 }
 

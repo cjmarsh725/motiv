@@ -1,4 +1,9 @@
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -12,6 +17,10 @@ body {
   --secondary-accent: #949a9a;
   --background: #B1A296; 
   --background-accent: #a19388;
+}
+
+#root {
+  height: 100%;
 }
 
 code {

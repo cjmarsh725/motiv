@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import './Journal.css';
 import values from 'lodash/values';
 import JournalEditor from './JournalEditor/JournalEditor';

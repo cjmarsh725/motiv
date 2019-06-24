@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Collapse } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import './Journal.css';
 import values from 'lodash/values';
 import JournalEditor from './JournalEditor/JournalEditor';
@@ -126,32 +126,28 @@ class Journal extends Component {
 
   render() {
     return (
-      <Container fluid className="journal-container">
-        <Row>
-          <Col xs="12" sm="8" lg="9" xl="10" 
-                className="journal-journaleditor"
-                style={{padding: 0}}>
-            <JournalEditor
-                updateContent={this.updateContent}
-                currentFile={this.state.currentFile}
-                deleteFile={this.deleteFile}
-                toggleSidebar={() => 
-                  this.setState({sidebarOpen: !this.state.sidebarOpen})}
-                content={this.getContent()}
-                fileName={this.getFileName()} />
-          </Col>
-          {/* <Col xs="3" className="d-flex d-sm-none"></Col> */}
-          <Col xs="6" sm="4" lg="3" xl="2" style={{padding: "0"}}
-              className="journal-journalsidebar">
-            <JournalSidebar 
-                fileStructure={this.state.fileStructure}
-                getRootNodes={this.getRootNodes}
-                getChildNodes={this.getChildNodes}
-                toggleNode={this.toggleNode}
-                openFile={this.openFile} />
-          </Col>
-        </Row>
-      </Container>
+      <div className="journal-container">
+        <div className="journal-journaleditor" >
+          <JournalEditor
+              updateContent={this.updateContent}
+              currentFile={this.state.currentFile}
+              deleteFile={this.deleteFile}
+              toggleSidebar={() => 
+                this.setState({sidebarOpen: !this.state.sidebarOpen})}
+              sidebarOpen={this.state.sidebarOpen}
+              content={this.getContent()}
+              fileName={this.getFileName()} />
+        </div>
+        <div className={"journal-journalsidebar" + 
+             (this.state.sidebarOpen ? "" : " journal-journalsidebar-closed")}>
+          <JournalSidebar 
+              fileStructure={this.state.fileStructure}
+              getRootNodes={this.getRootNodes}
+              getChildNodes={this.getChildNodes}
+              toggleNode={this.toggleNode}
+              openFile={this.openFile} />
+        </div>
+      </div>
     );
   }
 }

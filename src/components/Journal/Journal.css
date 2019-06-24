@@ -1,7 +1,36 @@
+.journal-container {
+  display: flex;
+}
+
 .journal-journaleditor {
   background-color: var(--background);
+  width: 100%;
 }
 
 .journal-journalsidebar {
-  width: 0;
+  width: 70%;
+  overflow: hidden;
+  transition: width 0.2s ease-in-out;
+}
+
+@media (min-width: 768px) {
+  .journal-journalsidebar {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .journal-journalsidebar {
+    width: 30%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .journal-journalsidebar {
+    width: 20%;
+  }
+}
+
+.journal-journalsidebar-closed {
+  width: 0%;
 }

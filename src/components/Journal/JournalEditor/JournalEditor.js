@@ -27,8 +27,8 @@ class JournalEditor extends Component {
         <div className="journaleditor-toggle-sidebar"
             onClick={this.props.toggleSidebar}>
           {this.props.sidebarOpen ? 
-            <i className="fas fa-angle-double-left"></i> :
-            <i className="fas fa-angle-double-right"></i> }
+            <i className="fas fa-angle-double-right fa-lg" style={{marginLeft: "4px"}}></i> :
+            <i className="fas fa-angle-double-left fa-lg"></i>}
         </div>
       </div>
       <div className="journaleditor-container">

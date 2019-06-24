@@ -23,6 +23,14 @@ class JournalEditor extends Component {
   render() {
     return (
       <>
+      <div className="journaleditor-toggle-sidebar-container">
+        <div className="journaleditor-toggle-sidebar"
+            onClick={this.props.toggleSidebar}>
+          {this.props.sidebarOpen ? 
+            <i className="fas fa-angle-double-left"></i> :
+            <i className="fas fa-angle-double-right"></i> }
+        </div>
+      </div>
       <div className="journaleditor-container">
         {this.props.currentFile ? ( <>
         <div className="journaleditor-header no-select">

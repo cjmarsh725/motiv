@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Collapse } from 'react-bootstrap';
 import './Journal.css';
 import values from 'lodash/values';
 import JournalEditor from './JournalEditor/JournalEditor';
@@ -54,7 +54,8 @@ class Journal extends Component {
         content: null
       }
     },
-    currentFile: "/Entries/TestEntry"
+    currentFile: "/Entries/TestEntry",
+    sidebarOpen: true
   }
 
   getRootNodes = () => {
@@ -127,16 +128,21 @@ class Journal extends Component {
     return (
       <Container fluid className="journal-container">
         <Row>
-          <Col xs="12" sm="8" lg="9" xl="10">
+          <Col xs="12" sm="8" lg="9" xl="10" 
+                className="journal-journaleditor"
+                style={{padding: 0}}>
             <JournalEditor
                 updateContent={this.updateContent}
                 currentFile={this.state.currentFile}
                 deleteFile={this.deleteFile}
+                toggleSidebar={() => 
+                  this.setState({sidebarOpen: !this.state.sidebarOpen})}
                 content={this.getContent()}
                 fileName={this.getFileName()} />
           </Col>
-          <Col xs="3" className="d-flex d-sm-none"></Col>
-          <Col xs="6" sm="4" lg="3" xl="2" style={{padding: "0"}}>
+          {/* <Col xs="3" className="d-flex d-sm-none"></Col> */}
+          <Col xs="6" sm="4" lg="3" xl="2" style={{padding: "0"}}
+              className="journal-journalsidebar">
             <JournalSidebar 
                 fileStructure={this.state.fileStructure}
                 getRootNodes={this.getRootNodes}

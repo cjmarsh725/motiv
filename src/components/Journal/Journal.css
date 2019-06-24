@@ -1,2 +1,7 @@
-.journal-container {
+.journal-journaleditor {
+  background-color: var(--background);
+}
+
+.journal-journalsidebar {
+  width: 0;
 }

@@ -18,7 +18,17 @@
 
 .journaltreenode-label {
   display: flex;
-  
+  margin: 1px 0px 1px 0px;
+}
+
+.journaltreenode-label-top {
+  border-top: 1px solid white;
+  margin-top: 0px;
+}
+
+.journaltreenode-label-bottom {
+  border-bottom: 1px solid white;
+  margin-bottom: 0px;
 }
 
 .journaltreennode-icon {

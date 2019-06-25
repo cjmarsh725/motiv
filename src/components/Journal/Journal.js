@@ -124,15 +124,23 @@ class Journal extends Component {
     }
   }
 
-  dropped = path => {
+  // Handles onDrop event for draggable JournalTreeNodes
+  // "path" is from the node dropped over
+  // "direction" is whether it was dropped on the top or bottom of the node
+  dropped = (path, direction) => {
     const { fileStructure, dragged } = this.state;
+    // When not in the same folder:
     if (fileStructure[path].parent !== 
         fileStructure[dragged].parent) {
-      // When not in the same folder - TODO
-    } else {
+    } else { // When in the same folder:
+      // Children array of path's parent
       const children = fileStructure[fileStructure[path].parent].children;
       children.splice(children.indexOf(dragged), 1);
-      children.splice(children.indexOf(path), 0, dragged);
+      // Get index to insert to based on the top or bottom direction
+      const index = children.indexOf(path) + 
+                    (direction === "bottom" ? 1 : 0);
+      // Insert dragged to children array at index
+      children.splice(index, 0, dragged);
     }
     this.setState({fileStructure});
   }

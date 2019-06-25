@@ -12,7 +12,9 @@ const JournalSidebar = props => {
         return (<JournalTreeNode {...node} key={node.path}
           getChildNodes={props.getChildNodes}
           toggleNode={props.toggleNode}
-          openFile={props.openFile} />
+          openFile={props.openFile}
+          setDragged={props.setDragged}
+          dropped={props.dropped} />
         )})}
     </div>
   );

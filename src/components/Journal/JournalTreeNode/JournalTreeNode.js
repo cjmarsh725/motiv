@@ -13,7 +13,19 @@ const getIcon = (isFolder, isOpen) => {
 
 const JournalTreeNode = props => {
   return (
-    <div className="journaltreenode-container">
+    <div className="journaltreenode-container"
+          draggable
+          onDragStart={e => {
+            e.stopPropagation();
+            props.setDragged(props.path);
+          }}
+          onDragOver={e => {
+            e.preventDefault();
+          }}
+          onDrop={e => {
+            e.stopPropagation();
+            props.dropped(props.path);
+          }}>
       <div className="journaltreenode-bg" onClick={() => {
           props.toggleNode(props.path);
           if (!props.isFolder) props.openFile(props.path);
@@ -30,7 +42,9 @@ const JournalTreeNode = props => {
         return (<JournalTreeNode {...node} key={node.path}
           getChildNodes={props.getChildNodes} 
           toggleNode={props.toggleNode}
-          openFile={props.openFile} />
+          openFile={props.openFile}
+          setDragged={props.setDragged}
+          dropped={props.dropped} />
       )}) : null}
     </div>
   );

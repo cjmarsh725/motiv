@@ -9,57 +9,58 @@ class Journal extends Component {
     fileStructure: {
       "/Entries": {
         title: "Entries",
-        isRoot: true,
         isFolder: true,
         isOpen: true,
         indent: 0,
+        parent: "/",
         path: "/Entries",
-        children: ["/SubEntries", "/Entries/TestEntry", "/Entries/TestEntry2"]
+        children: ["/Entries/SubEntries", "/Entries/TestEntry", "/Entries/TestEntry2"]
       }, 
       "/Entries/TestEntry": {
         title: "TestEntry",
-        isRoot: false,
         isFolder: false,
         isOpen: true,
         indent: 1,
+        parent: "/Entries",
         path: "/Entries/TestEntry",
         content: null
       }, 
       "/Entries/TestEntry2": {
         title: "TestEntry2",
-        isRoot: false,
         isFolder: false,
         isOpen: false,
         indent: 1,
+        parent: "/Entries",
         path: "/Entries/TestEntry2",
         content: null
       },
-      "/SubEntries": {
+      "/Entries/SubEntries": {
         title: "SubEntries",
-        isRoot: false,
         isFolder: true,
         isOpen: false,
         indent: 1,
-        path: "/SubEntries",
-        children: ["/SubEntries/TestEntry3"]
+        parent: "/Entries",
+        path: "/Entries/SubEntries",
+        children: ["/Entries/SubEntries/TestEntry3"]
       }, 
-      "/SubEntries/TestEntry3": {
+      "/Entries/SubEntries/TestEntry3": {
         title: "TestEntry3",
-        isRoot: false,
         isFolder: false,
         isOpen: false,
         indent: 2,
-        path: "/SubEntries/TestEntry3",
+        parent: "/Entries/SubEntries",
+        path: "/Entries/SubEntries/TestEntry3",
         content: null
       }
     },
     currentFile: "/Entries/TestEntry",
-    sidebarOpen: true
+    sidebarOpen: true,
+    dragged: null
   }
 
   getRootNodes = () => {
     const { fileStructure } = this.state;
-    return values(fileStructure).filter(node => node.isRoot === true);
+    return values(fileStructure).filter(node => node.parent === "/");
   }
 
   getChildNodes = nodePath => {
@@ -123,6 +124,19 @@ class Journal extends Component {
     }
   }
 
+  dropped = path => {
+    const { fileStructure, dragged } = this.state;
+    if (fileStructure[path].parent !== 
+        fileStructure[dragged].parent) {
+      // When not in the same folder - TODO
+    } else {
+      const children = fileStructure[fileStructure[path].parent].children;
+      children.splice(children.indexOf(dragged), 1);
+      children.splice(children.indexOf(path), 0, dragged);
+    }
+    this.setState({fileStructure});
+  }
+
   render() {
     return (
       <div className="journal-container">
@@ -144,7 +158,9 @@ class Journal extends Component {
               getRootNodes={this.getRootNodes}
               getChildNodes={this.getChildNodes}
               toggleNode={this.toggleNode}
-              openFile={this.openFile} />
+              openFile={this.openFile}
+              setDragged={path => this.setState({dragged: path})}
+              dropped={this.dropped} />
         </div>
       </div>
     );

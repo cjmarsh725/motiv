@@ -129,12 +129,28 @@ class Journal extends Component {
   // "direction" is whether it was dropped on the top or bottom of the node
   dropped = (path, direction) => {
     const { fileStructure, dragged } = this.state;
+    const droppedParent = fileStructure[path].parent;
+    const draggedParent = fileStructure[dragged].parent;
+    if (!fileStructure[droppedParent]) return;
+    const children = fileStructure[droppedParent].children;
     // When not in the same folder:
-    if (fileStructure[path].parent !== 
-        fileStructure[dragged].parent) {
-    } else { // When in the same folder:
+    if (droppedParent !== draggedParent) {
+      // Clone the obj being dragged
+      const tempDragged = Object.assign({}, fileStructure[dragged]);
+      // Create the new path from the title and the parent's path
+      const newPath = droppedParent + "/" + tempDragged.title;
+      // Update new parent's children with obj path
+      children.push(newPath);
+      // Assign updated values to obj
+      tempDragged.parent = droppedParent;
+      tempDragged.path = newPath;
+      tempDragged.indent = fileStructure[droppedParent].indent + 1;
+      // Destroy old obj property and create new one with clone
+      delete fileStructure[dragged];
+      fileStructure[newPath] = tempDragged;
+    } else {
+      // When in the same folder:
       // Children array of path's parent
-      const children = fileStructure[fileStructure[path].parent].children;
       children.splice(children.indexOf(dragged), 1);
       // Get index to insert to based on the top or bottom direction
       const index = children.indexOf(path) + 
@@ -142,6 +158,7 @@ class Journal extends Component {
       // Insert dragged to children array at index
       children.splice(index, 0, dragged);
     }
+
     this.setState({fileStructure});
   }
 

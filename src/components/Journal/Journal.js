@@ -141,7 +141,7 @@ class Journal extends Component {
     // Delete the old node and assign the new one
     delete fileStructure[node.path];
     fileStructure[newNode.path] = newNode;
-    // If node is a folder edit children too and modify children array
+    // If node is a folder edit children too and modify children recursively
     if (newNode.children) {
       newNode.children.forEach((childPath, i) => {
         newNode.children[i] = this.changeParent(fileStructure, 
@@ -160,41 +160,22 @@ class Journal extends Component {
     const { fileStructure, dragged } = this.state;
     const newParent = fileStructure[path].parent;
     const oldParent = fileStructure[dragged].parent;
-    //if (!fileStructure[newParent] || oldParent === "/") return;
-    const siblings = fileStructure[newParent].children;
-    // When not in the same folder:
-    if (newParent !== oldParent) {
-      // ------ Deprecated -------
-      // // Clone the obj being dragged
-      // const newNode = Object.assign({}, fileStructure[dragged]);
-      // // Create the new path from the title and the parent's path
-      // const newPath = newParent + "/" + newNode.title;
-      // // Assign updated values to obj
-      // newNode.parent = newParent;
-      // newNode.path = newPath;
-      // newNode.indent = fileStructure[newParent].indent + 1;
-      // // Destroy old obj property and create new one with clone
-      // delete fileStructure[dragged];
-      // fileStructure[newPath] = newNode;
-      // -------------------------
-      // Remove reference to node in parent
-      const children = fileStructure[oldParent].children;
-      children.splice(children.indexOf(dragged), 1);
-      // Get new path and change path dependencies
-      const newPath = this.changeParent(
+    // Initialize path as the dragged node and change if moving folders
+    let newPath = dragged;
+    // When not in the same folder get new path and recursively
+    //  change paths to new folder structure
+    if (newParent !== oldParent) newPath = this.changeParent(
                       fileStructure, fileStructure[dragged], newParent);
-      // Update new parent's children with new node's path
-      siblings.push(newPath);
-    } else {
-      // When in the same folder:
-      // Children array of path's parent
-      siblings.splice(siblings.indexOf(dragged), 1);
-      // Get index to insert to based on the top or bottom direction
-      const index = siblings.indexOf(path) + 
-                    (direction === "bottom" ? 1 : 0);
-      // Insert dragged to siblings array at index
-      siblings.splice(index, 0, dragged);
-    }
+    // Remove old path from children array of old node's parent
+    let children = fileStructure[oldParent].children;
+    children.splice(children.indexOf(dragged), 1);
+    // Change to new parent's children to insert new path
+    children = fileStructure[newParent].children;
+    // Get index to insert to based on the top or bottom direction
+    const index = children.indexOf(path) + 
+                  (direction === "bottom" ? 1 : 0);
+    // Insert node's path to parent's children array at index
+    children.splice(index, 0, newPath);
 
     this.setState({fileStructure});
   }

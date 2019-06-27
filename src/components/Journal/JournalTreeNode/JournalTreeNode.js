@@ -48,7 +48,7 @@ class JournalTreeNode extends Component {
   onDrop = e => {
     e.stopPropagation();
     if (this.state.drag) {
-      this.props.dropped(this.props.path, this.state.drag);
+      this.props.droppedOn(this.props.path, this.state.drag);
       this.setState({drag: null});
     }
   }
@@ -87,7 +87,7 @@ class JournalTreeNode extends Component {
             toggleNode={props.toggleNode}
             openFile={props.openFile}
             setDragged={props.setDragged}
-            dropped={props.dropped} />
+            droppedOn={props.droppedOn} />
         )}) : null}
       </div>
     );

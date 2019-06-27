@@ -7,11 +7,16 @@ import JournalSidebar from './JournalSidebar/JournalSidebar';
 class Journal extends Component {
   state = {
     fileStructure: {
+      "/": {
+        indent: 0,
+        path: "/",
+        children: ["/Entries"]
+      },
       "/Entries": {
         title: "Entries",
         isFolder: true,
         isOpen: true,
-        indent: 0,
+        indent: 1,
         parent: "/",
         path: "/Entries",
         children: ["/Entries/SubEntries", "/Entries/TestEntry", "/Entries/TestEntry2"]
@@ -20,7 +25,7 @@ class Journal extends Component {
         title: "TestEntry",
         isFolder: false,
         isOpen: true,
-        indent: 1,
+        indent: 2,
         parent: "/Entries",
         path: "/Entries/TestEntry",
         content: null
@@ -29,7 +34,7 @@ class Journal extends Component {
         title: "TestEntry2",
         isFolder: false,
         isOpen: false,
-        indent: 1,
+        indent: 2,
         parent: "/Entries",
         path: "/Entries/TestEntry2",
         content: null
@@ -38,7 +43,7 @@ class Journal extends Component {
         title: "SubEntries",
         isFolder: true,
         isOpen: false,
-        indent: 1,
+        indent: 2,
         parent: "/Entries",
         path: "/Entries/SubEntries",
         children: ["/Entries/SubEntries/TestEntry3"]
@@ -47,7 +52,7 @@ class Journal extends Component {
         title: "TestEntry3",
         isFolder: false,
         isOpen: false,
-        indent: 2,
+        indent: 3,
         parent: "/Entries/SubEntries",
         path: "/Entries/SubEntries/TestEntry3",
         content: null
@@ -124,39 +129,71 @@ class Journal extends Component {
     }
   }
 
+  changeParent = (fileStructure, node, newParent) => {
+    // Clone the original node
+    const newNode = Object.assign({}, node);
+    // Assign the new parent
+    newNode.parent = newParent;
+    // Create the new path from the title and the parent's path
+    newNode.path = newParent + (newParent === "/" ? "" : "/") + newNode.title;
+    // Get the indent from the parent and increment it
+    newNode.indent = fileStructure[newParent].indent + 1;
+    // Delete the old node and assign the new one
+    delete fileStructure[node.path];
+    fileStructure[newNode.path] = newNode;
+    // If node is a folder edit children too and modify children array
+    if (newNode.children) {
+      newNode.children.forEach((childPath, i) => {
+        newNode.children[i] = this.changeParent(fileStructure, 
+                            fileStructure[childPath], newNode.path);
+      });
+    }
+    // Return path for recursive children editing
+    return newNode.path;
+  }
+
   // Handles onDrop event for draggable JournalTreeNodes
   // "path" is from the node dropped over
-  // "direction" is whether it was dropped on the top or bottom of the node
-  dropped = (path, direction) => {
+  // "direction" is whether it was dropped on 
+  //     the top, bottom, or middle of the node
+  droppedOn = (path, direction) => {
     const { fileStructure, dragged } = this.state;
-    const droppedParent = fileStructure[path].parent;
-    const draggedParent = fileStructure[dragged].parent;
-    if (!fileStructure[droppedParent]) return;
-    const children = fileStructure[droppedParent].children;
+    const newParent = fileStructure[path].parent;
+    const oldParent = fileStructure[dragged].parent;
+    //if (!fileStructure[newParent] || oldParent === "/") return;
+    const siblings = fileStructure[newParent].children;
     // When not in the same folder:
-    if (droppedParent !== draggedParent) {
-      // Clone the obj being dragged
-      const tempDragged = Object.assign({}, fileStructure[dragged]);
-      // Create the new path from the title and the parent's path
-      const newPath = droppedParent + "/" + tempDragged.title;
-      // Update new parent's children with obj path
-      children.push(newPath);
-      // Assign updated values to obj
-      tempDragged.parent = droppedParent;
-      tempDragged.path = newPath;
-      tempDragged.indent = fileStructure[droppedParent].indent + 1;
-      // Destroy old obj property and create new one with clone
-      delete fileStructure[dragged];
-      fileStructure[newPath] = tempDragged;
+    if (newParent !== oldParent) {
+      // ------ Deprecated -------
+      // // Clone the obj being dragged
+      // const newNode = Object.assign({}, fileStructure[dragged]);
+      // // Create the new path from the title and the parent's path
+      // const newPath = newParent + "/" + newNode.title;
+      // // Assign updated values to obj
+      // newNode.parent = newParent;
+      // newNode.path = newPath;
+      // newNode.indent = fileStructure[newParent].indent + 1;
+      // // Destroy old obj property and create new one with clone
+      // delete fileStructure[dragged];
+      // fileStructure[newPath] = newNode;
+      // -------------------------
+      // Remove reference to node in parent
+      const children = fileStructure[oldParent].children;
+      children.splice(children.indexOf(dragged), 1);
+      // Get new path and change path dependencies
+      const newPath = this.changeParent(
+                      fileStructure, fileStructure[dragged], newParent);
+      // Update new parent's children with new node's path
+      siblings.push(newPath);
     } else {
       // When in the same folder:
       // Children array of path's parent
-      children.splice(children.indexOf(dragged), 1);
+      siblings.splice(siblings.indexOf(dragged), 1);
       // Get index to insert to based on the top or bottom direction
-      const index = children.indexOf(path) + 
+      const index = siblings.indexOf(path) + 
                     (direction === "bottom" ? 1 : 0);
-      // Insert dragged to children array at index
-      children.splice(index, 0, dragged);
+      // Insert dragged to siblings array at index
+      siblings.splice(index, 0, dragged);
     }
 
     this.setState({fileStructure});
@@ -185,7 +222,7 @@ class Journal extends Component {
               toggleNode={this.toggleNode}
               openFile={this.openFile}
               setDragged={path => this.setState({dragged: path})}
-              dropped={this.dropped} />
+              droppedOn={this.droppedOn} />
         </div>
       </div>
     );

@@ -14,7 +14,7 @@ const JournalSidebar = props => {
           toggleNode={props.toggleNode}
           openFile={props.openFile}
           setDragged={props.setDragged}
-          dropped={props.dropped} />
+          droppedOn={props.droppedOn} />
         )})}
     </div>
   );

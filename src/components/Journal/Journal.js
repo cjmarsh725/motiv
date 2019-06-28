@@ -178,8 +178,12 @@ class Journal extends Component {
                   (direction === "bottom" ? 1 : 0);
     // Insert node's path to parent's children array at index
     children.splice(index, 0, newPath);
-
-    this.setState({fileStructure});
+    // Update state, including currentFile if it's being dragged
+    if (this.state.dragged === this.state.currentFile) {
+      this.setState({fileStructure, currentFile: newPath});
+    } else {
+      this.setState({fileStructure});
+    }
   }
 
   render() {

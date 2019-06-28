@@ -32,16 +32,36 @@ class JournalTreeNode extends Component {
   onDragOver = e => {
     e.preventDefault();
     e.stopPropagation();
-    // Get the Y midpoint of the element
+    // Bounding rect for the element dragged over
     const rect = e.target.getBoundingClientRect();
-    const midpoint = (rect.bottom - rect.top) / 2 + rect.top;
-    /* If the mouse Y pos is "higher" than the midpoint 
-    and state needs to be refreshed: */
-    if (e.clientY < midpoint && this.state.drag !== "top") {
-      this.setState({drag: "top"});
-    // Else if lower and state needs to be refreshed:
-    } else if (e.clientY > midpoint && this.state.drag !== "bottom") {
-      this.setState({drag: "bottom"});
+    // If not over a folder only show the top and bottom borders
+    if (!this.props.isFolder) {
+      // Get the Y midpoint of the element
+      const midpoint = (rect.bottom - rect.top) / 2 + rect.top;
+      // If the mouse Y pos is "higher" than the midpoint 
+      //  and state needs to be refreshed:
+      if (e.clientY < midpoint && this.state.drag !== "top") {
+        this.setState({drag: "top"});
+      // Else if lower and state needs to be refreshed:
+      } else if (e.clientY > midpoint && this.state.drag !== "bottom") {
+        this.setState({drag: "bottom"});
+      }
+    } else {
+      // Get points for one quarter on the top and bottom and
+      //  half in the middle (0.25 and 0.75 of height)
+      const quarterHeight = (rect.bottom - rect.top) / 4;
+      // With top-left coords point is 3 quarters from the top
+      const bottomPoint = rect.top + 3 * quarterHeight;
+      const topPoint = rect.top + quarterHeight;
+      // Test mouse coords against heights and set state if new
+      if (e.clientY < topPoint && this.state.drag !== "top") {
+        this.setState({drag: "top"});
+      } else if (e.clientY > bottomPoint && this.state.drag !== "bottom") {
+        this.setState({drag: "bottom"});
+      } else if (e.clientY >= topPoint && e.clientY <= bottomPoint &&
+                     this.state.drag !== "middle") {
+        this.setState({drag: "middle"});
+      }
     }
   }
 

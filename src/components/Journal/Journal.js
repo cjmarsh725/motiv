@@ -158,8 +158,10 @@ class Journal extends Component {
   //     the top, bottom, or middle of the node
   droppedOn = (path, direction) => {
     const { fileStructure, dragged } = this.state;
-    const newParent = fileStructure[path].parent;
     const oldParent = fileStructure[dragged].parent;
+    let newParent = fileStructure[path].parent;
+    // If the node is being dropped onto a folder:
+    if (direction === "middle") newParent = path;
     // Initialize path as the dragged node and change if moving folders
     let newPath = dragged;
     // When not in the same folder get new path and recursively

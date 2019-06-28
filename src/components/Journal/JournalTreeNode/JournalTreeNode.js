@@ -87,10 +87,12 @@ class JournalTreeNode extends Component {
             onDragOver={this.onDragOver}
             onDrop={this.onDrop}
             onDragLeave={this.onDragLeave}>
-        <div className="journaltreenode-bg" onClick={() => {
-            props.toggleNode(props.path);
-            if (!props.isFolder) props.openFile(props.path);
-          }}>
+        <div className={"journaltreenode-bg" + (this.state.drag === "middle" ?
+                " journaltreenode-bg-hover" : "")}
+             onClick={() => {
+              props.toggleNode(props.path);
+              if (!props.isFolder) props.openFile(props.path);
+             }}>
           <div className={"journaltreenode-label no-select"
                                  + this.getBorderClass()} 
                style={{marginLeft: props.indent * 10 + "px"}}>

@@ -129,6 +129,8 @@ class Journal extends Component {
     }
   }
 
+  // Updates a nodes parent and, if its a folder, changes its 
+  //  children recursively
   changeParent = (fileStructure, node, newParent) => {
     // Clone the original node
     const newNode = Object.assign({}, node);
@@ -152,15 +154,44 @@ class Journal extends Component {
     return newNode.path;
   }
 
+  // Recursively searches through a path's parents to find whether or not
+  //  the checkedPath is one of the parents
+  isInChildren = (fileStructure, path, checkedPath) => {
+    const parent = fileStructure[path].parent;
+    if (parent === "/") return false;
+    if (parent === checkedPath) return true;
+    return this.isInChildren(fileStructure, parent, checkedPath);
+  }
+
+  // Searches through the file structure to get the current file after
+  //  changes have been made from a drag and drop operation
+  getCurrentFile = (fileStructure, previousPath, newPath) => {
+    if (previousPath === newPath) return previousPath;
+    // Separates path to extract title
+    const pathSegments = previousPath.split("/");
+    if (!pathSegments.length) return null;
+    // Gets an array of nodes with a matching title to the previousPath
+    const matchingNodes = values(fileStructure).filter(node => 
+        node.title === pathSegments[pathSegments.length - 1]);
+    if (!matchingNodes.length) return null;
+    // Returns the path of the node with a matching title
+    return matchingNodes[0].path;
+  }
+
   // Handles onDrop event for draggable JournalTreeNodes
   // "path" is from the node dropped over
   // "direction" is whether it was dropped on 
   //     the top, bottom, or middle of the node
   droppedOn = (path, direction) => {
-    const { fileStructure, dragged } = this.state;
+    const { fileStructure, dragged, currentFile } = this.state;
+    // Check to see if folder is being placed in its own child or itself
+    if (this.isInChildren(fileStructure, path, dragged) || path === dragged) 
+      return;
+    // Get the parents of the dragged and dropped nodes
     const oldParent = fileStructure[dragged].parent;
     let newParent = fileStructure[path].parent;
-    // If the node is being dropped onto a folder:
+    // If the node is being dropped onto a folder change the parent
+    //  to the dragged over node
     if (direction === "middle") newParent = path;
     // Initialize path as the dragged node and change if moving folders
     let newPath = dragged;
@@ -179,11 +210,8 @@ class Journal extends Component {
     // Insert node's path to parent's children array at index
     children.splice(index, 0, newPath);
     // Update state, including currentFile if it's being dragged
-    if (this.state.dragged === this.state.currentFile) {
-      this.setState({fileStructure, currentFile: newPath});
-    } else {
-      this.setState({fileStructure});
-    }
+    this.setState({fileStructure, 
+      currentFile: this.getCurrentFile(fileStructure, currentFile, newPath)});
   }
 
   render() {

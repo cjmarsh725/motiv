@@ -6,7 +6,6 @@ import Journal from '../Journal/Journal';
 import Schedule from '../Schedule/Schedule';
 import Reminders from '../Reminders/Reminders';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   return (

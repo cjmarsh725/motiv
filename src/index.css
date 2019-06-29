@@ -1,3 +1,12 @@
+:root {
+  --primary: #557A95;
+  --primary-accent: #7395AE;
+  --secondary: #4d565e;
+  --secondary-accent: #949a9a;
+  --background: #B1A296; 
+  --background-accent: #a19388;
+}
+
 html {
   height: 100%;
 }
@@ -10,13 +19,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* vars in body instead of root due to bootstrap */
-  --primary: #557A95;
-  --primary-accent: #7395AE;
-  --secondary: #4d565e;
-  --secondary-accent: #949a9a;
-  --background: #B1A296; 
-  --background-accent: #a19388;
 }
 
 #root {

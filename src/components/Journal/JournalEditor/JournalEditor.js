@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactQuill from 'react-quill';
+import Modal from '../../Modal/Modal';
+import ModalDeleteEntry from '../../Modal/ModalDeleteEntry/ModalDeleteEntry';
 import 'react-quill/dist/quill.snow.css';
 import './JournalEditor.css';
 
@@ -49,14 +51,14 @@ class JournalEditor extends Component {
                 modules={{clipboard: {matchVisual: false}}} />
         </>) : null}
       </div>
-      {/* <Modal 
+      <Modal 
           isOpen={this.state.isDeleteOpen} 
           toggle={this.toggleDeleteModal}>
-        <DeleteEntryModal
+        <ModalDeleteEntry
             deleteFile={this.props.deleteFile}
             currentFile={this.props.currentFile}
             toggle={this.toggleDeleteModal} />
-      </Modal> */}
+      </Modal>
       </>
     );
   }

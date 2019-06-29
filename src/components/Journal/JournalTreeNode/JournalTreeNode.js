@@ -96,7 +96,7 @@ class JournalTreeNode extends Component {
           <div className={"journaltreenode-label no-select"
                                  + this.getBorderClass()} 
                style={{marginLeft: props.indent * 10 + "px"}}>
-            <div className="journaltreennode-icon">
+            <div className="journaltreenode-icon">
               {this.getIcon(props.isFolder, props.isOpen)}
             </div>
             <div>{props.title}</div>

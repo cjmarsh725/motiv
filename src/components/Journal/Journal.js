@@ -63,23 +63,12 @@ class Journal extends Component {
     dragged: null
   }
 
-  getRootNodes = () => {
-    const { fileStructure } = this.state;
-    return values(fileStructure).filter(node => node.parent === "/");
-  }
-
+  // Gets the child nodes of the supplied node
   getChildNodes = nodePath => {
     const { fileStructure } = this.state;
     const node = fileStructure[nodePath];
     if (!node.children) return [];
     return node.children.map(path => fileStructure[path]);
-  }
-
-  toggleNode = path => {
-    const { fileStructure } = this.state;
-    const node = fileStructure[path];
-    if (node.isFolder) node.isOpen = !node.isOpen;
-    this.setState({ fileStructure });
   }
 
   updateContent = content => {
@@ -100,6 +89,13 @@ class Journal extends Component {
     if (this.state.fileStructure[this.state.currentFile]) {
       return this.state.fileStructure[this.state.currentFile].title;
     }
+  }
+
+  toggleNode = path => {
+    const { fileStructure } = this.state;
+    const node = fileStructure[path];
+    if (node.isFolder) node.isOpen = !node.isOpen;
+    this.setState({ fileStructure });
   }
 
   openFile = path => {
@@ -166,7 +162,8 @@ class Journal extends Component {
   // Searches through the file structure to get the current file after
   //  changes have been made from a drag and drop operation
   getCurrentFile = (fileStructure, previousPath, newPath) => {
-    if (previousPath === newPath) return previousPath;
+    if (previousPath === newPath || previousPath === null)
+      return previousPath;
     // Separates path to extract title
     const pathSegments = previousPath.split("/");
     if (!pathSegments.length) return null;
@@ -184,7 +181,7 @@ class Journal extends Component {
   //     the top, bottom, or middle of the node
   droppedOn = (path, direction) => {
     const { fileStructure, dragged, currentFile } = this.state;
-    // Check to see if folder is being placed in its own child or itself
+    // Check to see if item is being placed in its own child or itself
     if (this.isInChildren(fileStructure, path, dragged) || path === dragged) 
       return;
     // Get the parents of the dragged and dropped nodes
@@ -205,8 +202,7 @@ class Journal extends Component {
     // Change to new parent's children to insert new path
     children = fileStructure[newParent].children;
     // Get index to insert to based on the top or bottom direction
-    const index = children.indexOf(path) + 
-                  (direction === "bottom" ? 1 : 0);
+    const index = children.indexOf(path) + (direction === "top" ? 0 : 1);
     // Insert node's path to parent's children array at index
     children.splice(index, 0, newPath);
     // Update state, including currentFile if it's being dragged
@@ -232,7 +228,6 @@ class Journal extends Component {
              (this.state.sidebarOpen ? "" : " journal-journalsidebar-closed")}>
           <JournalSidebar 
               fileStructure={this.state.fileStructure}
-              getRootNodes={this.getRootNodes}
               getChildNodes={this.getChildNodes}
               toggleNode={this.toggleNode}
               openFile={this.openFile}

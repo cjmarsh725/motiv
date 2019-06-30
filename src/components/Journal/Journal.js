@@ -114,12 +114,8 @@ class Journal extends Component {
     const { fileStructure } = this.state;
     const node = fileStructure[path];
     if (node) {
-      const parent = fileStructure[
-        node.path.replace("/" + node.title, "")
-      ];
-      if (parent) {
-        parent.children = parent.children.filter(child => child.path !== path);
-      }
+      const parent = fileStructure[node.parent];
+      parent.children = parent.children.filter(child => child !== path);
       delete fileStructure[path];
       this.setState({ fileStructure: fileStructure, currentFile: null });
     }

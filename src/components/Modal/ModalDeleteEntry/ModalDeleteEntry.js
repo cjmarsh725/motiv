@@ -10,7 +10,7 @@ const ModalDeleteEntry = props => {
       <div className="modaldeleteentry-btns">
         <div className="modaldeleteentry-delete-btn"
              onClick={() => {
-               props.deleteFile(props.currentFile);
+               props.deleteNode(props.currentFile);
                props.toggle();
               }}>
           Delete

@@ -110,7 +110,8 @@ class Journal extends Component {
     }
   }
 
-  deleteFile = path => {
+  // Removes the path property from the fileStructure
+  deleteNode = path => {
     const { fileStructure } = this.state;
     const node = fileStructure[path];
     if (node) {
@@ -212,11 +213,10 @@ class Journal extends Component {
         <div className="journal-journaleditor" >
           <JournalEditor
               updateContent={this.updateContent}
-              currentFile={this.state.currentFile}
-              deleteFile={this.deleteFile}
               toggleSidebar={() => 
                 this.setState({sidebarOpen: !this.state.sidebarOpen})}
               sidebarOpen={this.state.sidebarOpen}
+              currentFile={this.state.currentFile}
               content={this.getContent()}
               fileName={this.getFileName()} />
         </div>
@@ -227,6 +227,8 @@ class Journal extends Component {
               getChildNodes={this.getChildNodes}
               toggleNode={this.toggleNode}
               openFile={this.openFile}
+              currentFile={this.state.currentFile}
+              deleteNode={this.deleteNode}
               setDragged={path => this.setState({dragged: path})}
               droppedOn={this.droppedOn} />
         </div>

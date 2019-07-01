@@ -9,7 +9,8 @@ class JournalSidebar extends Component {
     super(props);
     this.state = {
       isAddOpen: false,
-      isDeleteOpen: false
+      isDeleteOpen: false,
+      deletingPath: props.currentFile
     }
   }
 
@@ -32,9 +33,15 @@ class JournalSidebar extends Component {
           </div>
           <div className="journalsidebar-delete-btn"
               onClick={() => {
-                if (props.currentFile) 
-                  this.toggleDeleteModal();
-                }}>
+                this.setState({deletingPath: props.currentFile});
+                this.toggleDeleteModal();
+              }}
+              onDrop={() => {
+                this.setState({deletingPath: props.dragged});
+                this.toggleDeleteModal();
+              }}
+              onDragEnter={e => e.preventDefault()}
+              onDragOver={e => e.preventDefault()}>
             <i className="fas fa-trash fa-2x"></i>
           </div>
         </div>
@@ -55,7 +62,7 @@ class JournalSidebar extends Component {
           toggle={this.toggleDeleteModal}>
         <ModalDeleteEntry
             deleteNode={props.deleteNode}
-            currentFile={props.currentFile}
+            deletingPath={this.state.deletingPath}
             toggle={this.toggleDeleteModal} />
       </Modal>
     </>);

@@ -112,13 +112,16 @@ class Journal extends Component {
 
   // Removes the path property from the fileStructure
   deleteNode = path => {
-    const { fileStructure } = this.state;
+    const { fileStructure, currentFile } = this.state;
     const node = fileStructure[path];
     if (node) {
       const parent = fileStructure[node.parent];
       parent.children = parent.children.filter(child => child !== path);
       delete fileStructure[path];
-      this.setState({ fileStructure: fileStructure, currentFile: null });
+      this.setState({ 
+        fileStructure: fileStructure, 
+        currentFile: path === currentFile ? null : currentFile
+      });
     }
   }
 
@@ -229,6 +232,7 @@ class Journal extends Component {
               openFile={this.openFile}
               currentFile={this.state.currentFile}
               deleteNode={this.deleteNode}
+              dragged={this.state.dragged}
               setDragged={path => this.setState({dragged: path})}
               droppedOn={this.droppedOn} />
         </div>

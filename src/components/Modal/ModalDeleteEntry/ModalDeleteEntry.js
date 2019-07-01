@@ -5,12 +5,12 @@ const ModalDeleteEntry = props => {
   return (
     <div className="modaldeleteentry-container">
       <div className="modaldeleteentry-title">
-        Are you sure you want to permanently delete this entry?
+        Are you sure you want to permanently delete this item?
       </div>
       <div className="modaldeleteentry-btns">
         <div className="modaldeleteentry-delete-btn"
              onClick={() => {
-               props.deleteNode(props.currentFile);
+               props.deleteNode(props.deletingPath);
                props.toggle();
               }}>
           Delete

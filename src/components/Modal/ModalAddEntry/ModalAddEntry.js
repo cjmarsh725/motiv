@@ -3,11 +3,17 @@ import './ModalAddEntry.css';
 
 class ModalAddEntry extends Component {
   state = {
+    isFile: true,
     name: ""
   }
 
   nameChange = e => {
     this.setState({name: e.target.value});
+  }
+
+  closeModal = () => {
+    this.setState({name: "", isFile: true});
+    this.props.toggle();
   }
 
   render() {  
@@ -17,8 +23,16 @@ class ModalAddEntry extends Component {
           Please select item type, a unique name, and a parent folder:
         </div>
         <div className="modaladdentry-type-btns">
-          <div className="modaladdentry-file-btn">File</div>
-          <div className="modaladdentry-folder-btn">Folder</div>
+          <div className={"modaladdentry-file-btn" +
+                (this.state.isFile ? " modaladdentry-type-btn-active" : "")}
+               onClick={() => this.setState({isFile: true})}>
+              File
+          </div>
+          <div className={"modaladdentry-folder-btn" +
+                (!this.state.isFile ? " modaladdentry-type-btn-active" : "")}
+               onClick={() => this.setState({isFile: false})}>
+            Folder
+          </div>
         </div>
         <div className="modaladdentry-name-container">
           <div className="modaladdentry-name-label">Name:</div>
@@ -32,13 +46,13 @@ class ModalAddEntry extends Component {
         </div>
         <div className="modaladdentry-confirm-btns">
           <div className="modaladdentry-cancel-btn"
-              onClick={this.props.toggle}>
+              onClick={this.closeModal}>
             Cancel
           </div>
           <div className="modaladdentry-create-btn"
               onClick={() => {
                 // props.createNode - TODO
-                this.props.toggle();
+                this.closeModal();
               }}>
             Create
           </div>

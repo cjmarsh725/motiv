@@ -17,15 +17,15 @@
 
 .modaldeleteentry-delete-btn {
   cursor: pointer;
-  margin-right: 20px;
   padding: 5px 10px 5px 10px;
   color: var(--secondary);
   background-color: var(--secondary-accent);
-  border: 1px solid var(--secondary);
+  border: 1px solid var(--secondary-accent);
 }
 
 .modaldeleteentry-cancel-btn {
   cursor: pointer;
+  margin-right: 20px;
   box-sizing: border-box;
   padding: 5px 10px 5px 10px;
   border: 1px solid var(--secondary-accent);

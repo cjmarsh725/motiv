@@ -9,7 +9,47 @@
   font-size: 21px;
 }
 
-.modaladdentry-btns {
+
+/* File or folder buttons */
+
+.modaladdentry-type-btns {
+  margin-top: 10px;
+  display: flex;
+}
+
+.modaladdentry-file-btn, .modaladdentry-folder-btn {
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 5px 10px 5px 10px;
+  border: 2px solid var(--secondary-accent);
+  height: 40px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modaladdentry-file-btn {
+  border-right-width: 1px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.modaladdentry-folder-btn {
+  border-left-width: 1px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.modaladdentry-file-btn {
+  color: var(--secondary);
+  background-color: var(--secondary-accent);
+}
+
+
+/* Confirm create or cancel buttons */
+
+.modaladdentry-confirm-btns {
   display: flex;
   padding: 20px;
   padding-bottom: 5px;
@@ -17,15 +57,15 @@
 
 .modaladdentry-create-btn {
   cursor: pointer;
-  margin-right: 20px;
   padding: 5px 10px 5px 10px;
   color: var(--secondary);
   background-color: var(--secondary-accent);
-  border: 1px solid var(--secondary);
+  border: 1px solid var(--secondary-accent);
 }
 
 .modaladdentry-cancel-btn {
   cursor: pointer;
+  margin-right: 20px;
   box-sizing: border-box;
   padding: 5px 10px 5px 10px;
   border: 1px solid var(--secondary-accent);

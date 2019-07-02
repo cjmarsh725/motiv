@@ -3,6 +3,7 @@ import JournalTreeNode from '../JournalTreeNode/JournalTreeNode';
 import Modal from '../../Modal/Modal';
 import ModalDeleteEntry from '../../Modal/ModalDeleteEntry/ModalDeleteEntry';
 import './JournalSidebar.css';
+import ModalAddEntry from '../../Modal/ModalAddEntry/ModalAddEntry';
 
 class JournalSidebar extends Component {
   constructor(props) {
@@ -54,8 +55,12 @@ class JournalSidebar extends Component {
             droppedOn={props.droppedOn} />
           )})}
       </div>
-      <Modal isOpen={this.state.isAddOpen} 
-             toggle={this.toggleAddModal}>
+      <Modal 
+          isOpen={this.state.isAddOpen} 
+          toggle={this.toggleAddModal}>
+        <ModalAddEntry
+            createNode={() => {}}
+            toggle={this.toggleAddModal} />
       </Modal>
       <Modal 
           isOpen={this.state.isDeleteOpen} 

@@ -1,0 +1,32 @@
+.modaladdentry-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.modaladdentry-title {
+  font-size: 21px;
+}
+
+.modaladdentry-btns {
+  display: flex;
+  padding: 20px;
+  padding-bottom: 5px;
+}
+
+.modaladdentry-create-btn {
+  cursor: pointer;
+  margin-right: 20px;
+  padding: 5px 10px 5px 10px;
+  color: var(--secondary);
+  background-color: var(--secondary-accent);
+  border: 1px solid var(--secondary);
+}
+
+.modaladdentry-cancel-btn {
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 5px 10px 5px 10px;
+  border: 1px solid var(--secondary-accent);
+}

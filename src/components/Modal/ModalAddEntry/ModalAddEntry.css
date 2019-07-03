@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   margin: 20px;
+  border: 1px solid blue;
 }
 
 .modaladdentry-title {
@@ -55,6 +56,7 @@
   display: flex;
   align-items: center;
   margin-top: 20px;
+  border: 1px solid green;
 }
 
 .modaladdentry-name-label {
@@ -62,7 +64,10 @@
 }
 
 .modaladdentry-name-input {
-  text-align: center;
+  box-sizing: content-box;
+  height: 30px;
+  width: 100%;
+  padding-left: 4px;
   color: var(--secondary-accent);
   background-color: var(--secondary);
   border: 1px solid var(--secondary-accent);
@@ -70,9 +75,33 @@
 }
 
 .modaladdentry-name-input:focus {
+  height: 30px;
   border-width: 2px;
   margin: 0px;
   outline: white;
+}
+
+
+/* Parent dropdown list */
+
+.modaladdentry-path-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  border: 1px solid red;
+}
+
+.modaladdentry-path-dropdown {
+  width: 200px;
+}
+
+.modaladdentry-path-dropdown-top {
+  color: var(--secondary-accent);
+  height: 32px;
+  width: 162px;
+  width: 100%;
+  margin-left: 10px;
+  border: 1px solid var(--secondary-accent);
 }
 
 

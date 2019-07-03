@@ -4,7 +4,8 @@ import './ModalAddEntry.css';
 class ModalAddEntry extends Component {
   state = {
     isFile: true,
-    name: ""
+    name: "",
+    parent: "/"
   }
 
   nameChange = e => {
@@ -42,7 +43,13 @@ class ModalAddEntry extends Component {
                 onChange={this.nameChange} />
         </div>
         <div className="modaladdentry-path-container">
-          
+          <div>Parent:</div>
+          <div className="modaladdentry-path-dropdown">
+            <div className="modaladdentry-path-dropdown-top">
+              {this.state.parent}
+            </div>
+          </div>
+          {/* {this.props.getFolderPaths().map(path => <div>{path}</div>)} */}
         </div>
         <div className="modaladdentry-confirm-btns">
           <div className="modaladdentry-cancel-btn"

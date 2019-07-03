@@ -5,7 +5,7 @@ class ModalAddEntry extends Component {
   state = {
     isFile: true,
     name: "",
-    parent: "/"
+    parent: "/fhgdhdfghdgdf"
   }
 
   nameChange = e => {
@@ -35,21 +35,23 @@ class ModalAddEntry extends Component {
             Folder
           </div>
         </div>
-        <div className="modaladdentry-name-container">
-          <div className="modaladdentry-name-label">Name:</div>
-          <input className="modaladdentry-name-input"
-                type="text"
-                value={this.state.name}
-                onChange={this.nameChange} />
-        </div>
-        <div className="modaladdentry-path-container">
-          <div>Parent:</div>
-          <div className="modaladdentry-path-dropdown">
-            <div className="modaladdentry-path-dropdown-top">
-              {this.state.parent}
-            </div>
+        <div className="modaladdentry-labelinputs-container">
+          <div className="modaladdentry-label-container">
+            <div className="modaladdentry-name-label">Name:</div>
+            <div className="modaladdentry-path-label">Parent:</div>
           </div>
-          {/* {this.props.getFolderPaths().map(path => <div>{path}</div>)} */}
+          <div className="modaladdentry-input-container">
+            <input className="modaladdentry-name-input"
+                  type="text"
+                  value={this.state.name}
+                  onChange={this.nameChange} />
+            <div className="modaladdentry-path-dropdown">
+              <div className="modaladdentry-path-dropdown-top">
+                {this.state.parent}
+              </div>
+            </div>
+            {/* {this.props.getFolderPaths().map(path => <div>{path}</div>)} */}
+          </div>
         </div>
         <div className="modaladdentry-confirm-btns">
           <div className="modaladdentry-cancel-btn"

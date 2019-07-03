@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   margin: 20px;
-  border: 1px solid blue;
 }
 
 .modaladdentry-title {
@@ -50,24 +49,38 @@
 }
 
 
-/* Name input */
+/* Name and path inputs */
 
-.modaladdentry-name-container {
+.modaladdentry-labelinputs-container {
   display: flex;
-  align-items: center;
-  margin-top: 20px;
-  border: 1px solid green;
+  width: 300px;
+  height: 120px;
+  margin-top: 10px;
 }
 
-.modaladdentry-name-label {
-  margin-right: 10px;
+.modaladdentry-label-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  width: 20%;
+}
+
+.modaladdentry-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 60%;
+}
+
+.modaladdentry-name-label, .modaladdentry-path-label {
+  text-align: right;
+  padding-right: 5px;
 }
 
 .modaladdentry-name-input {
   box-sizing: content-box;
   height: 30px;
-  width: 100%;
-  padding-left: 4px;
   color: var(--secondary-accent);
   background-color: var(--secondary);
   border: 1px solid var(--secondary-accent);
@@ -81,26 +94,16 @@
   outline: white;
 }
 
-
-/* Parent dropdown list */
-
-.modaladdentry-path-container {
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-  border: 1px solid red;
-}
-
 .modaladdentry-path-dropdown {
-  width: 200px;
 }
 
 .modaladdentry-path-dropdown-top {
+  display: flex;
+  align-items: center;
   color: var(--secondary-accent);
   height: 32px;
-  width: 162px;
-  width: 100%;
-  margin-left: 10px;
+  padding-left: 10px;
+  padding-bottom: 1px;
   border: 1px solid var(--secondary-accent);
 }
 

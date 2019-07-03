@@ -85,6 +85,7 @@
   background-color: var(--secondary);
   border: 1px solid var(--secondary-accent);
   margin: 1px;
+  padding-left: 5px;
 }
 
 .modaladdentry-name-input:focus {
@@ -99,14 +100,25 @@
 
 .modaladdentry-path-dropdown-top {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   color: var(--secondary-accent);
   height: 32px;
   padding-left: 10px;
-  padding-bottom: 1px;
   border: 1px solid var(--secondary-accent);
+  cursor: pointer;
 }
 
+.modaladdentry-path-dropdown-label {
+  line-height: 1.6;
+}
+
+.modaladdentry-path-dropdown-caret {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  border-left: 1px solid var(--secondary-accent);
+}
 
 /* Confirm create or cancel buttons */
 

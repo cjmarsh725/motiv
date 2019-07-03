@@ -5,7 +5,8 @@ class ModalAddEntry extends Component {
   state = {
     isFile: true,
     name: "",
-    parent: "/fhgdhdfghdgdf"
+    parent: "/",
+    dropdownOpen: false
   }
 
   nameChange = e => {
@@ -46,8 +47,16 @@ class ModalAddEntry extends Component {
                   value={this.state.name}
                   onChange={this.nameChange} />
             <div className="modaladdentry-path-dropdown">
-              <div className="modaladdentry-path-dropdown-top">
-                {this.state.parent}
+              <div className="modaladdentry-path-dropdown-top"
+                   onClick={() => this.setState(
+                        {dropdownOpen: !this.state.dropdownOpen})}>
+                <div className="modaladdentry-path-dropdown-label">
+                  {this.state.parent}
+                </div>
+                <div className="modaladdentry-path-dropdown-caret">
+                  <i className={"fas" + (this.state.dropdownOpen ? 
+                      " fa-angle-left" : " fa-angle-down")}></i>
+                </div>
               </div>
             </div>
             {/* {this.props.getFolderPaths().map(path => <div>{path}</div>)} */}

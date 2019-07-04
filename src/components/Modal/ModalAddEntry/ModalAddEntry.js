@@ -28,7 +28,7 @@ class ModalAddEntry extends Component {
           <div className={"modaladdentry-file-btn" +
                 (this.state.isFile ? " modaladdentry-type-btn-active" : "")}
                onClick={() => this.setState({isFile: true})}>
-              File
+            File
           </div>
           <div className={"modaladdentry-folder-btn" +
                 (!this.state.isFile ? " modaladdentry-type-btn-active" : "")}
@@ -58,8 +58,20 @@ class ModalAddEntry extends Component {
                       " fa-angle-left" : " fa-angle-down")}></i>
                 </div>
               </div>
+              <div className={"modaladdentry-path-dropdown-content" + (
+                    this.state.dropdownOpen ? 
+                    " modaladdentry-path-dropdown-content-toggle" : "")}>
+                {this.props.getFolderPaths().map(path => (
+                  <div className="modaladdentry-path-dropdown-item"
+                      onClick={() => {
+                        this.setState({parent: path,
+                                      dropdownOpen: !this.state.dropdownOpen});
+                      }}>
+                    {path}
+                  </div>
+                ))}
+              </div>
             </div>
-            {/* {this.props.getFolderPaths().map(path => <div>{path}</div>)} */}
           </div>
         </div>
         <div className="modaladdentry-confirm-btns">

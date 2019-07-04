@@ -49,7 +49,7 @@
 }
 
 
-/* Name and path inputs */
+/* Name and path labels and containers */
 
 .modaladdentry-labelinputs-container {
   display: flex;
@@ -78,6 +78,9 @@
   padding-right: 5px;
 }
 
+
+/* Name input and folder path dropdown */
+
 .modaladdentry-name-input {
   box-sizing: content-box;
   height: 30px;
@@ -96,6 +99,7 @@
 }
 
 .modaladdentry-path-dropdown {
+  position: relative;
 }
 
 .modaladdentry-path-dropdown-top {
@@ -103,13 +107,26 @@
   justify-content: space-between;
   color: var(--secondary-accent);
   height: 32px;
-  padding-left: 10px;
+  padding-left: 4px;
   border: 1px solid var(--secondary-accent);
   cursor: pointer;
 }
 
+.modaladdentry-path-dropdown-content {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--secondary);
+  border: 1px solid var(--secondary-accent);
+}
+
+.modaladdentry-path-dropdown-content-toggle{
+  display: flex;
+}
+
 .modaladdentry-path-dropdown-label {
-  line-height: 1.6;
+  line-height: 1.8;
 }
 
 .modaladdentry-path-dropdown-caret {
@@ -118,6 +135,17 @@
   justify-content: center;
   width: 30px;
   border-left: 1px solid var(--secondary-accent);
+}
+
+.modaladdentry-path-dropdown-item {
+  padding-left: 4px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.modaladdentry-path-dropdown-item:hover {
+  color: var(--secondary);
+  background-color: var(--secondary-accent);
 }
 
 /* Confirm create or cancel buttons */

@@ -75,11 +75,11 @@ class ModalAddEntry extends Component {
           </div>
         </div>
         <div className="modaladdentry-confirm-btns">
-          <div className="modaladdentry-cancel-btn"
+          <div className="modal-btn"
               onClick={this.closeModal}>
             Cancel
           </div>
-          <div className="modaladdentry-create-btn"
+          <div className="modal-btn-primary"
               onClick={() => {
                 // props.createNode - TODO
                 this.closeModal();

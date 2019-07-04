@@ -4,6 +4,14 @@ import values from 'lodash/values';
 import JournalEditor from './JournalEditor/JournalEditor';
 import JournalSidebar from './JournalSidebar/JournalSidebar';
 
+/*
+The Journal route contains two main areas and the logic to support them: the 
+Editor and the Sidebar. The state for the journal entries is kept here along 
+with the current file, dragged file, and sidebar visibility toggle. Functions 
+include getting, setting, and deleting entry nodes and their properties. In 
+addition, drag and drop logic for the TreeNodes in the entry file tree is 
+handled here and passed through the Sidebar.
+*/
 class Journal extends Component {
   state = {
     fileStructure: {
@@ -42,11 +50,11 @@ class Journal extends Component {
       "/Entries/SubEntries": {
         title: "SubEntries",
         isFolder: true,
-        isOpen: false,
+        isOpen: true,
         indent: 2,
         parent: "/Entries",
         path: "/Entries/SubEntries",
-        children: ["/Entries/SubEntries/TestEntry3"]
+        children: ["/Entries/SubEntries/TestEntry3", "/Entries/SubEntries/SubSubEntries"]
       }, 
       "/Entries/SubEntries/TestEntry3": {
         title: "TestEntry3",
@@ -56,6 +64,15 @@ class Journal extends Component {
         parent: "/Entries/SubEntries",
         path: "/Entries/SubEntries/TestEntry3",
         content: null
+      },
+      "/Entries/SubEntries/SubSubEntries": {
+        title: "SubSubEntries",
+        isFolder: true,
+        isOpen: true,
+        indent: 3,
+        parent: "/Entries/SubEntries",
+        path: "/Entries/SubEntries/SubSubEntries",
+        children: []
       }
     },
     currentFile: "/Entries/TestEntry",
@@ -63,23 +80,17 @@ class Journal extends Component {
     dragged: null
   }
 
-  updateContent = content => {
-    if (this.state.currentFile) {
-      const { fileStructure } = this.state;
-      fileStructure[this.state.currentFile].content = content;
-      this.setState({ fileStructure });
-    }
-  }
-
+  // Helper functions to get the content and title from the current file
   getContent = () => {
-    if (this.state.fileStructure[this.state.currentFile]) {
-      return this.state.fileStructure[this.state.currentFile].content;
+    const { currentFile, fileStructure } = this.state;
+    if (fileStructure[currentFile]) {
+      return fileStructure[currentFile].content;
     }
   }
-
   getFileName = () => {
-    if (this.state.fileStructure[this.state.currentFile]) {
-      return this.state.fileStructure[this.state.currentFile].title;
+    const { currentFile, fileStructure } = this.state;
+    if (fileStructure[currentFile]) {
+      return fileStructure[currentFile].title;
     }
   }
 
@@ -102,6 +113,16 @@ class Journal extends Component {
     return node.children.map(path => fileStructure[path]);
   }
 
+  // Gets the current file node and changes the content
+  updateContent = content => {
+    const { fileStructure, currentFile } = this.state;
+    if (currentFile) {
+      fileStructure[currentFile].content = content;
+      this.setState({ fileStructure });
+    }
+  }
+
+  // Toggles whether or not a folder is open
   toggleNode = path => {
     const { fileStructure } = this.state;
     const node = fileStructure[path];
@@ -109,6 +130,8 @@ class Journal extends Component {
     this.setState({ fileStructure });
   }
 
+  // Sets the isOpen property of the node at a given path to true and then
+  //  gets the previous node that was open and sets its isOpen to false
   openFile = path => {
     const { fileStructure } = this.state;
     const node = fileStructure[path];
@@ -221,6 +244,7 @@ class Journal extends Component {
       currentFile: this.getCurrentFile(fileStructure, currentFile, newPath)});
   }
 
+  // Rendering split into two containers, an editor and a sidebar
   render() {
     return (
       <div className="journal-container">

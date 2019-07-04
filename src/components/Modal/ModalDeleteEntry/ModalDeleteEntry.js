@@ -1,6 +1,12 @@
 import React from 'react';
 import './ModalDeleteEntry.css';
 
+/*
+Interior modal component for deleting an entry in the journal. Toggled when
+the delete button in the Journal Sidebar is clicked or when an item is dragged
+onto it. Takes in the modal toggle function, deleting function, and path to 
+delete as props.
+*/
 const ModalDeleteEntry = props => {
   return (
     <div className="modaldeleteentry-container">

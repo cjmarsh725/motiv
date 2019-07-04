@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import './ModalAddEntry.css';
 
+/*
+Interior modal component for adding a new file or folder in the Journal 
+Sidebar. Contains a toggle for whether the new item is a file or folder,
+an input for a new unique name, a dropdown menu for available parent
+folders, and final validation for name uniqueness along with creating the
+new file node in Journal's state.
+*/
 class ModalAddEntry extends Component {
   state = {
     isFile: true,
@@ -13,8 +20,14 @@ class ModalAddEntry extends Component {
     this.setState({name: e.target.value});
   }
 
+  // Resets modal to default values then toggles visibility
   closeModal = () => {
-    this.setState({name: "", isFile: true});
+    this.setState({
+      isFile: true, 
+      name: "", 
+      parent: "/", 
+      dropdownOpen: false
+    });
     this.props.toggle();
   }
 
@@ -24,6 +37,7 @@ class ModalAddEntry extends Component {
         <div className="modaladdentry-title">
           Please select item type, a unique name, and a parent folder:
         </div>
+        {/* Toggle to select whether new item is a file or folder */}
         <div className="modaladdentry-type-btns">
           <div className={"modaladdentry-file-btn" +
                 (this.state.isFile ? " modaladdentry-type-btn-active" : "")}
@@ -42,10 +56,12 @@ class ModalAddEntry extends Component {
             <div className="modaladdentry-path-label">Parent:</div>
           </div>
           <div className="modaladdentry-input-container">
+            {/* Name input */}
             <input className="modaladdentry-name-input"
                   type="text"
                   value={this.state.name}
                   onChange={this.nameChange} />
+            {/* Parent path dropdown */}
             <div className="modaladdentry-path-dropdown">
               <div className="modaladdentry-path-dropdown-top"
                    onClick={() => this.setState(
@@ -58,6 +74,7 @@ class ModalAddEntry extends Component {
                       " fa-angle-left" : " fa-angle-down")}></i>
                 </div>
               </div>
+              {/* Toggleable dropdown content populated with folder paths */}
               <div className={"modaladdentry-path-dropdown-content" + (
                     this.state.dropdownOpen ? 
                     " modaladdentry-path-dropdown-content-toggle" : "")}>
@@ -74,6 +91,7 @@ class ModalAddEntry extends Component {
             </div>
           </div>
         </div>
+        {/* Cancel and create buttons */}
         <div className="modaladdentry-confirm-btns">
           <div className="modal-btn"
               onClick={this.closeModal}>

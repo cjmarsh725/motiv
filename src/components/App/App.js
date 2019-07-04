@@ -7,10 +7,14 @@ import Schedule from '../Schedule/Schedule';
 import Reminders from '../Reminders/Reminders';
 import './App.css';
 
+/*
+Entry point of the application, contains the header navbar along with the 
+routes and their components.
+*/
 function App() {
   return (
     <Router>
-      <div className="app">
+      <div className="app no-select">
         <Navbar expand="sm" bg="dark" variant="dark">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

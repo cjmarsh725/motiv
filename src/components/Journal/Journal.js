@@ -94,25 +94,6 @@ class Journal extends Component {
     }
   }
 
-  // Returns an array of all the folder paths in including the root
-  getFolderPaths = () => {
-    const { fileStructure } = this.state;
-    const paths = values(fileStructure)
-              .filter(node => node.isFolder)
-              .map(node => node.path)
-              .sort();
-    paths.unshift("/");
-    return paths;
-  }
-
-  // Gets the child nodes of the supplied node
-  getChildNodes = nodePath => {
-    const { fileStructure } = this.state;
-    const node = fileStructure[nodePath];
-    if (!node.children) return [];
-    return node.children.map(path => fileStructure[path]);
-  }
-
   // Gets the current file node and changes the content
   updateContent = content => {
     const { fileStructure, currentFile } = this.state;
@@ -286,8 +267,6 @@ class Journal extends Component {
              (this.state.sidebarOpen ? "" : " journal-journalsidebar-closed")}>
           <JournalSidebar 
               fileStructure={this.state.fileStructure}
-              getChildNodes={this.getChildNodes}
-              getFolderPaths={this.getFolderPaths}
               toggleNode={this.toggleNode}
               openFile={this.openFile}
               currentFile={this.state.currentFile}

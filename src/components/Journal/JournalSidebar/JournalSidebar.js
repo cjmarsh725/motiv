@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import values from 'lodash/values';
 import JournalTreeNode from '../JournalTreeNode/JournalTreeNode';
 import Modal from '../../Modal/Modal';
 import ModalDeleteEntry from '../../Modal/ModalDeleteEntry/ModalDeleteEntry';
@@ -30,6 +31,25 @@ class JournalSidebar extends Component {
     this.setState({isDeleteOpen: !this.state.isDeleteOpen});
   }
 
+  // Returns an array of all the folder paths in including the root
+  getFolderPaths = () => {
+    const { fileStructure } = this.props;
+    const paths = values(fileStructure)
+              .filter(node => node.isFolder)
+              .map(node => node.path)
+              .sort();
+    paths.unshift("/");
+    return paths;
+  }
+
+  // Gets the child nodes of the supplied node
+  getChildNodes = nodePath => {
+    const { fileStructure } = this.props;
+    const node = fileStructure[nodePath];
+    if (!node.children) return [];
+    return node.children.map(path => fileStructure[path]);
+  }
+
   render() {
     const props = this.props;
     return (<>
@@ -59,9 +79,9 @@ class JournalSidebar extends Component {
         {/* The file tree structure consists of TreeNodes with other child 
         TreeNodes in the case of folders. Functionality from Journal is 
         relayed to the TreeNodes. The root TreeNodes are placed here */}
-        {props.getChildNodes("/").map(node => {
+        {this.getChildNodes("/").map(node => {
           return (<JournalTreeNode {...node} key={node.path}
-            getChildNodes={props.getChildNodes}
+            getChildNodes={this.getChildNodes}
             toggleNode={props.toggleNode}
             openFile={props.openFile}
             setDragged={props.setDragged}
@@ -75,7 +95,7 @@ class JournalSidebar extends Component {
         <ModalAddEntry
             createNode={props.createNode}
             toggle={this.toggleAddModal}
-            getFolderPaths={props.getFolderPaths} />
+            getFolderPaths={this.getFolderPaths} />
       </Modal>
       {/* The delete entry modal is the confirmation to delete an item */}
       <Modal 

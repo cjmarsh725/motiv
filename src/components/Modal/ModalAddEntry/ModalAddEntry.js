@@ -79,7 +79,7 @@ class ModalAddEntry extends Component {
                     this.state.dropdownOpen ? 
                     " modaladdentry-path-dropdown-content-toggle" : "")}>
                 {this.props.getFolderPaths().map(path => (
-                  <div className="modaladdentry-path-dropdown-item"
+                  <div key={path} className="modaladdentry-path-dropdown-item"
                       onClick={() => {
                         this.setState({parent: path,
                                       dropdownOpen: !this.state.dropdownOpen});
@@ -99,7 +99,8 @@ class ModalAddEntry extends Component {
           </div>
           <div className="modal-btn-primary"
               onClick={() => {
-                // props.createNode - TODO
+                const { isFile, name, parent } = this.state;
+                this.props.createNode(isFile, name, parent);
                 this.closeModal();
               }}>
             Create

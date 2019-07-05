@@ -73,7 +73,7 @@ class JournalSidebar extends Component {
           isOpen={this.state.isAddOpen} 
           toggle={this.toggleAddModal}>
         <ModalAddEntry
-            createNode={() => {}}
+            createNode={props.createNode}
             toggle={this.toggleAddModal}
             getFolderPaths={props.getFolderPaths} />
       </Modal>

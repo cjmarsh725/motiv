@@ -159,6 +159,30 @@ class Journal extends Component {
     }
   }
 
+  // Adds a new node to fileStructure with the supplied properties
+  createNode = (isFile, title, parent) => {
+    const { fileStructure } = this.state;
+    // Build path of new node and allow for the root case to prevent '//'
+    const path = (parent === "/" ? "" : parent) + "/" + title;
+    // Fill out the node item and increment the indent from the parent
+    const newNode = {
+      title: title,
+      isFolder: !isFile,
+      isOpen: false,
+      indent: fileStructure[parent].indent + 1,
+      parent: parent,
+      path: path
+    }
+    // Add a content property if its a file or children if its a folder
+    if (isFile) newNode.content = null;
+    else newNode.children = [];
+    // Add the new node to the parent's children
+    fileStructure[parent].children.push(path);
+    // Add the node to the fileStructure and update state
+    fileStructure[path] = newNode;
+    this.setState({ fileStructure });
+  }
+
   // Updates a nodes parent and, if its a folder, changes its 
   //  children recursively
   changeParent = (fileStructure, node, newParent) => {
@@ -268,6 +292,7 @@ class Journal extends Component {
               openFile={this.openFile}
               currentFile={this.state.currentFile}
               deleteNode={this.deleteNode}
+              createNode={this.createNode}
               dragged={this.state.dragged}
               setDragged={path => this.setState({dragged: path})}
               droppedOn={this.droppedOn} />

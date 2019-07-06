@@ -79,7 +79,7 @@
 }
 
 
-/* Name input and folder path dropdown */
+/* Name input */
 
 .modaladdentry-name-input {
   box-sizing: content-box;
@@ -98,6 +98,20 @@
   margin: 0px;
   outline: white;
 }
+
+.modaladdentry-name-error-container {
+  position: absolute;
+  color: rgb(240, 76, 76);
+  padding-left: 6px;
+  padding-bottom: 4px;
+}
+
+.modaladdentry-name-error-toggle {
+  display: none;
+}
+
+
+/* Folder path dropdown */
 
 .modaladdentry-path-dropdown {
   position: relative;

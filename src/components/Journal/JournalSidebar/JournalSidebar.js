@@ -50,6 +50,12 @@ class JournalSidebar extends Component {
     return node.children.map(path => fileStructure[path]);
   }
 
+  // Checks the given name to ensure it is a unique item
+  checkName = name => {
+    const { fileStructure } = this.props;    
+    return values(fileStructure).some(node => node.title === name);
+  }
+
   render() {
     const props = this.props;
     return (<>
@@ -95,7 +101,8 @@ class JournalSidebar extends Component {
         <ModalAddEntry
             createNode={props.createNode}
             toggle={this.toggleAddModal}
-            getFolderPaths={this.getFolderPaths} />
+            getFolderPaths={this.getFolderPaths}
+            checkName={this.checkName} />
       </Modal>
       {/* The delete entry modal is the confirmation to delete an item */}
       <Modal 

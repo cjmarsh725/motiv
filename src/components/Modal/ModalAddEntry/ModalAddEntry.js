@@ -13,11 +13,12 @@ class ModalAddEntry extends Component {
     isFile: true,
     name: "",
     parent: "/",
-    dropdownOpen: false
+    dropdownOpen: false,
+    nameErrorOpen: false,
   }
 
   nameChange = e => {
-    this.setState({name: e.target.value});
+    this.setState({name: e.target.value, nameErrorOpen: false});
   }
 
   // Resets modal to default values then toggles visibility
@@ -26,9 +27,22 @@ class ModalAddEntry extends Component {
       isFile: true, 
       name: "", 
       parent: "/", 
-      dropdownOpen: false
+      dropdownOpen: false,
+      nameErrorOpen: false,
     });
     this.props.toggle();
+  }
+
+  // Validates the name input, creates a new node, and closes the modal
+  handleConfirm = () => {
+    const { isFile, name, parent } = this.state;
+    // Validate name choice to make sure it is unique
+    if (this.props.checkName(name)) {
+      this.setState({nameErrorOpen: true});
+      return;
+    }
+    this.props.createNode(isFile, name, parent);
+    this.closeModal();
   }
 
   render() {  
@@ -61,6 +75,12 @@ class ModalAddEntry extends Component {
                   type="text"
                   value={this.state.name}
                   onChange={this.nameChange} />
+            <div className="modaladdentry-name-error-container">
+              <div className={this.state.nameErrorOpen ? "" : 
+                              "modaladdentry-name-error-toggle"}>
+                Must be a unique name
+              </div>
+            </div>
             {/* Parent path dropdown */}
             <div className="modaladdentry-path-dropdown">
               <div className="modaladdentry-path-dropdown-top"
@@ -98,11 +118,7 @@ class ModalAddEntry extends Component {
             Cancel
           </div>
           <div className="modal-btn-primary"
-              onClick={() => {
-                const { isFile, name, parent } = this.state;
-                this.props.createNode(isFile, name, parent);
-                this.closeModal();
-              }}>
+              onClick={this.handleConfirm}>
             Create
           </div>
         </div>

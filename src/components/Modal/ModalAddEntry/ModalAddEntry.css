@@ -13,7 +13,7 @@
 /* File or folder buttons */
 
 .modaladdentry-type-btns {
-  margin-top: 20px;
+  margin-top: 30px;
   display: flex;
 }
 
@@ -163,6 +163,9 @@
   line-height: 1.4;
   border-radius: 12px;
   cursor: pointer;
+  direction: rtl;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modaladdentry-path-dropdown-item:hover {

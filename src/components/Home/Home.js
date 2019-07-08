@@ -27,18 +27,22 @@ const imgObjs = [
     url: "img/ashley-knedler-OwpgxILRR7c-unsplash.jpg",
     text: "The forces that wear us down also make us better"
   },
-  // {
-  //   url: "",
-  //   text: ""
-  // },
-  // {
-  //   url: "",
-  //   text: ""
-  // },
-  // {
-  //   url: "",
-  //   text: ""
-  // },
+  {
+    url: "img/mauri-karlin-aUIbbwkPSkc-unsplash.jpg",
+    text: "Sometimes going in circles is the best way forward"
+  },
+  {
+    url: "img/ron-manke-xghkLM1p1zA-unsplash.jpg",
+    text: "Every journey to the top of a mountain began with a single step"
+  },
+  {
+    url: "img/max-larochelle-tD-SDlQxfsY-unsplash.jpg",
+    text: "The only secret to success is hard work"
+  },
+  {
+    url: "img/fabio-comparelli-uq2E2V4LhCY-unsplash.jpg",
+    text: "Perseverance is the only thing necessary to live"
+  },
 ]
 
 class Home extends Component {

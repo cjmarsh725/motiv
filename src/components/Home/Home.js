@@ -41,7 +41,7 @@ const imgObjs = [
   },
   {
     url: "img/fabio-comparelli-uq2E2V4LhCY-unsplash.jpg",
-    text: "Perseverance is the only thing necessary to live"
+    text: "Perseverance while pursuing goals leads to fulfillment"
   },
 ]
 

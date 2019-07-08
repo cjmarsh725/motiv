@@ -29,7 +29,7 @@ const imgObjs = [
   },
   {
     url: "img/mauri-karlin-aUIbbwkPSkc-unsplash.jpg",
-    text: "Sometimes going in circles is the best way forward"
+    text: "Sometimes going in circles leads to progress"
   },
   {
     url: "img/ron-manke-xghkLM1p1zA-unsplash.jpg",
@@ -73,7 +73,7 @@ class Home extends Component {
     return (
       <div className="home-container">
         {imgObjs.map((obj, i) => { return (
-          <div key={i}>
+          <div className="home-obj-container" key={i}>
             <Image src={obj.url} onLoad={() => this.onImageLoad(i)} fluid />
             <div className="home-obj-text-container">
               <div className={"home-obj-text" +  (this.state.imgLoaded[i] ? 

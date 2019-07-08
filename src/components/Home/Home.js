@@ -50,10 +50,23 @@ class Home extends Component {
     imgLoaded: new Array(imgObjs.length).fill(false)
   }
 
+  componentDidMount() {
+    this.shuffleArray(imgObjs);
+  }
+
   onImageLoad = index => {
     const { imgLoaded } = this.state;
     imgLoaded[index] = true;
     this.setState({ imgLoaded });
+  }
+
+  shuffleArray = arr => {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
   }
 
   render() {

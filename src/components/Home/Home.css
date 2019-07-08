@@ -2,6 +2,10 @@
   height: 0px;
 }
 
+.home-obj-text-toggle {
+  visibility: hidden;
+}
+
 .home-obj-text {
   position: relative;
   bottom: 100px;

@@ -54,5 +54,6 @@
 
   .home-container {
     padding: 0 15% 0 15%;
+    max-width: 3000px;
   }
 }

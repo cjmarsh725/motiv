@@ -46,12 +46,12 @@ const imgObjs = [
 ]
 
 class Home extends Component {
-  state = {
-    imgLoaded: new Array(imgObjs.length).fill(false)
-  }
-
-  componentDidMount() {
-    this.shuffleArray(imgObjs);
+  constructor(props) {
+    super(props);
+    this.state = {
+      imgLoaded: new Array(imgObjs.length).fill(false)
+    }
+    this.shuffleArray(imgObjs);    
   }
 
   onImageLoad = index => {
@@ -73,11 +73,12 @@ class Home extends Component {
     return (
       <div className="home-container">
         {imgObjs.map((obj, i) => { return (
-          <div className="home-obj-container" key={i}>
+          <div key={i} className={"home-obj-container" +  
+                (this.state.imgLoaded[i] ? "" : " home-obj-toggle")}>
             <Image src={obj.url} onLoad={() => this.onImageLoad(i)} fluid />
             <div className="home-obj-text-container">
               <div className={"home-obj-text" +  (this.state.imgLoaded[i] ? 
-                              "" : " home-obj-text-toggle")}>
+                              "" : " home-obj-toggle")}>
                 {obj.text}
               </div>
             </div>

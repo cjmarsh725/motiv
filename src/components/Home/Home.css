@@ -1,5 +1,6 @@
 .home-container {
   background: var(--secondary);
+  min-height: 100vh;
 }
 
 .home-obj-container {
@@ -11,8 +12,8 @@
   height: 0px;
 }
 
-.home-obj-text-toggle {
-  visibility: hidden;
+.home-obj-toggle {
+  display: none;
 }
 
 .home-obj-text {

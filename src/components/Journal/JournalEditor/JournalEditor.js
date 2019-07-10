@@ -25,7 +25,8 @@ class JournalEditor extends Component {
   render() {
     return (
       <>
-      <div className="journaleditor-toggle-sidebar-container">
+      <div className="journaleditor-toggle-sidebar-container"
+            style={this.props.sidebarOpen ? {} : {width: "100%"}}>
         {/* Button to toggle the sidebar visibility */}
         <div className="journaleditor-toggle-sidebar"
             onClick={this.props.toggleSidebar}>

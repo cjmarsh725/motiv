@@ -1,8 +1,9 @@
 .journaleditor-toggle-sidebar-container {
-  width: 100%;
+  width: 50%;
   display: flex;
   justify-content: flex-end;
   padding: 6px 6px 0 0;
+  transition: width 0.2s ease-in-out;
 }
 
 .journaleditor-toggle-sidebar {
@@ -51,4 +52,17 @@
 
 .ql-toolbar.ql-snow, .ql-container.ql-snow {
   border-color: var(--background-accent);
+}
+
+@media (min-width: 768px) {
+  .journaleditor-toggle-sidebar-container {
+    width: 60%;
+  }
+}
+
+@media (min-width: 992px) {
+  .journaleditor-toggle-sidebar-container {
+    width: 100%;
+    position: inherit;
+  }
 }

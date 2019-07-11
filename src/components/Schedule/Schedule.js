@@ -8,7 +8,7 @@ class Schedule extends Component {
     return (
       <div className="schedule-container">
         <div className="schedule-calendar">
-          <ScheduleCalendar />
+          <ScheduleCalendar m={moment()}/>
         </div>
       </div>
     );

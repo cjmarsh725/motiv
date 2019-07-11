@@ -1,0 +1,12 @@
+.schedule-container {
+  display: flex;
+  background-color: var(--background);
+  min-height: calc(100vh - 56px);
+}
+
+.schedule-calendar {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

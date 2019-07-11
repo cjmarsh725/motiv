@@ -3,7 +3,7 @@
 }
 
 .modal-content {
-  position: absolute;
+  position: fixed;
   top: 20%;
   left: 10%;
   width: 80%;

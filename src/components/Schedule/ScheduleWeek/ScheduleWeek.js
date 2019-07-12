@@ -5,10 +5,14 @@ const ScheduleWeek = props => {
   const weekDays = Array(7).fill("Schedule Day ");
   return (
     <div className="scheduleweek-container">
-      {weekDays.map((x, i) => { return (
-        <div className="scheduleweek-day" key={x + i}>
-          {props.m.clone().add(i, 'd').format('D')}
-        </div>
+      {weekDays.map((x, i) => { 
+        const dayMoment = props.m.clone().add(i, 'd');
+        return (
+          <div key={x + i} className={"scheduleweek-day" + (
+            props.month !== dayMoment.format('MMMM') ?
+            " scheduleweek-offday" : "")}>
+            {dayMoment.format('D')}
+          </div>
       );})}
     </div>
   );

@@ -10,3 +10,7 @@
   height: 30px;
   border: 1px solid var(--background-accent);
 }
+
+.scheduleweek-offday {
+  color: #666666;
+}

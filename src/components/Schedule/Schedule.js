@@ -5,10 +5,11 @@ import './Schedule.css';
 
 class Schedule extends Component {
   render() {
+    const m = moment();
     return (
       <div className="schedule-container">
         <div className="schedule-calendar">
-          <ScheduleCalendar m={moment()}/>
+          <ScheduleCalendar m={m}/>
         </div>
       </div>
     );

@@ -13,9 +13,9 @@ class Schedule extends Component {
 
   changeMonth = delta => {
     if (delta > 0) {
-      this.setState({ m: this.state.m.clone().add(delta, 'M') });
+      this.setState({ m: this.state.m.clone().add(1, 'M') });
     } else {
-      this.setState({ m: this.state.m.clone().subtract(delta, 'M') });
+      this.setState({ m: this.state.m.clone().subtract(1, 'M') });
     }
   }
 

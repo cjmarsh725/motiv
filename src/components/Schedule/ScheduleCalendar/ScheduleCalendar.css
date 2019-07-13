@@ -29,3 +29,63 @@
 .schedulecalendar-month-btn:hover {
   background-color: var(--background-accent);
 }
+
+.schedulecalendar-picker-closed {
+  display: none;
+}
+
+.schedulecalendar-picker-content {
+  position: absolute;
+  width: 350px;
+  background-color: var(--secondary);
+  color: var(--secondary-accent);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--secondary-accent);
+  z-index: 2;
+}
+
+.schedulecalendar-picker-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.schedulecalendar-picker-year {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--secondary-accent);
+}
+
+.schedulecalendar-picker-year-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  cursor: pointer;
+}
+
+.schedulecalendar-picker-year-btn:hover {
+  color: var(--secondary);
+  background-color: var(--secondary-accent);
+}
+
+.schedulecalendar-picker-month-row {
+  display: flex;
+  width: 100%;
+}
+
+.schedulecalendar-picker-month-item {
+  text-align: center;
+  width: 100%;
+  border: 1px solid var(--secondary-accent);
+  cursor: pointer;
+}
+
+.schedulecalendar-picker-month-item:hover {
+  color: var(--secondary);
+  background-color: var(--secondary-accent);
+}

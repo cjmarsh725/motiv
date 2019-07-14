@@ -68,7 +68,7 @@ class ScheduleCalendar extends Component {
               onClick={this.togglePicker}>
             {props.m.format('MMMM YYYY')}
           </div>
-          <div className="schedulecalendar-month-btn"
+          <div className="schedulecalendar-month-btn schedulecalendar-month-btn-down"
                 onClick={() => props.changeMonth(1)}>
             <i className="fas fa-caret-down"></i>
           </div>

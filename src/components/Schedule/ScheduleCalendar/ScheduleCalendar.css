@@ -1,7 +1,9 @@
 .schedulecalendar-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--background-accent);
+  background-color: var(--secondary);
+  color: var(--secondary-accent);
+  border: 1px solid var(--secondary-accent);
 }
 
 .schedulecalendar-month {
@@ -9,10 +11,13 @@
   justify-content: space-between;
   align-items: center;
   height: 30px;
-  border: 1px solid var(--background-accent);
+  border: 1px solid var(--secondary-accent);
 }
 
 .schedulecalendar-month-label {
+  display: flex;
+  justify-content: center;
+  width: 240px;
   font-size: 18px;
   cursor: pointer;
 }
@@ -22,12 +27,13 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 30px;
+  width: 50px;
   cursor: pointer;
 }
 
 .schedulecalendar-month-btn:hover {
-  background-color: var(--background-accent);
+  color: var(--secondary);
+  background-color: var(--secondary-accent);
 }
 
 .schedulecalendar-picker-closed {

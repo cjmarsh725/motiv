@@ -37,7 +37,7 @@ class ModalAddEntry extends Component {
   handleConfirm = () => {
     const { isFile, name, parent } = this.state;
     // Validate name choice to make sure it is unique
-    if (this.props.checkName(name)) {
+    if (!name || this.props.checkName(name)) {
       this.setState({nameErrorOpen: true});
       return;
     }

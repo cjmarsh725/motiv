@@ -149,7 +149,7 @@ class Journal extends Component {
     const newNode = {
       title: title,
       isFolder: !isFile,
-      isOpen: false,
+      isOpen: isFile,
       indent: fileStructure[parent].indent + 1,
       parent: parent,
       path: path
@@ -161,7 +161,10 @@ class Journal extends Component {
     fileStructure[parent].children.push(path);
     // Add the node to the fileStructure and update state
     fileStructure[path] = newNode;
-    this.setState({ fileStructure });
+    if (isFile) {
+      fileStructure[this.state.currentFile].isOpen = false;
+      this.setState({ fileStructure, currentFile: path });
+    } else this.setState({ fileStructure });
   }
 
   // Updates a nodes parent and, if its a folder, changes its 

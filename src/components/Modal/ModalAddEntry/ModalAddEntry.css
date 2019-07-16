@@ -145,6 +145,9 @@
 
 .modaladdentry-path-dropdown-label {
   line-height: 1.8;
+  direction: rtl;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modaladdentry-path-dropdown-caret {

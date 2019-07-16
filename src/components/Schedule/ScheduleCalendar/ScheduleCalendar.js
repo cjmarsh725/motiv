@@ -6,15 +6,20 @@ class ScheduleCalendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPickerOpen: false
+      isPickerOpen: false,
+      pickerYear: this.props.m.format("YYYY")
     }
   }
 
   togglePicker = () => {
-    this.setState({ isPickerOpen: !this.state.isPickerOpen });
+    this.setState({ 
+      isPickerOpen: !this.state.isPickerOpen,
+      pickerYear: this.props.m.format("YYYY")
+    });
   }
 
   createMonthPicker = () => {
+    const props = this.props;
     const months = [["January", "February", "March"], 
                     ["April", "May", "June"],
                     ["July", "August", "September"],
@@ -23,7 +28,11 @@ class ScheduleCalendar extends Component {
       months.map(quarter => { return (
         <div className="schedulecalendar-picker-month-row">
           {quarter.map(month => { return (
-            <div className="schedulecalendar-picker-month-item">
+            <div className="schedulecalendar-picker-month-item"
+                onClick={() => { 
+                  props.setMonth(month + "-" + props.m.format("YYYY"));
+                  this.togglePicker();
+                }}>
               {month}
             </div>);
           })}
@@ -46,7 +55,7 @@ class ScheduleCalendar extends Component {
               <div className="schedulecalendar-picker-year-btn">
                 <i className="fas fa-caret-left"></i>
               </div>
-              {props.m.format('YYYY')}
+              {this.state.pickerYear}
               <div className="schedulecalendar-picker-year-btn">
                 <i className="fas fa-caret-right"></i>
               </div>

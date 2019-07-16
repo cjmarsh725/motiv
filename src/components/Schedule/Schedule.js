@@ -15,13 +15,18 @@ class Schedule extends Component {
     this.setState({ m: this.state.m.clone().add(delta, 'M') });
   }
 
+  setMonth = date => {
+    this.setState({ m: moment(date, "MMMM-YYYY") });
+  }
+
   render() {
     return (
       <div className="schedule-container">
         <div className="schedule-calendar">
           <ScheduleCalendar 
               m={this.state.m}
-              changeMonth={this.changeMonth}/>
+              changeMonth={this.changeMonth}
+              setMonth={this.setMonth}/>
         </div>
       </div>
     );

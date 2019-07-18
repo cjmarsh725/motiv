@@ -48,8 +48,7 @@ class ScheduleCalendar extends Component {
     return (
       <div className="schedulecalendar-container">
         {/* Month Picker */}
-        <div className={this.state.isPickerOpen ? "" : 
-                          "schedulecalendar-picker-closed"}>
+        <div className={this.state.isPickerOpen ? "" : "schedulecalendar-picker-closed"}>
           <div className="schedulecalendar-picker-content">
             <div className="schedulecalendar-picker-year">
               <div className="schedulecalendar-picker-year-btn">
@@ -64,21 +63,17 @@ class ScheduleCalendar extends Component {
               {this.createMonthPicker()}
             </div>
           </div>
-          <div className="schedulecalendar-picker-mask"
-              onClick={this.togglePicker}></div>
+          <div className="schedulecalendar-picker-mask" onClick={this.togglePicker}></div>
         </div>
         {/* Calendar */}
         <div className="schedulecalendar-month">
-          <div className="schedulecalendar-month-btn"
-                onClick={() => props.changeMonth(-1)}>
+          <div className="schedulecalendar-month-btn" onClick={() => props.changeMonth(-1)}>
             <i className="fas fa-caret-up"></i>
           </div>
-          <div className="schedulecalendar-month-label"
-              onClick={this.togglePicker}>
+          <div className="schedulecalendar-month-label" onClick={this.togglePicker}>
             {props.m.format('MMMM YYYY')}
           </div>
-          <div className="schedulecalendar-month-btn"
-                onClick={() => props.changeMonth(1)}>
+          <div className="schedulecalendar-month-btn" onClick={() => props.changeMonth(1)}>
             <i className="fas fa-caret-down"></i>
           </div>
         </div>

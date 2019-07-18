@@ -82,15 +82,13 @@ class Home extends Component {
     return (
       <div className="home-container">
         {imgObjs.map((obj, i) => { return (
-          <div key={i} className={"home-obj-container" +  
-                (this.state.imgLoaded[i] ? "" : " home-obj-toggle")}>
+          <div key={i} className={"home-obj-container" + (this.state.imgLoaded[i] ? "" : " home-obj-toggle")}>
             <Image 
                 src={obj.url + this.state.imgSize + ".jpg"}
                 onLoad={() => this.onImageLoad(i)}
                 fluid />
             <div className="home-obj-text-container">
-              <div className={"home-obj-text" +  (this.state.imgLoaded[i] ? 
-                              "" : " home-obj-toggle")}>
+              <div className={"home-obj-text" +  (this.state.imgLoaded[i] ? "" : " home-obj-toggle")}>
                 {obj.text}
               </div>
             </div>

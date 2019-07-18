@@ -38,7 +38,7 @@ class JournalEditor extends Component {
       {/* Editor displays the current file if there is one with a title and the 
       Quill text editor */}
       <div className="journaleditor-container">
-        {this.props.currentFile ? ( <>
+        {this.props.currentFile ? (<>
         <div className="journaleditor-header">
           <div className="journaleditor-entryname">
             {this.props.fileName}

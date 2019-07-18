@@ -14,8 +14,7 @@ const ModalDeleteEntry = props => {
         Are you sure you want to permanently delete this item?
       </div>
       <div className="modaldeleteentry-btns">
-        <div className="modal-btn"
-             onClick={props.toggle}>
+        <div className="modal-btn" onClick={props.toggle}>
           Cancel
         </div>
         <div className="modal-btn-primary"

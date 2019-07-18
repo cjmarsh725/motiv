@@ -8,9 +8,8 @@ const ScheduleWeek = props => {
       {weekDays.map((x, i) => { 
         const dayMoment = props.m.clone().add(i, 'd');
         return (
-          <div key={x + i} className={"scheduleweek-day" + (
-            props.month !== dayMoment.format('MMMM') ?
-            " scheduleweek-offday" : "")}>
+          <div key={x + i} className={"scheduleweek-day" + 
+                (props.month !== dayMoment.format('MMMM') ? " scheduleweek-offday" : "")}>
             {dayMoment.format('D')}
           </div>
       );})}

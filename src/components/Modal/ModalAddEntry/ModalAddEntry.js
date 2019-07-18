@@ -76,33 +76,28 @@ class ModalAddEntry extends Component {
                   value={this.state.name}
                   onChange={this.nameChange} />
             <div className="modaladdentry-name-error-container">
-              <div className={this.state.nameErrorOpen ? "" : 
-                              "modaladdentry-name-error-toggle"}>
+              <div className={this.state.nameErrorOpen ? "" : "modaladdentry-name-error-toggle"}>
                 Must be a unique name
               </div>
             </div>
             {/* Parent path dropdown */}
             <div className="modaladdentry-path-dropdown">
               <div className="modaladdentry-path-dropdown-top"
-                   onClick={() => this.setState(
-                        {dropdownOpen: !this.state.dropdownOpen})}>
+                   onClick={() => this.setState({ dropdownOpen: !this.state.dropdownOpen })}>
                 <div className="modaladdentry-path-dropdown-label">
                   {this.state.parent}
                 </div>
                 <div className="modaladdentry-path-dropdown-caret">
-                  <i className={"fas" + (this.state.dropdownOpen ? 
-                      " fa-angle-left" : " fa-angle-down")}></i>
+                  <i className={"fas" + (this.state.dropdownOpen ? " fa-angle-left" : " fa-angle-down")}></i>
                 </div>
               </div>
               {/* Toggleable dropdown content populated with folder paths */}
-              <div className={"modaladdentry-path-dropdown-content" + (
-                    this.state.dropdownOpen ? 
+              <div className={"modaladdentry-path-dropdown-content" + (this.state.dropdownOpen ? 
                     " modaladdentry-path-dropdown-content-toggle" : "")}>
                 {this.props.getFolderPaths().map(path => (
                   <div key={path} className="modaladdentry-path-dropdown-item"
                       onClick={() => {
-                        this.setState({parent: path,
-                                      dropdownOpen: !this.state.dropdownOpen});
+                        this.setState({ parent: path, dropdownOpen: !this.state.dropdownOpen });
                       }}>
                     {path}
                   </div>
@@ -113,12 +108,10 @@ class ModalAddEntry extends Component {
         </div>
         {/* Cancel and create buttons */}
         <div className="modaladdentry-confirm-btns">
-          <div className="modal-btn"
-              onClick={this.closeModal}>
+          <div className="modal-btn" onClick={this.closeModal}>
             Cancel
           </div>
-          <div className="modal-btn-primary"
-              onClick={this.handleConfirm}>
+          <div className="modal-btn-primary" onClick={this.handleConfirm}>
             Create
           </div>
         </div>

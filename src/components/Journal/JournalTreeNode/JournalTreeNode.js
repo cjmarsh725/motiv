@@ -68,8 +68,7 @@ class JournalTreeNode extends Component {
         this.setState({drag: "top"});
       } else if (e.clientY > bottomPoint && this.state.drag !== "bottom") {
         this.setState({drag: "bottom"});
-      } else if (e.clientY >= topPoint && e.clientY <= bottomPoint &&
-                     this.state.drag !== "middle") {
+      } else if (e.clientY >= topPoint && e.clientY <= bottomPoint && this.state.drag !== "middle") {
         this.setState({drag: "middle"});
       }
     }
@@ -111,8 +110,7 @@ class JournalTreeNode extends Component {
              }}>
           {/* The label is offset based on the indent and the border is applied 
           based on whether the top or bottom is closer to the drag point */}
-          <div className={"journaltreenode-label no-select"
-                                 + this.getBorderClass()} 
+          <div className={"journaltreenode-label no-select" + this.getBorderClass()} 
                style={{marginLeft: props.indent * 10 + "px"}}>
             <div className="journaltreenode-icon">
               {this.getIcon(props.isFolder, props.isOpen)}

@@ -184,8 +184,7 @@ class Journal extends Component {
     // If node is a folder edit children too and modify children recursively
     if (newNode.children) {
       newNode.children.forEach((childPath, i) => {
-        newNode.children[i] = this.changeParent(fileStructure, 
-                            fileStructure[childPath], newNode.path);
+        newNode.children[i] = this.changeParent(fileStructure, fileStructure[childPath], newNode.path);
       });
     }
     // Return path for recursive children editing
@@ -236,8 +235,7 @@ class Journal extends Component {
     let newPath = dragged;
     // When not in the same folder get new path and recursively
     //  change paths to new folder structure
-    if (newParent !== oldParent) newPath = this.changeParent(
-                      fileStructure, fileStructure[dragged], newParent);
+    if (newParent !== oldParent) newPath = this.changeParent(fileStructure, fileStructure[dragged], newParent);
     // Remove old path from children array of old node's parent
     let children = fileStructure[oldParent].children;
     children.splice(children.indexOf(dragged), 1);
@@ -248,8 +246,7 @@ class Journal extends Component {
     // Insert node's path to parent's children array at index
     children.splice(index, 0, newPath);
     // Update state, including currentFile if it's being dragged
-    this.setState({fileStructure, 
-      currentFile: this.getCurrentFile(fileStructure, currentFile, newPath)});
+    this.setState({ fileStructure, currentFile: this.getCurrentFile(fileStructure, currentFile, newPath) });
   }
 
   // Rendering split into two containers, an editor and a sidebar
@@ -259,8 +256,7 @@ class Journal extends Component {
         <div className="journal-journaleditor" >
           <JournalEditor
               updateContent={this.updateContent}
-              toggleSidebar={() => 
-                this.setState({sidebarOpen: !this.state.sidebarOpen})}
+              toggleSidebar={() => this.setState({ sidebarOpen: !this.state.sidebarOpen })}
               sidebarOpen={this.state.sidebarOpen}
               currentFile={this.state.currentFile}
               content={this.getContent()}

@@ -25,10 +25,10 @@ class JournalSidebar extends Component {
 
   // Helper functions to toggle the modal visibility state
   toggleAddModal = () => {
-    this.setState({isAddOpen: !this.state.isAddOpen});
+    this.setState({ isAddOpen: !this.state.isAddOpen });
   }
   toggleDeleteModal = () => {
-    this.setState({isDeleteOpen: !this.state.isDeleteOpen});
+    this.setState({ isDeleteOpen: !this.state.isDeleteOpen });
   }
 
   // Returns an array of all the folder paths in including the root
@@ -62,8 +62,7 @@ class JournalSidebar extends Component {
       <div className="journalsidebar-container">
         {/* Buttons to open the AddEntry and DeleteEntry modals */}
         <div className="journalsidebar-btns">
-          <div className="journalsidebar-add-btn"
-              onClick={this.toggleAddModal}>
+          <div className="journalsidebar-add-btn" onClick={this.toggleAddModal}>
             <i className="fas fa-plus fa-2x"></i>
           </div>
           {/* Delete button works on both click and on drop. Drag enter and 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ScheduleCalendar from './ScheduleCalendar/ScheduleCalendar';
+import ScheduleDay from './ScheduleDay/ScheduleDay';
 import moment from 'moment';
 import './Schedule.css';
 
@@ -27,6 +28,9 @@ class Schedule extends Component {
               m={this.state.m}
               changeMonth={this.changeMonth}
               setMonth={this.setMonth}/>
+        </div>
+        <div className="schedule-day">
+          <ScheduleDay />
         </div>
       </div>
     );

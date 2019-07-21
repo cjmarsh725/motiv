@@ -1,0 +1,18 @@
+.scheduleday-container {
+  width: 70%;
+  margin: 15%;
+  border: 1px solid var(--background-accent);
+}
+
+.scheduleday-time-labels {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid var(--background-accent);
+}
+
+.scheduleday-time-block {
+  border: 1px solid var(--background-accent);
+  color: #777777;
+  height: 30px;
+  line-height: 2.5;
+}

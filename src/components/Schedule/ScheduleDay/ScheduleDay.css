@@ -12,6 +12,7 @@
 
 .scheduleday-time-block {
   border: 1px solid var(--background-accent);
+  border-top: none;
   color: #777777;
   height: 30px;
   line-height: 2.5;

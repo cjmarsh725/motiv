@@ -6,14 +6,36 @@
 
 .scheduleday-time-label {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   border: 1px solid var(--background-accent);
 }
 
+.scheduleday-time-label-half {
+  color: #777777;
+  margin: 2px;
+}
+
 .scheduleday-time-block {
+  display: flex;
   border: 1px solid var(--background-accent);
   border-top: none;
   color: #777777;
   height: 30px;
-  line-height: 2.5;
+}
+
+.scheduleday-time-block-am, .scheduleday-time-block-pm {
+  display: flex;
+  align-items: flex-end;
+  width: 50%;
+  font-size: 12px;
+  line-height: 0.9;
+  padding: 2px;
+}
+
+.scheduleday-time-block-am {
+  border-right: 1px solid var(--background-accent);
+}
+
+.scheduleday-time-block-pm {
+  justify-content: flex-end;
 }

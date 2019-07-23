@@ -8,7 +8,17 @@ class Schedule extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      m: moment()
+      m: moment(),
+      schedule: {
+        "Sunday": [],
+        "Monday": [],
+        "Tuesday": [],
+        "Wednesday": [],
+        "Thursday": [{name: "Coders Meeting", startTime: "10:00 AM", endTime: "11:00 AM"}],
+        "Friday": [],
+        "Saturday": [],
+        "07-25-2019": [{name: "Birthday Dinner", startTime: "5:00 PM", endTime: "7:00 PM"}]
+      }
     }
   }
 

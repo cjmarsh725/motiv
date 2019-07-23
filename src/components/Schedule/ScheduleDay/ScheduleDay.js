@@ -8,9 +8,8 @@ class ScheduleDay extends Component {
     const timeBlocks = new Array(12).fill("Time Block ");
     return (
       <div className="scheduleday-container">
-        <div className="scheduleday-time-labels">
-          <div>AM</div>
-          <div>PM</div>
+        <div className="scheduleday-time-label">
+          <div>{this.props.m.format("dddd, MMMM Do YYYY")}</div>
         </div>
         <div className="scheduleday-time">
           {timeBlocks.map((x, i) => {

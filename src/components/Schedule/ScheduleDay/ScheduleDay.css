@@ -4,9 +4,9 @@
   border: 1px solid var(--background-accent);
 }
 
-.scheduleday-time-labels {
+.scheduleday-time-label {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   border: 1px solid var(--background-accent);
 }
 

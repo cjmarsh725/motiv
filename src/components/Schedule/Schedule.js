@@ -37,10 +37,13 @@ class Schedule extends Component {
           <ScheduleCalendar 
               m={this.state.m}
               changeMonth={this.changeMonth}
-              setMonth={this.setMonth}/>
+              setMonth={this.setMonth}
+              schedule={this.state.schedule}/>
         </div>
         <div className="schedule-day">
-          <ScheduleDay />
+          <ScheduleDay 
+              m={this.state.m}
+              schedule={this.state.schedule}/>
         </div>
       </div>
     );

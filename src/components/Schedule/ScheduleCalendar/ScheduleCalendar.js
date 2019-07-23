@@ -81,7 +81,9 @@ class ScheduleCalendar extends Component {
           <ScheduleWeek 
               key={x + i} 
               m={m.clone().add(i, 'w')}
-              month={props.m.format('MMMM')} />
+              month={props.m.format('MMMM')}
+              date={props.m.format('MM-DD-YYYY')}
+              schedule={props.schedule} />
         )})}
       </div>
     );

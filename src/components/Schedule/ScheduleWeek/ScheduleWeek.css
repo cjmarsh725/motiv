@@ -14,3 +14,12 @@
 .scheduleweek-offday {
   color: #777777;
 }
+
+.scheduleweek-currentday {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid teal;
+}

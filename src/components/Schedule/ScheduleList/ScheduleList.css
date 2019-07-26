@@ -1,0 +1,14 @@
+.schedulelist-container {
+  margin: 10%;
+}
+
+.schedulelist-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 20px;
+  color: var(--secondary-accent);
+  border: 1px solid var(--secondary-accent);
+  background-color: var(--secondary);
+}

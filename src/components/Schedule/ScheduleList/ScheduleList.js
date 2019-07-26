@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import './ScheduleList.css';
 
 class ScheduleList extends Component {
@@ -6,12 +7,16 @@ class ScheduleList extends Component {
     return (
       <div className="schedulelist-container">
         <div className="schedulelist-header">
-          {this.props.m.format("dddd, MMMM Do YYYY")}
+          {"Today is " + this.props.m.format("dddd, MMMM Do YYYY")}
+          <div className="schedulelist-header-subtitle">Upcoming appointments:</div>
         </div>
         <div className="schedulelist-list">
           {this.props.schedule.map(item => { return (
             <div className="schedulelist-item">
-              {item.title}
+              <div className="schedulelist-item-title">{item.title}</div>
+              <div className="schedulelist-item-date">
+                {moment(item.date, "MM-DD-YYYY").format("dddd, MMMM Do YYYY") + " at " + item.startTime}
+              </div>
             </div>
           );})}
         </div>

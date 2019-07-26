@@ -1,14 +1,29 @@
 .schedulelist-container {
-  margin: 10%;
+  margin: 5%;
+}
+
+.schedulelist-header {
+  font-size: 21px;
+  margin-bottom: 16px;
+}
+
+.schedulelist-header-subtitle {
+  font-size: 16px;
+  color: #777777;
+  margin-left: 20px;
 }
 
 .schedulelist-item {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
+  flex-direction: column;
+  padding: 4px;
+  padding-left: 20px;
   border-radius: 20px;
   color: var(--secondary-accent);
   border: 1px solid var(--secondary-accent);
   background-color: var(--secondary);
+}
+
+.schedulelist-item-title {
+  color: white;
 }

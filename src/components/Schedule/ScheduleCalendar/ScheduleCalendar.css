@@ -42,8 +42,14 @@
   display: none;
 }
 
+.schedulecalendar-picker-content-container {
+  position: relative;
+  left: 50%;
+}
+
 .schedulecalendar-picker-content {
   position: absolute;
+  margin-left: -175px;
   width: 350px;
   background-color: var(--background);
   color: black;

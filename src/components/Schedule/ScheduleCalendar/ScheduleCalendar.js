@@ -48,7 +48,8 @@ class ScheduleCalendar extends Component {
     return (
       <div className="schedulecalendar-container">
         {/* Month Picker */}
-        <div className={this.state.isPickerOpen ? "" : "schedulecalendar-picker-closed"}>
+        <div className={"schedulecalendar-picker-content-container" + 
+                          (this.state.isPickerOpen ? "" : " schedulecalendar-picker-closed")}>
           <div className="schedulecalendar-picker-content">
             <div className="schedulecalendar-picker-year">
               <div className="schedulecalendar-picker-year-btn">

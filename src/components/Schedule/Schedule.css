@@ -1,11 +1,12 @@
 .schedule-container {
   display: flex;
   background-color: var(--background);
-  min-height: calc(100vh - 56px);
+  height: calc(100vh - 56px);
 }
 
 .schedule-calendar {
   width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,4 +15,5 @@
 
 .schedule-list {
   width: 50%;
+  height: 100%;
 }

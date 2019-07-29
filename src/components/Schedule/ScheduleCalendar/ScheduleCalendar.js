@@ -45,7 +45,8 @@ class ScheduleCalendar extends Component {
     const props = this.props;
     const calendarWeeks = Array(5).fill("Schedule Week ");
     const m = props.m.clone().startOf('month').startOf('week');
-    return (
+    return ( <>
+      <div style={{ height: "5%" }}></div>
       <div className="schedulecalendar-container">
         {/* Month Picker */}
         <div className={"schedulecalendar-picker-content-container" + 
@@ -87,7 +88,7 @@ class ScheduleCalendar extends Component {
               schedule={props.schedule} />
         )})}
       </div>
-    );
+    </>);
   }
 }
 

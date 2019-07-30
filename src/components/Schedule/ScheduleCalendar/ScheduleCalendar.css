@@ -35,7 +35,7 @@
 }
 
 .schedulecalendar-month-btn:hover {
-  color: teal;
+  color: var(--teal);
 }
 
 .schedulecalendar-picker-closed {
@@ -83,7 +83,7 @@
 }
 
 .schedulecalendar-picker-year-btn:hover {
-  color: teal;
+  color: var(--teal);
 }
 
 .schedulecalendar-picker-month-row {
@@ -99,6 +99,6 @@
 }
 
 .schedulecalendar-picker-month-item:hover {
-  color: teal;
-  border-color: teal;
+  color: var(--teal);
+  border-color: var(--teal);
 }

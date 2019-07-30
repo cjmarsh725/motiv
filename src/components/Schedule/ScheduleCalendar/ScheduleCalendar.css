@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 90%;
-  margin: 0 5%;
+  margin-right: 2%;
   background-color: var(--background);
   color: black;
   border: 1px solid var(--background-accent);

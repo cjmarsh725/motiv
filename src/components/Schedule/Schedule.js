@@ -9,6 +9,7 @@ class Schedule extends Component {
     super(props);
     this.state = { 
       m: moment(),
+      mNow: moment(),
       schedule: [
         {
           title: "Coding Preparation Meetup",
@@ -46,13 +47,14 @@ class Schedule extends Component {
         <div className="schedule-calendar">
           <ScheduleCalendar 
               m={this.state.m}
+              mNow={this.state.mNow}
               changeMonth={this.changeMonth}
               setMonth={this.setMonth}
               schedule={this.state.schedule}/>
         </div>
         <div className="schedule-list">
           <ScheduleList 
-              m={this.state.m}
+              mNow={this.state.mNow}
               schedule={this.state.schedule}/>
         </div>
       </div>

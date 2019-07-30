@@ -7,7 +7,7 @@ class ScheduleList extends Component {
     return (
       <div className="schedulelist-container">
         <div className="schedulelist-header">
-          {"Today is " + this.props.m.format("dddd, MMMM Do YYYY")}
+          {"Today is " + this.props.mNow.format("dddd, MMMM Do YYYY")}
           <div className="schedulelist-header-subtitle">Upcoming appointments:</div>
         </div>
         <div className="schedulelist-list">

@@ -32,6 +32,11 @@
   color: #777777;
 }
 
+.scheduleweek-selectedday {
+  color: var(--dark-blue);
+  border: 1px solid var(--dark-blue);
+}
+
 .scheduleweek-currentday {
   color: var(--teal);
   border: 1px solid var(--teal);

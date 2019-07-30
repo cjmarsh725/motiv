@@ -25,10 +25,10 @@ class ScheduleCalendar extends Component {
                     ["July", "August", "September"],
                     ["October", "November", "December"]];
     return (
-      months.map(quarter => { return (
-        <div className="schedulecalendar-picker-month-row">
+      months.map((quarter, i) => { return (
+        <div key={"Quarter " + i} className="schedulecalendar-picker-month-row">
           {quarter.map(month => { return (
-            <div className="schedulecalendar-picker-month-item"
+            <div key={month} className="schedulecalendar-picker-month-item"
                 onClick={() => { 
                   props.setMonth(month + "-" + props.m.format("YYYY"));
                   this.togglePicker();
@@ -84,7 +84,9 @@ class ScheduleCalendar extends Component {
               m={m.clone().add(i, 'w')}
               month={props.m.format('MMMM')}
               date={props.mNow.format('MM-DD-YYYY')}
-              schedule={props.schedule} />
+              selected={props.mSelected.format('MM-DD-YYYY')}
+              schedule={props.schedule}
+              setSelected={props.setSelected} />
         )})}
       </div>
     );

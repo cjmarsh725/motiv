@@ -11,11 +11,13 @@ class ScheduleList extends Component {
           <div className="schedulelist-header-subtitle">Upcoming appointments:</div>
         </div>
         <div className="schedulelist-list">
-          {this.props.schedule.map(item => { return (
-            <div className="schedulelist-item">
+          {this.props.schedule.map(item => { 
+            const itemTime = moment(item.date, "MM-DD-YYYY").format("dddd, MMMM Do YYYY") + " at " + item.startTime;
+            return (
+            <div key={itemTime} className="schedulelist-item">
               <div className="schedulelist-item-title">{item.title}</div>
               <div className="schedulelist-item-date">
-                {moment(item.date, "MM-DD-YYYY").format("dddd, MMMM Do YYYY") + " at " + item.startTime}
+                {itemTime}
               </div>
             </div>
           );})}

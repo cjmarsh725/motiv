@@ -10,6 +10,7 @@ class Schedule extends Component {
     this.state = { 
       m: moment(),
       mNow: moment(),
+      mSelected: moment(),
       schedule: [
         {
           title: "Coding Preparation Meetup",
@@ -41,6 +42,10 @@ class Schedule extends Component {
     this.setState({ m: moment(date, "MMMM-YYYY") });
   }
 
+  setSelected = m => {
+    this.setState({ mSelected: m });
+  }
+
   render() {
     return (
       <div className="schedule-container">
@@ -48,13 +53,16 @@ class Schedule extends Component {
           <ScheduleCalendar 
               m={this.state.m}
               mNow={this.state.mNow}
+              mSelected={this.state.mSelected}
+              schedule={this.state.schedule}
               changeMonth={this.changeMonth}
               setMonth={this.setMonth}
-              schedule={this.state.schedule}/>
+              setSelected={this.setSelected}/>
         </div>
         <div className="schedule-list">
           <ScheduleList 
               mNow={this.state.mNow}
+              mSelected={this.state.mSelected}
               schedule={this.state.schedule}/>
         </div>
       </div>

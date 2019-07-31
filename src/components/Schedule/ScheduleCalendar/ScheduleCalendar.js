@@ -14,6 +14,10 @@ class ScheduleCalendar extends Component {
     this.setState({ isPickerOpen: !this.state.isPickerOpen });
   }
 
+  isCurrentMonth = date => {
+    return this.props.mNow.format("MMMM-YYYY") === date;
+  }
+
   createMonthPicker = () => {
     const props = this.props;
     const months = [["January", "February", "March"], 
@@ -23,10 +27,14 @@ class ScheduleCalendar extends Component {
     return (
       months.map((quarter, i) => { return (
         <div key={"Quarter " + i} className="schedulecalendar-picker-month-row">
-          {quarter.map(month => { return (
-            <div key={month} className="schedulecalendar-picker-month-item"
+          {quarter.map(month => { 
+            const date = month + "-" + props.m.format("YYYY");
+            return (
+            <div key={month} 
+                className={"schedulecalendar-picker-month-item" + (this.isCurrentMonth(date) ? 
+                            " schedulecalendar-picker-month-current" : "")}
                 onClick={() => { 
-                  props.setMonth(month + "-" + props.m.format("YYYY"));
+                  props.setMonth(date);
                   this.togglePicker();
                 }}>
               {month}
@@ -79,7 +87,7 @@ class ScheduleCalendar extends Component {
               key={x + i} 
               m={m.clone().add(i, 'w')}
               month={props.m.format('MMMM')}
-              date={props.mNow.format('MM-DD-YYYY')}
+              now={props.mNow.format('MM-DD-YYYY')}
               selected={props.mSelected.format('MM-DD-YYYY')}
               schedule={props.schedule}
               setSelected={props.setSelected} />

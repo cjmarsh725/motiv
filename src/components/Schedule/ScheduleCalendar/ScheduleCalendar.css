@@ -102,3 +102,7 @@
   color: var(--teal);
   border-color: var(--teal);
 }
+
+.schedulecalendar-picker-month-current {
+	color: var(--teal);
+}

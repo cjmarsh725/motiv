@@ -6,16 +6,12 @@ class ScheduleCalendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPickerOpen: false,
-      pickerYear: this.props.m.format("YYYY")
+      isPickerOpen: false
     }
   }
 
   togglePicker = () => {
-    this.setState({ 
-      isPickerOpen: !this.state.isPickerOpen,
-      pickerYear: this.props.m.format("YYYY")
-    });
+    this.setState({ isPickerOpen: !this.state.isPickerOpen });
   }
 
   createMonthPicker = () => {
@@ -52,11 +48,11 @@ class ScheduleCalendar extends Component {
                           (this.state.isPickerOpen ? "" : " schedulecalendar-picker-closed")}>
           <div className="schedulecalendar-picker-content">
             <div className="schedulecalendar-picker-year">
-              <div className="schedulecalendar-picker-year-btn">
+              <div className="schedulecalendar-picker-year-btn" onClick={() => props.changeMonth(-12)}>
                 <i className="fas fa-caret-left"></i>
               </div>
-              {this.state.pickerYear}
-              <div className="schedulecalendar-picker-year-btn">
+              {props.m.format("YYYY")}
+              <div className="schedulecalendar-picker-year-btn" onClick={() => props.changeMonth(12)}>
                 <i className="fas fa-caret-right"></i>
               </div>
             </div>

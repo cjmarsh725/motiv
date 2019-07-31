@@ -6,7 +6,7 @@ class ScheduleList extends Component {
   getSubtitle = () => {
     let subtitle = "Upcoming appointments:";
     if (!this.props.mNow.isSame(this.props.mSelected, "day")) {
-      subtitle = "Appointments on or after " + this.props.mSelected.format("MMMM Do YYYY");
+      subtitle = "Appointments on or after " + this.props.mSelected.format("MMMM Do YYYY") + ":";
     }
     return subtitle;
   }

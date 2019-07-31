@@ -35,7 +35,7 @@ class Schedule extends Component {
   }
 
   changeMonth = delta => {
-    this.setState({ m: this.state.m.clone().add(delta, 'M') });
+    this.setState({ m: this.state.m.clone().add(delta, "M") });
   }
 
   setMonth = date => {
@@ -43,7 +43,10 @@ class Schedule extends Component {
   }
 
   setSelected = m => {
-    this.setState({ mSelected: m });
+    if (this.state.mSelected.isSame(m, "day"))
+      this.setState({ mSelected: this.state.mNow })
+    else
+      this.setState({ mSelected: m });
   }
 
   render() {

@@ -24,8 +24,9 @@
   height: 100%;
 }
 
-.scheduleweek-day-interior:hover {
-  border: 1px solid var(--dark-blue);
+.scheduleweek-day-interior:not(.scheduleweek-selectedday):hover {
+  border: 1px solid var(--background-accent);
+  border-width: 2px;
 }
 
 .scheduleweek-offday {

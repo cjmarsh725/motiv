@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import Modal from '../../Modal/Modal';
+import ModalAddAppointment from '../../Modal/ModalAddAppointment/ModalAddAppointment';
+import ModalDeleteAppointment from '../../Modal/ModalDeleteAppointment/ModalDeleteAppointment';
 import './ScheduleList.css';
 
 class ScheduleList extends Component {
@@ -58,6 +61,18 @@ class ScheduleList extends Component {
             } else return null;
           })}
         </div>
+        <Modal 
+            isOpen={this.state.isAddOpen} 
+            toggle={this.toggleAddModal}>
+          <ModalAddAppointment 
+              toggle={this.toggleAddModal}/>
+        </Modal>
+        <Modal 
+            isOpen={this.state.isDeleteOpen} 
+            toggle={this.toggleDeleteModal}>
+          <ModalDeleteAppointment 
+              toggle={this.toggleDeleteModal}/>
+        </Modal>
       </div>
     );
   }

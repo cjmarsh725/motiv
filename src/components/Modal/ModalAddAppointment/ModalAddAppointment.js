@@ -4,7 +4,9 @@ import './ModalAddAppointment.css';
 class ModalAddAppointment extends Component {
   state = {
     label: "",
-    date: ""
+    date: "",
+    time: "",
+    isAM: true
   }
 
   handleChange = e => {
@@ -23,16 +25,37 @@ class ModalAddAppointment extends Component {
             <div className="modaladdappointment-label">Time:</div>
           </div>
           <div className="modaladdappointment-input-container">
-            <input className="modaladdappointment-label-input"
+            <input className="modaladdappointment-input"
                       type="text"
                       name="label"
                       value={this.state.label}
                       onChange={this.handleChange} />
-            <input className="modaladdappointment-label-input"
-                      type="text"
-                      name="date"
-                      value={this.state.date}
-                      onChange={this.handleChange} />
+            <div className="modaladdappointment-datetime-container">
+              <input className="modaladdappointment-input modaladdappointment-date-input"
+                        type="text"
+                        name="date"
+                        placeholder="MM-DD-YYYY"
+                        value={this.state.date}
+                        onChange={this.handleChange} />
+              <input className="modaladdappointment-input modaladdappointment-time-input"
+                        type="text"
+                        name="time"
+                        placeholder="HH:MM"
+                        value={this.state.time}
+                        onChange={this.handleChange} />
+              <div className="modaladdappointment-ampm-btns">
+                <div className={"modaladdappointment-am-btn" +
+                      (this.state.isAM ? " modaladdappointment-ampm-btn-active" : "")}
+                      onClick={() => this.setState({isAM: true})}>
+                  AM
+                </div>
+                <div className={"modaladdappointment-pm-btn" +
+                      (!this.state.isAM ? " modaladdappointment-ampm-btn-active" : "")}
+                      onClick={() => this.setState({isAM: false})}>
+                  PM
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="modaladdappointment-btns">

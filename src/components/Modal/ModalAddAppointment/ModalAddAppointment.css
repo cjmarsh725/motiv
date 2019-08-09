@@ -11,7 +11,7 @@
 
 .modaladdappointment-labelinputs-container {
   display: flex;
-  width: 300px;
+  width: 492px;
   height: 120px;
   margin-top: 10px;
 }
@@ -35,7 +35,7 @@
   width: 60%;
 }
 
-.modaladdappointment-label-input {
+.modaladdappointment-input {
   box-sizing: content-box;
   height: 30px;
   color: var(--secondary-accent);
@@ -46,11 +46,61 @@
   border-radius: 16px;
 }
 
-.modaladdappointment-label-input:focus {
+.modaladdappointment-input:focus {
   height: 30px;
   border-width: 2px;
   margin: 0px;
   outline: white;
+}
+
+.modaladdappointment-datetime-container {
+  display: flex;
+}
+
+.modaladdappointment-date-input {
+  width: 120px;
+}
+
+.modaladdappointment-time-input {
+  margin-left: 4px;
+  width: 63px;
+}
+
+.modaladdappointment-ampm-btns {
+  margin-left: 4px;
+  display: flex;
+  width: 80px;
+}
+
+.modaladdappointment-am-btn, .modaladdappointment-pm-btn {
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 2px 5px 2px 5px;
+  border: 2px solid var(--secondary-accent);
+  height: 34px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modaladdappointment-am-btn {
+  border-right-width: 1px;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.modaladdappointment-pm-btn {
+  border-left-width: 1px;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.modaladdappointment-am-btn:hover,
+.modaladdappointment-pm-btn:hover,
+.modaladdappointment-ampm-btn-active {
+  color: var(--secondary);
+  background-color: var(--secondary-accent);
 }
 
 .modaladdappointment-btns {

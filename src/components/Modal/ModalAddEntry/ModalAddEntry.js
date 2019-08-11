@@ -108,11 +108,11 @@ class ModalAddEntry extends Component {
         </div>
         {/* Cancel and create buttons */}
         <div className="modaladdentry-confirm-btns">
-          <div className="modal-btn" onClick={this.closeModal}>
-            Cancel
-          </div>
           <div className="modal-btn-primary" onClick={this.handleConfirm}>
             Create
+          </div>
+          <div className="modal-btn" onClick={this.closeModal}>
+            Cancel
           </div>
         </div>
       </div>

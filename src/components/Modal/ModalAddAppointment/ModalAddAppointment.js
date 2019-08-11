@@ -59,14 +59,14 @@ class ModalAddAppointment extends Component {
           </div>
         </div>
         <div className="modaladdappointment-btns">
-          <div className="modal-btn" onClick={this.props.toggle}>
-            Cancel
-          </div>
           <div className="modal-btn-primary"
               onClick={() => {
                 this.props.toggle();
                 }}>
             Add
+          </div>
+          <div className="modal-btn" onClick={this.props.toggle}>
+            Cancel
           </div>
         </div>
       </div>

@@ -66,6 +66,10 @@
   width: 63px;
 }
 
+.modaladdappointment-time-input:focus {
+  margin-left: 3px;
+}
+
 .modaladdappointment-ampm-btns {
   margin-left: 4px;
   display: flex;

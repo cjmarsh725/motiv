@@ -28,6 +28,16 @@
   padding-right: 5px;
 }
 
+@keyframes pulseError {
+  0% { color: var(--secondary-accent) }
+  50% { color: red }
+  100% { color: var(--secondary-accent) }
+}
+
+.modaladdappointment-label-error {
+	animation: pulseError 1s ease-in-out;
+}
+
 .modaladdappointment-input-container {
   display: flex;
   flex-direction: column;

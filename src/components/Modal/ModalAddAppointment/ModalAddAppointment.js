@@ -8,23 +8,28 @@ class ModalAddAppointment extends Component {
     date: "",
     time: "",
     isAM: true,
+    isLabelValid: true,
     isDateValid: true,
   }
 
-  handleChange = e => {
-    this.setState({[e.target.name]: e.target.value})
+  handleLabelChange = e => {
+    this.setState({[e.target.name]: e.target.value, isLabelValid: true});
+  }
+  
+  handleDateChange = e => {
+    this.setState({[e.target.name]: e.target.value, isDateValid: true});
   }
 
   validateAppointment = () => {
     const { label, date, time, isAM } = this.state;
     const m = moment(`${date} ${time} ${isAM ? "AM" : "PM"}`, "M-D-YYYY h:mm A", true);
-    if (m.isValid()) {
-      // Add appointment with label, date, and time
-      this.setState({ isDateValid: true });
+    const isLabelValid = label !== "";
+    const isDateValid = m.isValid();
+    if (isLabelValid && isDateValid) {
+      //Add appointment with label, date, and time
       //this.props.toggle();
-    } else {
-      this.setState({ isDateValid: false });
     }
+    this.setState({ isLabelValid, isDateValid });
   }
 
   render() {
@@ -35,7 +40,8 @@ class ModalAddAppointment extends Component {
         </div>
         <div className="modaladdappointment-labelinputs-container">
           <div className="modaladdappointment-label-container">
-            <div className="modaladdappointment-label">
+            <div className={"modaladdappointment-label" + (this.state.isLabelValid ?
+                            "" : " modaladdappointment-label-error")}>
               Label:
             </div>
             <div className={"modaladdappointment-label" + (this.state.isDateValid ?
@@ -48,20 +54,20 @@ class ModalAddAppointment extends Component {
                     type="text"
                     name="label"
                     value={this.state.label}
-                    onChange={this.handleChange} />
+                    onChange={this.handleLabelChange} />
             <div className="modaladdappointment-datetime-container">
               <input className="modaladdappointment-input modaladdappointment-date-input"
                       type="text"
                       name="date"
                       placeholder="MM-DD-YYYY"
                       value={this.state.date}
-                      onChange={this.handleChange} />
+                      onChange={this.handleDateChange} />
               <input className="modaladdappointment-input modaladdappointment-time-input"
                       type="text"
                       name="time"
                       placeholder="HH:MM"
                       value={this.state.time}
-                      onChange={this.handleChange} />
+                      onChange={this.handleDateChange} />
               <div className="modaladdappointment-ampm-btns">
                 <div className={"modaladdappointment-am-btn" +
                       (this.state.isAM ? " modaladdappointment-ampm-btn-active" : "")}

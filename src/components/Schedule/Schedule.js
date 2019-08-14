@@ -44,7 +44,25 @@ class Schedule extends Component {
   }
 
   addAppointment = (label, m) => {
-    console.log(label + m.format());
+    const { schedule } = this.state;
+    const newApp = { 
+      label: label, 
+      date: m.format("MM-DD-YYYY h:mm A")
+    };
+    if (schedule.length === 0) schedule.push(newApp);
+    else {
+      for (let i = 0; i < schedule.length; i++) {
+        console.log(moment(schedule[i].date, "MM-DD-YYYY h:mm A").isAfter(m, "minute"));
+        if (moment(schedule[i].date, "MM-DD-YYYY h:mm A").isAfter(m, "minute")) {
+          schedule.splice(i, 0, newApp);
+          break;
+        } else if (i === schedule.length - 1) {
+          schedule.push(newApp);
+          break;
+        }
+      }
+    }
+    this.setState({ schedule });
   }
 
   render() {

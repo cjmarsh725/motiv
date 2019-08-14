@@ -44,8 +44,8 @@ class ScheduleList extends Component {
         </div>
         <div className="schedulelist-list">
           {this.props.schedule.map(item => {
-            const itemMoment = moment(`${item.date} ${item.startTime}`, "MM-DD-YYYY h:mm a");
-            const itemTime = itemMoment.format("dddd, MMMM Do YYYY") + " at " + item.startTime;
+            const itemMoment = moment(item.date, "MM-DD-YYYY h:mm A");
+            const itemTime = itemMoment.format("dddd, MMMM Do YYYY [at] h:mm A");
             const isAfterMoment = this.props.mNow.isSame(this.props.mSelected, "day") ?
                   itemMoment.isSameOrAfter(this.props.mNow, "minute") :
                   itemMoment.isSameOrAfter(this.props.mSelected, "day");

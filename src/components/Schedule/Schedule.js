@@ -14,21 +14,15 @@ class Schedule extends Component {
       schedule: [
         {
           title: "Coding Preparation Meetup",
-          date: "08-7-2019",
-          startTime: "6:00 PM",
-          endTime: "7:30 PM"
+          date: "8-16-2019 6:00 PM"
         },
         {
           title: "Bob's Birthday Party",
-          date: "08-8-2019",
-          startTime: "9:00 PM",
-          endTime: "2:00 AM"
+          date: "8-18-2019 9:00 PM"
         },
         {
           title: "Dentist Appointment",
-          date: "08-9-2019",
-          startTime: "8:00 AM",
-          endTime: "9:00 AM"
+          date: "8-19-2019 8:00 AM"
         },
       ]
     }

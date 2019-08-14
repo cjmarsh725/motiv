@@ -24,8 +24,13 @@
   background-color: var(--secondary);
 }
 
-.schedulelist-item-title {
-  color: white;
+.schedulelist-item-label {
+  color: #dddddd;
+}
+
+.schedulelist-item-date {
+  color: #bbbbbb;
+  margin-bottom: 4px;
 }
 
 .schedulelist-buttons-container {

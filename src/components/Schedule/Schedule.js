@@ -13,15 +13,15 @@ class Schedule extends Component {
       mSelected: moment(),
       schedule: [
         {
-          title: "Coding Preparation Meetup",
+          label: "Coding Preparation Meetup",
           date: "8-16-2019 6:00 PM"
         },
         {
-          title: "Bob's Birthday Party",
+          label: "Bob's Birthday Party",
           date: "8-18-2019 9:00 PM"
         },
         {
-          title: "Dentist Appointment",
+          label: "Dentist Appointment",
           date: "8-19-2019 8:00 AM"
         },
       ]
@@ -43,6 +43,10 @@ class Schedule extends Component {
       this.setState({ mSelected: m });
   }
 
+  addAppointment = (label, m) => {
+    console.log(label + m.format());
+  }
+
   render() {
     return (
       <div className="schedule-container">
@@ -60,7 +64,8 @@ class Schedule extends Component {
           <ScheduleList 
               mNow={this.state.mNow}
               mSelected={this.state.mSelected}
-              schedule={this.state.schedule}/>
+              schedule={this.state.schedule}
+              addAppointment={this.addAppointment}/>
         </div>
       </div>
     );

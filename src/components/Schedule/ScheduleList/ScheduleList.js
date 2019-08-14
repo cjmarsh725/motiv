@@ -52,10 +52,8 @@ class ScheduleList extends Component {
             if (isAfterMoment) {
               return (
                 <div key={itemTime} className="schedulelist-item">
-                  <div className="schedulelist-item-title">{item.title}</div>
-                  <div className="schedulelist-item-date">
-                    {itemTime}
-                  </div>
+                  <div className="schedulelist-item-label">{item.label}</div>
+                  <div className="schedulelist-item-date">{itemTime}</div>
                 </div>
               );
             } else return null;
@@ -65,7 +63,8 @@ class ScheduleList extends Component {
             isOpen={this.state.isAddOpen} 
             toggle={this.toggleAddModal}>
           <ModalAddAppointment 
-              toggle={this.toggleAddModal}/>
+              toggle={this.toggleAddModal}
+              addAppointment={this.props.addAppointment}/>
         </Modal>
         <Modal 
             isOpen={this.state.isDeleteOpen} 

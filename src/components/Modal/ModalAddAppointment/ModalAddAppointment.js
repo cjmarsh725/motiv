@@ -26,8 +26,8 @@ class ModalAddAppointment extends Component {
     const isLabelValid = label !== "";
     const isDateValid = m.isValid();
     if (isLabelValid && isDateValid) {
-      //Add appointment with label, date, and time
-      //this.props.toggle();
+      this.props.addAppointment(label, m);
+      this.props.toggle();
     }
     this.setState({ isLabelValid, isDateValid });
   }

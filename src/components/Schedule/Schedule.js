@@ -24,6 +24,34 @@ class Schedule extends Component {
           label: "Dentist Appointment",
           date: "8-19-2019 8:00 AM"
         },
+        {
+          label: "Doctor Appointment",
+          date: "8-21-2019 10:00 AM"
+        },
+        {
+          label: "Mike's Party",
+          date: "8-21-2019 7:00 PM"
+        },
+        {
+          label: "Conference",
+          date: "8-23-2019 11:00 AM"
+        },
+        {
+          label: "Jane's Birthday",
+          date: "8-25-2019 4:00 PM"
+        },
+        {
+          label: "Skydiving",
+          date: "8-26-2019 6:00 PM"
+        },
+        {
+          label: "Javascript Presentation",
+          date: "8-28-2019 8:00 PM"
+        },
+        {
+          label: "Lunch w/ Sarah",
+          date: "8-29-2019 12:30 PM"
+        },
       ]
     }
   }
@@ -65,6 +93,10 @@ class Schedule extends Component {
     this.setState({ schedule });
   }
 
+  deleteAppointment = appt => {
+    console.log("Appointment to be deleted: " + JSON.stringify(appt));
+  }
+
   render() {
     return (
       <div className="schedule-container">
@@ -83,7 +115,8 @@ class Schedule extends Component {
               mNow={this.state.mNow}
               mSelected={this.state.mSelected}
               schedule={this.state.schedule}
-              addAppointment={this.addAppointment}/>
+              addAppointment={this.addAppointment}
+              deleteAppointment={this.deleteAppointment}/>
         </div>
       </div>
     );

@@ -70,7 +70,8 @@ class ScheduleList extends Component {
             isOpen={this.state.isDeleteOpen} 
             toggle={this.toggleDeleteModal}>
           <ModalDeleteAppointment 
-              toggle={this.toggleDeleteModal}/>
+              toggle={this.toggleDeleteModal}
+              deleteAppointment={this.props.deleteAppointment}/>
         </Modal>
       </div>
     );

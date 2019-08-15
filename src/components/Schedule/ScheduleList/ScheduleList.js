@@ -71,6 +71,7 @@ class ScheduleList extends Component {
             toggle={this.toggleDeleteModal}>
           <ModalDeleteAppointment 
               toggle={this.toggleDeleteModal}
+              schedule={this.props.schedule}
               deleteAppointment={this.props.deleteAppointment}/>
         </Modal>
       </div>

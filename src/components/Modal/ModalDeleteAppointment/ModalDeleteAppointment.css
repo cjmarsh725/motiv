@@ -9,6 +9,43 @@
   font-size: 21px;
 }
 
+.modaldeleteappointment-schedule {
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
+.modaldeleteappointment-appointment {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  width: 400px;
+  padding: 4px;
+  padding-left: 16px;
+  border-radius: 20px;
+  border: 1px solid var(--secondary-accent);
+}
+
+.modaldeleteappointment-appointment-toggle {
+  align-self: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--secondary-accent);
+  border-radius: 10px;
+}
+
+.modaldeleteappointment-appointment-label {
+  color: #dddddd;
+  width: 170px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.modaldeleteappointment-appointment-date {
+  color: #bbbbbb;
+  width: 160px;
+}
+
 .modaldeleteappointment-btns {
   display: flex;
   justify-content: space-between;

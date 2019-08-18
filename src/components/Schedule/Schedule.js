@@ -66,13 +66,13 @@ class Schedule extends Component {
 
   setSelected = m => {
     if (this.state.mSelected.isSame(m, "day"))
-      this.setState({ mSelected: this.state.mNow })
+      this.setState({ mSelected: this.state.mNow.clone() })
     else
       this.setState({ mSelected: m });
   }
 
   addAppointment = (label, m) => {
-    const { schedule } = this.state;
+    const schedule = [...this.state.schedule];
     const newApp = { 
       label: label, 
       date: m.format("MM-DD-YYYY h:mm A")

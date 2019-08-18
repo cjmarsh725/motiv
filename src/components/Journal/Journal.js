@@ -96,7 +96,8 @@ class Journal extends Component {
 
   // Gets the current file node and changes the content
   updateContent = content => {
-    const { fileStructure, currentFile } = this.state;
+    const { currentFile } = this.state;
+    const fileStructure = { ...this.state.fileStructure };
     if (currentFile) {
       fileStructure[currentFile].content = content;
       this.setState({ fileStructure });
@@ -105,7 +106,7 @@ class Journal extends Component {
 
   // Toggles whether or not a folder is open
   toggleNode = path => {
-    const { fileStructure } = this.state;
+    const fileStructure = { ...this.state.fileStructure };
     const node = fileStructure[path];
     if (node.isFolder) node.isOpen = !node.isOpen;
     this.setState({ fileStructure });
@@ -114,20 +115,21 @@ class Journal extends Component {
   // Sets the isOpen property of the node at a given path to true and then
   //  gets the previous node that was open and sets its isOpen to false
   openFile = path => {
-    const { fileStructure } = this.state;
+    const fileStructure = { ...this.state.fileStructure };
     const node = fileStructure[path];
     if (node) {
       const prevNode = values(fileStructure)
           .find(n => n.isFolder === false && n.isOpen === true);
       if (prevNode) fileStructure[prevNode.path].isOpen = false;
       node.isOpen = true;
-      this.setState({ fileStructure: fileStructure, currentFile: path });
+      this.setState({ fileStructure, currentFile: path });
     }
   }
 
   // Removes the path property from the fileStructure
   deleteNode = path => {
-    const { fileStructure, currentFile } = this.state;
+    const { currentFile } = this.state;
+    const fileStructure = { ...this.state.fileStructure };
     const node = fileStructure[path];
     if (node) {
       const parent = fileStructure[node.parent];
@@ -142,7 +144,7 @@ class Journal extends Component {
 
   // Adds a new node to fileStructure with the supplied properties
   createNode = (isFile, title, parent) => {
-    const { fileStructure } = this.state;
+    const fileStructure = { ...this.state.fileStructure };
     // Build path of new node and allow for the root case to prevent '//'
     const path = (parent === "/" ? "" : parent) + "/" + title;
     // Fill out the node item and increment the indent from the parent
@@ -221,7 +223,8 @@ class Journal extends Component {
   // "direction" is whether it was dropped on 
   //     the top, bottom, or middle of the node
   droppedOn = (path, direction) => {
-    const { fileStructure, dragged, currentFile } = this.state;
+    const { dragged, currentFile } = this.state;
+    const fileStructure = { ...this.state.fileStructure };
     // Check to see if item is being placed in its own child or itself
     if (this.isInChildren(fileStructure, path, dragged) || path === dragged) 
       return;

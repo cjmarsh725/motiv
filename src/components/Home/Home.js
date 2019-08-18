@@ -56,7 +56,7 @@ class Home extends Component {
   }
 
   onImageLoad = index => {
-    const { imgLoaded } = this.state;
+    const imgLoaded = [...this.state.imgLoaded];
     imgLoaded[index] = true;
     this.setState({ imgLoaded });
   }

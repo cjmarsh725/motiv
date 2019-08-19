@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
-import { Image } from 'react-bootstrap';
 import './Home.css';
 
 const quotes = [
-  '"This is an inspiring quote by a famous person." -Famous person',
+  `"The way to get started is to quit talking and begin doing." - Walt Disney`,
+  `"The pessimist sees difficulty in every opportunity. The optimist sees opportunity in every difficulty." - Winston Churchill`,
+  `"Don't let yesterday take up too much of today." - Will Rogers`,
+  `"It's not whether you get knocked down, it's whether you get up." - Vince Lombardi`,
+  `"We may encounter many defeats but we must not be defeated." - Maya Angelou`,
+  `"Whether you think you can or think you can't, you're right." - Henry Ford`,
+  `"Security is mostly a superstition. Life is either a daring adventure or nothing." - Helen Keller`,
+  `"The only limit to our realization of tomorrow will be our doubts of today." - Franklin D. Roosevelt`,
+  `"Creativity is intelligence having fun." - Albert Einstein`,
+  `"You are never too old to set another goal or to dream a new dream." - C.S. Lewis`,
+  `"There are no secrets to success. It is the result of preparation, hard work, and learning from failure." - Colin Powell`,
+  `"You miss 100% of the shots you don't take." - Wayne Gretzky`,
 ]
 
 class Home extends Component {

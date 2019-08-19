@@ -1,59 +1,39 @@
 .home-container {
-  background: var(--secondary);
-  min-height: 100vh;
+  background-image: url("/img/sunset-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100%;
 }
 
-.home-obj-container {
-  border: 1px solid var(--secondary-accent);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.home-obj-text-container {
-  height: 0px;
-}
-
-.home-obj-toggle {
-  display: none;
-}
-
-.home-obj-text {
-  position: relative;
-  bottom: 100px;
+.home-text {
+  position: fixed;
+  bottom: 5%;
+  width: 100%;
   font-size: 16px;
   line-height: 1.8;
   text-align: center;
   color: white;
   padding: 0 10px 0 10px;
-  background: rgba(0, 0, 0, 0.8)
+  background: rgba(0, 0, 0, 0.6)
 }
 
-
 @media (min-width: 768px) {
-  .home-obj-text {
+  .home-text {
     font-size: 18px;
     line-height: 2;
   }
 }
 
 @media (min-width: 992px) {
-  .home-obj-text {
+  .home-text {
     font-size: 21px;
     line-height: 2;
-  }
-
-  .home-container {
-    padding: 0 10% 0 10%;
   }
 }
 
 @media (min-width: 1600px) {
-  .home-obj-text {
+  .home-text {
     font-size: 24px;
     line-height: 2;
-  }
-
-  .home-container {
-    padding: 0 15% 0 15%;
-    max-width: 3000px;
   }
 }

@@ -14,6 +14,14 @@ const quotes = [
   `"You are never too old to set another goal or to dream a new dream." - C.S. Lewis`,
   `"There are no secrets to success. It is the result of preparation, hard work, and learning from failure." - Colin Powell`,
   `"You miss 100% of the shots you don't take." - Wayne Gretzky`,
+  `"I attribute my success to this: I never gave or took any excuse." – Florence Nightingale`,
+  `"The most difficult thing is the decision to act, the rest is merely tenacity." – Amelia Earhart`,
+  `"Every strike brings me closer to the next home run." – Babe Ruth`,
+  `"You can never cross the ocean until you have the courage to lose sight of the shore." – Christopher Columbus`,
+  `"The only person you are destined to become is the person you decide to be." – Ralph Waldo Emerson`,
+  `"How wonderful it is that nobody need wait a single moment before starting to improve the world." – Anne Frank`,
+  `"If you want to lift yourself up, lift up someone else." – Booker T. Washington`,
+  `"It’s not the years in your life that count. It’s the life in your years." – Abraham Lincoln`,
 ]
 
 class Home extends Component {

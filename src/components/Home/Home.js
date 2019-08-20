@@ -34,9 +34,26 @@ class Home extends Component {
     }
   }
 
+  changeIndex = delta => {
+    let { currentIndex } = this.state;
+    if (delta > 0) {
+      currentIndex = (currentIndex + delta) % quotes.length;
+    } else if (delta < 0) {
+      const diff = currentIndex + delta;
+      currentIndex = diff >= 0 ? diff : quotes.length + (diff % quotes.length);
+    }
+    this.setState({ currentIndex });
+  }
+
+  handleClick = e => {
+    const side = e.clientX - (window.innerWidth / 2);
+    if (side > 0) this.changeIndex(1);
+    else this.changeIndex(-1);
+  }
+
   render() {
     return (
-      <div className="home-container">
+      <div className="home-container" onClick={this.handleClick}>
         <div className="home-text">{quotes[this.state.currentIndex]}</div>
       </div>
     );

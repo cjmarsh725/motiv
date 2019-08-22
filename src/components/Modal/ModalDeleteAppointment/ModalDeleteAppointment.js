@@ -6,6 +6,12 @@ class ModalDeleteAppointment extends Component {
     isSelected: Array(this.props.schedule.length).fill(false)
   }
 
+  handleClick = index => {
+    const isSelected = [...this.state.isSelected];
+    isSelected[index] = !isSelected[index];
+    this.setState({ isSelected });
+  }
+
   render() {
     return (
       <div className="modaldeleteappointment-container">
@@ -13,9 +19,11 @@ class ModalDeleteAppointment extends Component {
           Delete an appointment:
         </div>
         <div className="modaldeleteappointment-schedule">
-          {this.props.schedule.map(appointment => { return (
-            <div className="modaldeleteappointment-appointment">
-              <div className="modaldeleteappointment-appointment-toggle"></div>
+          {this.props.schedule.map((appointment, i) => { return (
+            <div className="modaldeleteappointment-appointment" onClick={() => this.handleClick(i)}>
+              <div className="modaldeleteappointment-appointment-toggle">
+                {this.state.isSelected[i] ? <div className="modaldeleteappointment-appointment-toggle-interior"></div> : null}
+              </div>
               <div className="modaldeleteappointment-appointment-label">{appointment.label}</div>
               <div className="modaldeleteappointment-appointment-date">{appointment.date}</div>
             </div>

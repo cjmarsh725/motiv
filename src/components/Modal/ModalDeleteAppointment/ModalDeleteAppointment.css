@@ -17,8 +17,10 @@
 .modaldeleteappointment-appointment {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 40px;
   width: 400px;
+  margin: 2px;
   padding: 4px;
   padding-left: 16px;
   border-radius: 20px;

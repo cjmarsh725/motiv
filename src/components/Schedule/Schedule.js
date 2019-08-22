@@ -93,8 +93,13 @@ class Schedule extends Component {
     this.setState({ schedule });
   }
 
-  deleteAppointment = appt => {
-    console.log("Appointment to be deleted: " + JSON.stringify(appt));
+  deleteAppointment = indexArray => {
+    if (indexArray.length === 0) return;
+    const schedule = [...this.state.schedule];
+    for (let i = indexArray.length - 1; i >= 0; i--) {
+      schedule.splice(indexArray[i], 1);
+    }
+    this.setState({ schedule });
   }
 
   render() {

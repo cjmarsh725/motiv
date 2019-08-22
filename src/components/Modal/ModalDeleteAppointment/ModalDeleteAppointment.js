@@ -12,6 +12,12 @@ class ModalDeleteAppointment extends Component {
     this.setState({ isSelected });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.schedule !== this.props.schedule) {
+      this.setState({ isSelected: Array(this.props.schedule.length).fill(false) });
+    }
+  }
+
   render() {
     return (
       <div className="modaldeleteappointment-container">
@@ -32,11 +38,20 @@ class ModalDeleteAppointment extends Component {
         <div className="modaldeleteappointment-btns">
           <div className="modal-btn-primary"
               onClick={() => {
+                const indexArray = [];
+                this.state.isSelected.forEach((selected, i) => {
+                  if (selected) indexArray.push(i);
+                });
+                this.props.deleteAppointment(indexArray);
                 this.props.toggle();
-                }}>
+              }}>
             Delete
           </div>
-          <div className="modal-btn" onClick={this.props.toggle}>
+          <div className="modal-btn" 
+              onClick={() => {
+                this.setState({ isSelected: Array(this.props.schedule.length).fill(false) });
+                this.props.toggle();
+              }}>
             Cancel
           </div>
         </div>

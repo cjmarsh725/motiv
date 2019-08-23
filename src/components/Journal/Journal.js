@@ -126,12 +126,21 @@ class Journal extends Component {
     }
   }
 
+  // Recursively delete child items in a folder
+  deleteChildren = (path, fileStructure) => {
+    fileStructure[path].children.forEach(childPath => {
+      if (fileStructure[childPath].isFolder) this.deleteChildren(childPath, fileStructure);
+      delete fileStructure[childPath];
+    });
+  }
+
   // Removes the path property from the fileStructure
   deleteNode = path => {
     const { currentFile } = this.state;
     const fileStructure = { ...this.state.fileStructure };
     const node = fileStructure[path];
     if (node) {
+      if (node.isFolder) this.deleteChildren(path, fileStructure);
       const parent = fileStructure[node.parent];
       parent.children = parent.children.filter(child => child !== path);
       delete fileStructure[path];

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import values from 'lodash/values';
 import './ModalAddEntry.css';
 
 /*
@@ -33,11 +34,28 @@ class ModalAddEntry extends Component {
     this.props.toggle();
   }
 
+  // Returns an array of all the folder paths in including the root
+  getFolderPaths = () => {
+    const { fileStructure } = this.props;
+    const paths = values(fileStructure)
+                  .filter(node => node.isFolder)
+                  .map(node => node.path)
+                  .sort();
+    paths.unshift("/");
+    return paths;
+  }
+  
+  // Checks the given name to ensure it is a unique item
+  isNameInvalid = name => {
+    const { fileStructure } = this.props;    
+    return values(fileStructure).some(node => node.title === name);
+  }
+
   // Validates the name input, creates a new node, and closes the modal
   handleConfirm = () => {
     const { isFile, name, parent } = this.state;
     // Validate name choice to make sure it is unique
-    if (!name || this.props.checkName(name)) {
+    if (!name || this.isNameInvalid(name)) {
       this.setState({nameErrorOpen: true});
       return;
     }
@@ -94,7 +112,7 @@ class ModalAddEntry extends Component {
               {/* Toggleable dropdown content populated with folder paths */}
               <div className={"modaladdentry-path-dropdown-content" + (this.state.dropdownOpen ? 
                     " modaladdentry-path-dropdown-content-toggle" : "")}>
-                {this.props.getFolderPaths().map(path => (
+                {this.getFolderPaths().map(path => (
                   <div key={path} className="modaladdentry-path-dropdown-item"
                       onClick={() => {
                         this.setState({ parent: path, dropdownOpen: !this.state.dropdownOpen });

@@ -21,6 +21,10 @@
   transition: width 0.2s ease-in-out;
 }
 
+.journal-journalsidebar-closed {
+  width: 0%;
+}
+
 @media (min-width: 768px) {
   .journal-journalsidebar {
     width: 40%;
@@ -38,8 +42,4 @@
   .journal-journalsidebar {
     width: 25%;
   }
-}
-
-.journal-journalsidebar-closed {
-  width: 0%;
 }

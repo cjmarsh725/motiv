@@ -1,8 +1,7 @@
 .schedulecalendar-container {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  margin-right: 2%;
+  width: 95%;
   background-color: var(--background);
   color: black;
   border: 1px solid var(--background-accent);

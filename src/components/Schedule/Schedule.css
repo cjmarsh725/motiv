@@ -1,17 +1,49 @@
 .schedule-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: var(--background);
   min-height: calc(100vh - 56px);
 }
 
 .schedule-calendar {
-  width: 50%;
-  margin-top: 50px;
+  width: 100%;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .schedule-list {
-  width: 50%;
+  width: 100%;
+}
+
+
+@media (min-width: 768px) {
+  .schedule-calendar {
+    width: 80%;
+  }
+  
+  .schedule-list {
+    width: 80%;
+  }
+}
+
+@media (min-width: 992px) {
+  .schedule-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .schedule-calendar {
+    width: 50%;
+    margin-top: 30px;
+  }
+  
+  .schedule-list {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1600px) {
 }

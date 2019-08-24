@@ -128,10 +128,16 @@ class Journal extends Component {
 
   // Recursively delete child items in a folder
   deleteChildren = (path, fileStructure) => {
+    let isCurrent = false;
     fileStructure[path].children.forEach(childPath => {
-      if (fileStructure[childPath].isFolder) this.deleteChildren(childPath, fileStructure);
+      if (fileStructure[childPath].isFolder) {
+        isCurrent = this.deleteChildren(childPath, fileStructure) || isCurrent;
+      } else {
+        isCurrent = childPath === this.state.currentFile || isCurrent;
+      }
       delete fileStructure[childPath];
     });
+    return isCurrent;
   }
 
   // Removes the path property from the fileStructure
@@ -140,13 +146,16 @@ class Journal extends Component {
     const fileStructure = { ...this.state.fileStructure };
     const node = fileStructure[path];
     if (node) {
-      if (node.isFolder) this.deleteChildren(path, fileStructure);
+      let isCurrent = path === currentFile;
+      if (node.isFolder) { 
+        isCurrent = this.deleteChildren(path, fileStructure) || isCurrent;
+      }
       const parent = fileStructure[node.parent];
       parent.children = parent.children.filter(child => child !== path);
       delete fileStructure[path];
       this.setState({ 
         fileStructure: fileStructure, 
-        currentFile: path === currentFile ? null : currentFile
+        currentFile: isCurrent ? null : currentFile
       });
     }
   }
@@ -173,9 +182,11 @@ class Journal extends Component {
     // Add the node to the fileStructure and update state
     fileStructure[path] = newNode;
     if (isFile) {
-      fileStructure[this.state.currentFile].isOpen = false;
+      if (this.state.currentFile) fileStructure[this.state.currentFile].isOpen = false;
       this.setState({ fileStructure, currentFile: path });
-    } else this.setState({ fileStructure });
+    } else {
+      this.setState({ fileStructure });
+    }
   }
 
   // Updates a nodes parent and, if its a folder, changes its 

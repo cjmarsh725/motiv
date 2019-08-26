@@ -1,0 +1,17 @@
+.reminderscard {
+  width: 30%;
+  height: 100px;
+  margin: 10px 1.6%;
+  padding: 1px 3%;
+  border-radius: 20px;
+  color: var(--secondary-accent);
+  background-color: var(--secondary);
+}
+
+.reminderscard-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

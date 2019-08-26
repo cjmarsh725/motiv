@@ -1,0 +1,9 @@
+.reminders {
+  height: 100%;
+	background-color: var(--background);
+}
+
+.reminders-container {
+  display: flex;
+  flex-flow: wrap;
+}

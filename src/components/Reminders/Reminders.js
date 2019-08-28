@@ -30,6 +30,11 @@ class Reminders extends Component {
   render() {
     return (
       <div className="reminders">
+        <div className="reminders-btn-container">
+          <div className="reminders-add-btn">
+            <i className="fas fa-plus fa-2x"></i>
+          </div>
+        </div>
         <div className="reminders-container">
           {this.state.reminders.map((content, i) => { return (
             <RemindersCard key={content + i} 

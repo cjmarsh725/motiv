@@ -32,6 +32,10 @@ class Reminders extends Component {
     this.setState({ reminders });
   }
 
+  addReminder = content => {
+    console.log(content);
+  }
+
   render() {
     return (
       <div className="reminders">
@@ -57,7 +61,7 @@ class Reminders extends Component {
                 toggle={this.toggleAddModal}>
           <ModalAddReminder 
                   add={this.addReminder}
-                  toggle={this.toggleDeleteModal}/>
+                  toggle={this.toggleAddModal}/>
         </Modal>
       </div>
     );

@@ -1,0 +1,28 @@
+.modaladdreminder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.modaladdreminder-title {
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+.modaladdreminder-textarea {
+  resize: none;
+  outline-color: #dddddd;
+  width: 400px;
+  height: 80px;
+  color: var(--secondary-accent);
+  background-color: var(--secondary);
+}
+
+.modaladdreminder-confirm-btns {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  margin-top: 20px;
+  width: 230px;
+}

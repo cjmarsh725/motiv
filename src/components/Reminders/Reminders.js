@@ -33,7 +33,9 @@ class Reminders extends Component {
   }
 
   addReminder = content => {
-    console.log(content);
+    const reminders = [...this.state.reminders];
+    reminders.unshift(content);
+    this.setState({ reminders });
   }
 
   render() {

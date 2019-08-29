@@ -12,7 +12,7 @@ class ModalAddReminder extends Component {
 
   handleConfirm = () => {
     const { content } = this.state;
-    this.props.add(content);
+    if (/\S/.test(content)) this.props.add(content);
     this.closeModal();
   }
 
@@ -29,6 +29,7 @@ class ModalAddReminder extends Component {
             className="modaladdreminder-textarea" 
             onChange={this.handleChange} 
             value={this.state.content}
+            spellCheck={false}
             ></textarea>
         <div className="modaladdreminder-confirm-btns">
           <div className="modal-btn-primary" onClick={this.handleConfirm}>

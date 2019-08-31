@@ -1,3 +1,6 @@
 .scheduleindicator {
-	color: blue;
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+	color: var(--dark-blue);
 }

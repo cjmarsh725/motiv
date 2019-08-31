@@ -17,6 +17,7 @@
 }
 
 .scheduleweek-day-interior {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,8 +26,7 @@
 }
 
 .scheduleweek-day-interior:not(.scheduleweek-selectedday):hover {
-  border: 1px solid var(--background-accent);
-  border-width: 2px;
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .scheduleweek-offday {

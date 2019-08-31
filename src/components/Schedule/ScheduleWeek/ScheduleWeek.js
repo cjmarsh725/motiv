@@ -15,7 +15,7 @@ const ScheduleWeek = props => {
                 (props.selected === dayMoment.format('MM-DD-YYYY') ? " scheduleweek-selectedday" : "") + 
                 (props.now === dayMoment.format('MM-DD-YYYY') ? " scheduleweek-currentday" : "")}>
                 {dayMoment.format('D')}
-                <ScheduleIndicator />
+                <ScheduleIndicator schedule={props.schedule} m={dayMoment}/>
             </div>
           </div>
       );})}

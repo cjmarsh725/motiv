@@ -1,4 +1,5 @@
 import React from 'react';
+import ScheduleIndicator from '../ScheduleIndicator/ScheduleIndicator';
 import './ScheduleWeek.css';
 
 const ScheduleWeek = props => {
@@ -14,6 +15,7 @@ const ScheduleWeek = props => {
                 (props.selected === dayMoment.format('MM-DD-YYYY') ? " scheduleweek-selectedday" : "") + 
                 (props.now === dayMoment.format('MM-DD-YYYY') ? " scheduleweek-currentday" : "")}>
                 {dayMoment.format('D')}
+                <ScheduleIndicator />
             </div>
           </div>
       );})}

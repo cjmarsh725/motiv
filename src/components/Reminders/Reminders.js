@@ -15,7 +15,8 @@ class Reminders extends Component {
     ],
     isDeleteOpen: false,
     isAddOpen: false,
-    deleteIndex: null
+    deleteIndex: null,
+    dragging: null
   }
 
   // Helper functions for the delete and add modals
@@ -38,6 +39,13 @@ class Reminders extends Component {
     this.setState({ reminders });
   }
 
+  onDrop = index => {
+    const reminders = [...this.state.reminders];
+    const dragged = this.state.dragging;
+    [reminders[dragged], reminders[index]] = [reminders[index], reminders[dragged]];
+    this.setState({ reminders });
+  }
+
   render() {
     return (
       <div className="reminders">
@@ -50,7 +58,10 @@ class Reminders extends Component {
           {this.state.reminders.map((content, i) => { return (
             <RemindersCard key={content + i} 
                             delete={() => this.setState({deleteIndex: i, isDeleteOpen: true})} 
-                            content={content} />
+                            content={content}
+                            index={i}
+                            drag={() => this.setState({dragging: i})}
+                            drop={this.onDrop} />
           )})}
         </div>
         <Modal isOpen={this.state.isDeleteOpen}

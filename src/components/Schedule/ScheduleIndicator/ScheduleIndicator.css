@@ -6,13 +6,13 @@
 }
 
 .scheduleindicator-circle, .scheduleindicator-bar {
-  height: 10px;
-  width: 10px;
+  height: 6px;
+  width: 6px;
   margin: 1px;
-  border-radius: 5px;
+  border-radius: 3px;
   background-color: var(--dark-blue);
 }
 
 .scheduleindicator-bar {
-  height: 34px;
+  height: 22px;
 }

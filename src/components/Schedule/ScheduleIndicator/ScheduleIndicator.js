@@ -13,9 +13,14 @@ class ScheduleIndicator extends Component {
   }
 
   render() {
+    const numDates = this.getMatchingDates();
+    if (numDates === 0) return null;
     return (
       <div className="scheduleindicator">
-        {this.getMatchingDates()}
+        {numDates < 4 ?
+          Array(numDates).fill(null).map(x => <div className="scheduleindicator-circle"></div>) :
+          <div className="scheduleindicator-bar"></div>
+        }
       </div>
     );
   }

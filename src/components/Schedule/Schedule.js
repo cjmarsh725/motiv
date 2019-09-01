@@ -14,43 +14,47 @@ class Schedule extends Component {
       schedule: [
         {
           label: "Coding Preparation Meetup",
-          date: "8-16-2019 6:00 PM"
+          date: "9-5-2019 6:00 PM"
         },
         {
           label: "Bob's Birthday Party",
-          date: "8-18-2019 9:00 PM"
+          date: "9-7-2019 9:00 PM"
         },
         {
           label: "Dentist Appointment",
-          date: "8-19-2019 8:00 AM"
+          date: "9-8-2019 8:00 AM"
         },
         {
           label: "Doctor Appointment",
-          date: "8-21-2019 10:00 AM"
+          date: "9-8-2019 10:00 AM"
         },
         {
           label: "Mike's Party",
-          date: "8-21-2019 7:00 PM"
+          date: "9-8-2019 7:00 PM"
         },
         {
           label: "Conference",
-          date: "8-23-2019 11:00 AM"
+          date: "9-10-2019 11:00 AM"
         },
         {
           label: "Jane's Birthday",
-          date: "8-25-2019 4:00 PM"
+          date: "9-10-2019 4:00 PM"
         },
         {
           label: "Skydiving",
-          date: "8-26-2019 6:00 PM"
+          date: "9-10-2019 6:00 PM"
         },
         {
           label: "Javascript Presentation",
-          date: "8-28-2019 8:00 PM"
+          date: "9-10-2019 8:00 PM"
         },
         {
           label: "Lunch w/ Sarah",
-          date: "8-29-2019 12:30 PM"
+          date: "9-13-2019 12:30 PM"
+        },
+        {
+          label: "Dinner w/ Jim",
+          date: "9-13-2019 6:30 PM"
         },
       ]
     }

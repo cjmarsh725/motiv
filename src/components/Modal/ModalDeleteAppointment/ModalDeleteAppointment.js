@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './ModalDeleteAppointment.css';
 
+/*
+Interior modal component for deleting appointments in the calendar. Toggled when
+the delete button in the ScheduleList is clicked. Takes in the modal toggle function, 
+deleting function, and the schedule as props.
+*/
 class ModalDeleteAppointment extends Component {
   state = {
     isSelected: Array(this.props.schedule.length).fill(false)

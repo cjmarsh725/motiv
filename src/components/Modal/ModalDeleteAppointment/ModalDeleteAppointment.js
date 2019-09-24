@@ -7,16 +7,19 @@ the delete button in the ScheduleList is clicked. Takes in the modal toggle func
 deleting function, and the schedule as props.
 */
 class ModalDeleteAppointment extends Component {
+  // The checked state of the schedule is populated as false initially
   state = {
     isSelected: Array(this.props.schedule.length).fill(false)
   }
 
+  // Sets the selected status for individual appointments when clicked
   handleClick = index => {
     const isSelected = [...this.state.isSelected];
     isSelected[index] = !isSelected[index];
     this.setState({ isSelected });
   }
 
+  // Resets the isSelected state to be all false when the component updates
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.schedule !== this.props.schedule) {
       this.setState({ isSelected: Array(this.props.schedule.length).fill(false) });
@@ -29,6 +32,7 @@ class ModalDeleteAppointment extends Component {
         <div className="modaldeleteappointment-title">
           Delete an appointment:
         </div>
+        {/* Returns a list of appointments that are interactable */}
         <div className="modaldeleteappointment-schedule">
           {this.props.schedule.map((appointment, i) => { return (
             <div className="modaldeleteappointment-appointment" onClick={() => this.handleClick(i)}>
@@ -41,6 +45,7 @@ class ModalDeleteAppointment extends Component {
           );})}
         </div>
         <div className="modaldeleteappointment-btns">
+          {/* The delete button collects the indices of the selected appointments and deletes them then toggles the modal */}
           <div className="modal-btn-primary"
               onClick={() => {
                 const indexArray = [];
@@ -52,6 +57,7 @@ class ModalDeleteAppointment extends Component {
               }}>
             Delete
           </div>
+          {/* The cancel button toggles the modal after reseting isSelected to false */}
           <div className="modal-btn" 
               onClick={() => {
                 this.setState({ isSelected: Array(this.props.schedule.length).fill(false) });

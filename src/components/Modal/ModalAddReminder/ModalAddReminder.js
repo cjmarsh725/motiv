@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './ModalAddReminder.css';
 
+/*
+Interior modal component for adding reminders. Toggled when the add button in the reminders section
+is clicked. Takes in a function to add a reminder and the modal toggle function as props.
+*/
 class ModalAddReminder extends Component {
   state = {
     content : ""
@@ -10,12 +14,14 @@ class ModalAddReminder extends Component {
     this.setState({ content: e.target.value });
   }
 
+  // Uses the add function to create a new modal from state, checks to ensure it is not empty space
   handleConfirm = () => {
     const { content } = this.state;
     if (/\S/.test(content)) this.props.add(content);
     this.closeModal();
   }
 
+  // Resets the content and toggles the modal on close
   closeModal = () => {
     this.setState({ content: "" });
     this.props.toggle();

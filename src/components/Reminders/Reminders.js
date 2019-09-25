@@ -5,6 +5,12 @@ import ModalDeleteReminder from '../Modal/ModalDeleteReminder/ModalDeleteReminde
 import ModalAddReminder from '../Modal/ModalAddReminder/ModalAddReminder';
 import './Reminders.css';
 
+/*
+The Reminders route consists of a series of cards that each have their own reminder.
+Modals to add and delete reminders live here along with the functions to support them.
+In addition, drag and drop functionality is here to enable the swapping of the
+reminders positions.
+*/
 class Reminders extends Component {
   state = {
     reminders: [

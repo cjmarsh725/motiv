@@ -33,21 +33,25 @@ class Reminders extends Component {
     this.setState({ isAddOpen: !this.state.isAddOpen });
   }
 
+  // Deletes a reminder at the specified index
   deleteReminder = index => {
     const reminders = [...this.state.reminders];
     reminders.splice(index, 1);
     this.setState({ reminders });
   }
 
+  // Adds a new reminder with the specified content at the begginning of the content array
   addReminder = content => {
     const reminders = [...this.state.reminders];
     reminders.unshift(content);
     this.setState({ reminders });
   }
 
+  // When a card is dropped on another their positions are swapped in the content array
   onDrop = index => {
     const reminders = [...this.state.reminders];
     const dragged = this.state.dragging;
+    // Object destructuring assignment to swap positions
     [reminders[dragged], reminders[index]] = [reminders[index], reminders[dragged]];
     this.setState({ reminders });
   }
@@ -55,11 +59,13 @@ class Reminders extends Component {
   render() {
     return (
       <div className="reminders">
+        {/* Add button to create a new reminder */}
         <div className="reminders-btn-container">
           <div className="reminders-add-btn" onClick={this.toggleAddModal}>
             <i className="fas fa-plus fa-2x"></i>
           </div>
         </div>
+        {/* List of reminder cards */}
         <div className="reminders-container">
           {this.state.reminders.map((content, i) => { return (
             <RemindersCard key={content + i} 
@@ -70,6 +76,7 @@ class Reminders extends Component {
                             drop={this.onDrop} />
           )})}
         </div>
+        {/* Delete and Add modals for reminders */}
         <Modal isOpen={this.state.isDeleteOpen}
                 toggle={this.toggleDeleteModal}>
           <ModalDeleteReminder 

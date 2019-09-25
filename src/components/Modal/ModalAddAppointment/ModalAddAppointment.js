@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import './ModalAddAppointment.css';
 
+/*
+Interior modal component for adding appointments. Toggled when the add button in the appointments section
+is clicked. Takes in a function to add an appointment and the modal toggle function as props.
+*/
 class ModalAddAppointment extends Component {
   state = {
     label: "",
@@ -12,23 +16,29 @@ class ModalAddAppointment extends Component {
     isDateValid: true,
   }
 
+  // Helper functions to set the label and date and reset the validation flag
   handleLabelChange = e => {
     this.setState({[e.target.name]: e.target.value, isLabelValid: true});
   }
-  
   handleDateChange = e => {
     this.setState({[e.target.name]: e.target.value, isDateValid: true});
   }
 
+  // Validates an appointment date and label and sets the validation flags, adding the appointment if valid
   validateAppointment = () => {
     const { label, date, time, isAM } = this.state;
+    // Parse the state into a moment object
     const m = moment(`${date} ${time} ${isAM ? "AM" : "PM"}`, "M-D-YYYY h:mm A", true);
+    // Label cannot be an empty string
     const isLabelValid = label !== "";
+    // Date must be a valid moment object
     const isDateValid = m.isValid();
+    // Add the appointment and toggle the modal if valid
     if (isLabelValid && isDateValid) {
       this.props.addAppointment(label, m);
       this.props.toggle();
     }
+    // Set the validation flags to display the appropriate error message if needed
     this.setState({ isLabelValid, isDateValid });
   }
 

@@ -50,6 +50,7 @@ class ModalAddAppointment extends Component {
         </div>
         <div className="modaladdappointment-labelinputs-container">
           <div className="modaladdappointment-label-container">
+            {/* Labels for the label and date fields are highlighted when there is a validation error */}
             <div className={"modaladdappointment-label" + (this.state.isLabelValid ?
                             "" : " modaladdappointment-label-error")}>
               Label:
@@ -59,6 +60,7 @@ class ModalAddAppointment extends Component {
               Date:
             </div>
           </div>
+          {/* Inputs for label, date, and time along with toggle for AM or PM */}
           <div className="modaladdappointment-input-container">
             <input className="modaladdappointment-input"
                     type="text"
@@ -93,6 +95,7 @@ class ModalAddAppointment extends Component {
             </div>
           </div>
         </div>
+        {/* Confirmation and cancel buttons */}
         <div className="modaladdappointment-btns">
           <div className="modal-btn-primary" onClick={this.validateAppointment}>
             Add

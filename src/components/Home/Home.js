@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Home.css';
 
+// An array of famous quotes randomly ordered for the homepage
 const quotes = [
   `"The way to get started is to quit talking and begin doing." - Walt Disney`,
   `"The pessimist sees difficulty in every opportunity. The optimist sees opportunity in every difficulty." - Winston Churchill`,
@@ -24,6 +25,12 @@ const quotes = [
   `"It’s not the years in your life that count. It’s the life in your years." – Abraham Lincoln`,
 ]
 
+/*
+The Home route consists of a famous inspirational quote from an array that can be cycled through in either direction.
+The starting quote is selected randomly by shuffling the array on initialization. Clicking anywhere on the background,
+which is a full-screen image, will cycle through the array of quotes depending on whether the left or right side was
+clicked.
+*/
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +40,7 @@ class Home extends Component {
     this.shuffleArray(quotes);
   }
 
+  // Shuffles an array randomly, used to change the order of quotes displayed
   shuffleArray = arr => {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -42,6 +50,7 @@ class Home extends Component {
     }
   }
 
+  // Helper function to select the next or previous index, with wrapping at the ends
   changeIndex = delta => {
     let { currentIndex } = this.state;
     if (delta > 0) {
@@ -53,6 +62,7 @@ class Home extends Component {
     this.setState({ currentIndex });
   }
 
+  // When the left or right side of the screen is clicked the index in the array changes accordingly
   handleClick = e => {
     const side = e.clientX - (window.innerWidth / 2);
     if (side > 0) this.changeIndex(1);

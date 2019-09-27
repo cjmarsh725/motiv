@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import ScheduleWeek from '../ScheduleWeek/ScheduleWeek';
 import './ScheduleCalendar.css';
 
+/*
+This is the calendar component of the schedule route. Displays a calendar using the scheduleweek
+components along with buttons to cycle through the months and a month picker that allows the user
+to select the month and year directly. The props passed to this component include moment objects
+to track the day in the calendar, the current date, and the selected date. Other props include
+the schedule and functions to change the month and selected day.
+*/
 class ScheduleCalendar extends Component {
   constructor(props) {
     super(props);

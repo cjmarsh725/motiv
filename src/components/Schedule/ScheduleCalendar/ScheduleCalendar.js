@@ -17,16 +17,20 @@ class ScheduleCalendar extends Component {
     }
   }
 
+  // Similar to a modal the month picker's visibility is toggled here
   togglePicker = () => {
     this.setState({ isPickerOpen: !this.state.isPickerOpen });
   }
 
+  // Helper function to check if the month matches the current date
   isCurrentMonth = date => {
     return this.props.mNow.format("MMMM-YYYY") === date;
   }
 
+  // Returns JSX with a table that allows the user to select a month
   createMonthPicker = () => {
     const props = this.props;
+    // Helper array for setting up the month picker based on quarter
     const months = [["January", "February", "March"], 
                     ["April", "May", "June"],
                     ["July", "August", "September"],
@@ -37,6 +41,7 @@ class ScheduleCalendar extends Component {
           {quarter.map(month => { 
             const date = month + "-" + props.m.format("YYYY");
             return (
+            // Highlighted when its the current month and sets the selected month on click
             <div key={month} 
                 className={"schedulecalendar-picker-month-item" + (this.isCurrentMonth(date) ? 
                             " schedulecalendar-picker-month-current" : "")}
@@ -54,7 +59,9 @@ class ScheduleCalendar extends Component {
 
   render() {
     const props = this.props;
+    // Helper array to display five weeks for each month and filled with a string used in the keys
     const calendarWeeks = Array(5).fill("Schedule Week ");
+    // The moment object is used to construct the calendar by adding weeks to it in the scheduleweek components
     const m = props.m.clone().startOf('month').startOf('week');
     return (
       <div className="schedulecalendar-container">
@@ -62,6 +69,7 @@ class ScheduleCalendar extends Component {
         <div className={"schedulecalendar-picker-content-container" + 
                           (this.state.isPickerOpen ? "" : " schedulecalendar-picker-closed")}>
           <div className="schedulecalendar-picker-content">
+            {/* Buttons to select the year in the picker */}
             <div className="schedulecalendar-picker-year">
               <div className="schedulecalendar-picker-year-btn" onClick={() => props.changeMonth(-12)}>
                 <i className="fas fa-caret-left"></i>
@@ -79,6 +87,7 @@ class ScheduleCalendar extends Component {
         </div>
         {/* Calendar */}
         <div className="schedulecalendar-month">
+          {/* Buttons to select the month in the calendar and display the month and year */}
           <div className="schedulecalendar-month-btn" onClick={() => props.changeMonth(-1)}>
             <i className="fas fa-caret-up"></i>
           </div>
@@ -89,6 +98,7 @@ class ScheduleCalendar extends Component {
             <i className="fas fa-caret-down"></i>
           </div>
         </div>
+        {/* Five scheduleweek components are added with the moment object used to track the date */}
         {calendarWeeks.map((x, i) => { return (
           <ScheduleWeek 
               key={x + i} 

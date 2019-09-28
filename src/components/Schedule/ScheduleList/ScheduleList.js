@@ -25,6 +25,7 @@ class ScheduleList extends Component {
     this.setState({ isDeleteOpen: !this.state.isDeleteOpen });
   }
 
+  // Helper function to get the subtitle based on whether it is the current date
   getSubtitle = () => {
     let subtitle = "Upcoming appointments:";
     if (!this.props.mNow.isSame(this.props.mSelected, "day")) {
@@ -36,6 +37,7 @@ class ScheduleList extends Component {
   render() {
     return (
       <div className="schedulelist-container">
+        {/* Header contains the date and a subtitle plus buttons to add or delete an appointment */}
         <div className="schedulelist-header-container">
           <div className="schedulelist-header">
             {"Today is " + this.props.mNow.format("dddd, MMMM Do YYYY")}
@@ -52,11 +54,15 @@ class ScheduleList extends Component {
         </div>
         <div className="schedulelist-list">
           {this.props.schedule.map(item => {
+            // First parse the moment from the date of the appointment
             const itemMoment = moment(item.date, "MM-DD-YYYY h:mm A");
+            // Then format the date for display
             const itemTime = itemMoment.format("dddd, MMMM Do YYYY [at] h:mm A");
+            // Check whether the date is after the selected or current day
             const isAfterMoment = this.props.mNow.isSame(this.props.mSelected, "day") ?
                   itemMoment.isSameOrAfter(this.props.mNow, "minute") :
                   itemMoment.isSameOrAfter(this.props.mSelected, "day");
+            // Return an item only if its after the current or selected day
             if (isAfterMoment) {
               return (
                 <div key={itemTime} className="schedulelist-item">
@@ -67,6 +73,7 @@ class ScheduleList extends Component {
             } else return null;
           })}
         </div>
+        {/* Modals for adding an deleting an appointment */}
         <Modal 
             isOpen={this.state.isAddOpen} 
             toggle={this.toggleAddModal}>

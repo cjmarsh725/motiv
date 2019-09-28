@@ -5,6 +5,12 @@ import ModalAddAppointment from '../../Modal/ModalAddAppointment/ModalAddAppoint
 import ModalDeleteAppointment from '../../Modal/ModalDeleteAppointment/ModalDeleteAppointment';
 import './ScheduleList.css';
 
+/*
+Displays the appointments in the schedule as a list of items. Only appointments that come after
+the selected date will be shown. Modals for adding and deleting an appointment also live here. 
+The props passed down to this component are the current and selected moment objects, the schedule,
+and functions to add and delete appointments.
+*/
 class ScheduleList extends Component {
   state = {
     isAddOpen: false,

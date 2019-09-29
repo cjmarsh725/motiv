@@ -6,6 +6,7 @@ import Journal from '../Journal/Journal';
 import Schedule from '../Schedule/Schedule';
 import Reminders from '../Reminders/Reminders';
 import Signin from '../Signin/Signin';
+import Signup from '../Signup/Signup';
 import './App.css';
 
 /*
@@ -35,6 +36,7 @@ function App() {
         <Route path="/schedule" component={Schedule} />
         <Route path="/reminders" component={Reminders} />
         <Route path="/signin" component={Signin} />
+        <Route path="/signup" component={Signup} />
       </div>
     </Router>
   );

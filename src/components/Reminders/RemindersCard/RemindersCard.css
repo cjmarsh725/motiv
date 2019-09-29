@@ -6,6 +6,7 @@
   padding: 1px 3%;
   border-radius: 20px;
   color: var(--secondary-accent);
+  border: 1px solid var(--secondary-accent);
   background-color: var(--secondary);
 }
 

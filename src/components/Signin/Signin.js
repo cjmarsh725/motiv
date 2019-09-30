@@ -15,7 +15,8 @@ class Signin extends Component {
     return (
       <div className="signin">
         <div className="signin-label-container">
-
+          <div>Username:</div>
+          <div>Password:</div>
         </div>
         <div className="signin-input-container">
           <input className="signin-input-username"

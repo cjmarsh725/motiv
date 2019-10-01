@@ -1,6 +1,11 @@
 .signin {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signin-info-container {
+  display: flex;
 }
 
 .signin-label-container {

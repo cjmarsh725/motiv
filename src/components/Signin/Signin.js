@@ -30,6 +30,9 @@ class Signin extends Component {
                     value={this.state.password}
                     onChange={this.onChange} />
         </div>
+        <div className="signin-confirm-btn">
+          Sign In
+        </div>
       </div>
     );
   }

@@ -49,3 +49,25 @@
   margin: 0px;
   outline: white;
 }
+
+.signin-confirm-btn {
+  cursor: pointer;
+  text-align: center;
+  width: 100px;
+  height: 32px;
+  line-height: 1.7;
+  color: var(--secondary-accent);
+  background-color: var(--secondary);
+  border: 1px solid var(--secondary-accent);
+  border-radius: 16px;
+  margin: 1px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.signin-confirm-btn:hover {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 5px rgba(0,0,0,0.24);
+}
+
+.signin-confirm-btn:active {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 2px 3px rgba(0,0,0,0.24);
+}

@@ -20,12 +20,12 @@ class Signin extends Component {
             <div>Password:</div>
           </div>
           <div className="signin-input-container">
-            <input className="signin-input-username"
+            <input className="signin-input"
                       type="text"
                       name="username"
                       value={this.state.username}
                       onChange={this.onChange} />
-            <input className="signin-input-password"
+            <input className="signin-input"
                       type="password"
                       name="password"
                       value={this.state.password}

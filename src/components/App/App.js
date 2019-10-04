@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import Home from '../Home/Home';
 import Journal from '../Journal/Journal';
 import Schedule from '../Schedule/Schedule';
@@ -24,6 +24,12 @@ function App() {
             <Nav.Link as={NavLink} to="/journal">Journal</Nav.Link>
             <Nav.Link as={NavLink} to="/schedule">Schedule</Nav.Link>
             <Nav.Link as={NavLink} to="/reminders">Reminders</Nav.Link>
+            <NavDropdown title="Account">
+              <NavDropdown.Item href="/signin">Sign In / Sign Out</NavDropdown.Item>
+              <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/delete">Delete Account</NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Brand>

@@ -1,6 +1,7 @@
 .app {
   height: 100%;
   padding-top: 56px;
+  background-color: var(--background);
 }
 
 .app-navbar {

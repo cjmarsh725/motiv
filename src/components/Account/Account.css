@@ -1,0 +1,13 @@
+.account {
+  display: flex;
+  justify-content: center;
+}
+
+.account-labels, .account-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px;
+  margin-top: 40px;
+  height: 80px;
+}

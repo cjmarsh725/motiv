@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './Signup.css';
 
 class Signup extends Component {
@@ -9,6 +10,19 @@ class Signup extends Component {
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit = () => {
+    axios
+    .post('http://localhost:5000/api/register', this.state)
+    .then(response => {
+      localStorage.setItem('token', response.data.token);
+
+      this.props.history.push('/users');
+    })
+    .catch(err => {
+      localStorage.removeItem('token');
+    });
   }
 
   render() {

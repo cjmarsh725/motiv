@@ -14,11 +14,10 @@ class Signup extends Component {
 
   onSubmit = () => {
     axios
-    .post('http://localhost:5000/api/register', this.state)
+    .post(process.env.BACKEND + '/users/signup', this.state)
     .then(response => {
       localStorage.setItem('token', response.data.token);
-
-      this.props.history.push('/users');
+      this.props.history.push('/home');
     })
     .catch(err => {
       localStorage.removeItem('token');
@@ -46,7 +45,7 @@ class Signup extends Component {
                       onChange={this.onChange} />
           </div>
         </div>
-        <div className="signup-confirm-btn">
+        <div className="signup-confirm-btn" onClick={this.onSubmit}>
           Sign Up
         </div>
       </div>

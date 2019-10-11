@@ -17,13 +17,19 @@ class Account extends Component {
       <div className="account-btn">Sign Out</div>
       <div className="account-btn">Delete</div>
     </>); else return ( <>
-      <div className="account-btn">Sign In</div>
-      <div className="account-btn">Sign Up</div>
+      <div className="account-btn"
+          onClick={() => this.props.history.push('/signin')}>
+        Sign In
+      </div>
+      <div className="account-btn"
+          onClick={() => this.props.history.push('/signup')}>
+        Sign Up
+      </div>
     </>);
   }
 
   render() {
-    const signedIn = true;
+    const signedIn = false;
     return (
       <div className="account">
         <div className="account-labels">

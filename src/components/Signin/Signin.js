@@ -14,7 +14,7 @@ class Signin extends Component {
 
   onSubmit = () => {
     axios
-    .post(process.env.BACKEND + '/users/signin', this.state)
+    .post(process.env.REACT_APP_BACKEND + '/users/signin', this.state)
     .then(response => {
       localStorage.setItem('token', response.data.token);
       this.props.history.push('/home');

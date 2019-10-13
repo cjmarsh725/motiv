@@ -20,6 +20,7 @@ class Signup extends Component {
       this.props.history.push('/home');
     })
     .catch(err => {
+      console.log(err);
       localStorage.removeItem('token');
     });
   }

@@ -11,6 +11,19 @@ class Signin extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onSubmit = () => {
+    axios
+    .post(process.env.BACKEND + '/users/signin', this.state)
+    .then(response => {
+      localStorage.setItem('token', response.data.token);
+      this.props.history.push('/home');
+    })
+    .catch(err => {
+      console.log(err);
+      localStorage.removeItem('token');
+    });
+  }
+
   render() {
     return (
       <div className="signin">
@@ -32,7 +45,7 @@ class Signin extends Component {
                       onChange={this.onChange} />
           </div>
         </div>
-        <div className="signin-confirm-btn">
+        <div className="signin-confirm-btn" onClick={this.onSubmit}>
           Sign In
         </div>
       </div>

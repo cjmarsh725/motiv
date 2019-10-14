@@ -29,6 +29,12 @@ class Signin extends Component {
     });
   }
 
+  handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.onSubmit();
+    }
+  }
+
   render() {
     return (
       <div className="signin">
@@ -50,7 +56,8 @@ class Signin extends Component {
                       type="password"
                       name="password"
                       value={this.state.password}
-                      onChange={this.onChange} />
+                      onChange={this.onChange}
+                      onKeyPress={this.handleKeyPress} />
           </div>
         </div>
         <div className="signin-confirm-btn" onClick={this.onSubmit}>

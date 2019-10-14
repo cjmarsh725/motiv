@@ -8,6 +8,10 @@ class Signup extends Component {
     password: ""
   }
 
+  redirect = () => {
+    this.props.history.push('/signin');
+  }
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -28,6 +32,9 @@ class Signup extends Component {
   render() {
     return (
       <div className="signup">
+        <div className="signup-signin-label">
+          Sign up for a new account below. Already have an account? <span className="signup-signin-link" onClick={this.redirect}>Sign in here.</span>
+        </div>
         <div className="signup-info-container">
           <div className="signup-label-container">
             <div>Username:</div>

@@ -6,6 +6,15 @@
   height: 100%;
 }
 
+.signin-signup-label {
+  margin: 30px 20px 0 20px;
+}
+
+.signin-signup-link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .signin-info-container {
   display: flex;
   height: 200px;

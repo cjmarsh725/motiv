@@ -33,7 +33,7 @@ class Signin extends Component {
     return (
       <div className="signin">
         <div className="signin-signup-label">
-          Sign in to your account below. Don't have an account? <span className="signin-signup-link" onClick={this.redirect}>Sign in here.</span>
+          Sign in to your account below. Don't have an account? <span className="signin-signup-link" onClick={this.redirect}>Sign up here.</span>
         </div>
         <div className="signin-info-container">
           <div className="signin-label-container">

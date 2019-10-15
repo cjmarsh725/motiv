@@ -5,7 +5,8 @@ import './Signin.css';
 class Signin extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    error: false
   }
 
   redirect = () => {
@@ -13,18 +14,20 @@ class Signin extends Component {
   }
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value, error: false });
   }
 
   onSubmit = () => {
+    const { username, password } = this.state;
     axios
-    .post(process.env.REACT_APP_BACKEND + '/users/signin', this.state)
+    .post(process.env.REACT_APP_BACKEND + '/users/signin', { username, password })
     .then(response => {
       localStorage.setItem('token', response.data.token);
-      this.props.history.push('/home');
+      this.props.history.push('/');
     })
     .catch(err => {
       console.log(err);
+      this.setState({ error: true });
       localStorage.removeItem('token');
     });
   }
@@ -63,7 +66,7 @@ class Signin extends Component {
         <div className="signin-confirm-btn" onClick={this.onSubmit}>
           Sign In
         </div>
-        <div className="signin-error">There was an error signing in with these credentials</div>
+        {this.state.error ? <div className="signin-error">There was an error signing in with these credentials</div> : null}
       </div>
     );
   }

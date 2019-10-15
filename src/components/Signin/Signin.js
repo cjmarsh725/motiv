@@ -63,6 +63,7 @@ class Signin extends Component {
         <div className="signin-confirm-btn" onClick={this.onSubmit}>
           Sign In
         </div>
+        <div className="signin-error">There was an error signing in with these credentials</div>
       </div>
     );
   }

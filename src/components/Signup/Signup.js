@@ -66,7 +66,7 @@ class Signup extends Component {
         <div className="signup-confirm-btn" onClick={this.onSubmit}>
           Sign Up
         </div>
-        {this.state.error ? <div className="signin-error">There was an error signing in with these credentials</div> : null}
+        {this.state.error ? <div className="signup-error">There was an error signing in with these credentials</div> : null}
       </div>
     );
   }

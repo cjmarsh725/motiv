@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import RemindersCard from './RemindersCard/RemindersCard';
 import Modal from '../Modal/Modal';
 import ModalDeleteReminder from '../Modal/ModalDeleteReminder/ModalDeleteReminder';
@@ -23,6 +24,24 @@ class Reminders extends Component {
     isAddOpen: false,
     deleteIndex: null,
     dragging: null
+  }
+
+  componentDidMount = () => {
+    const token = localStorage.getItem('token');
+    const requestOptions = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    axios
+      .get(process.env.REACT_APP_BACKEND + '/reminders/', requestOptions)
+      .then(response => {
+        this.setState({ reminders: response.data.map(r => r.content) });
+      })
+      .catch(err => {
+        console.log(err);
+        this.props.history.push('/signin');
+      });
   }
 
   // Helper functions for the delete and add modals

@@ -26,13 +26,16 @@ class Reminders extends Component {
     dragging: null
   }
 
+  // The lifecycle function responsible for populating the initial state if the token is present
   componentDidMount = () => {
     const token = localStorage.getItem('token');
+    // Set a request option object to hold the authorization header for the axios request
     const requestOptions = {
       headers: {
         Authorization: token,
       },
     };
+    // Retrieve the list of reminders from the backend and extract the content
     axios
       .get(process.env.REACT_APP_BACKEND + '/reminders/', requestOptions)
       .then(response => {
@@ -40,6 +43,7 @@ class Reminders extends Component {
       })
       .catch(err => {
         console.log(err);
+        // Redirect to the signin page on error in the assumption that the token was incorrect
         this.props.history.push('/signin');
       });
   }

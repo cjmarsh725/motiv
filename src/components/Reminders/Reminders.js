@@ -68,6 +68,21 @@ class Reminders extends Component {
     const reminders = [...this.state.reminders];
     reminders.unshift(content);
     this.setState({ reminders });
+    const token = localStorage.getItem('token');
+    // Set a request option object to hold the authorization header for the axios request
+    const requestOptions = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    // Send request to populate database with new reminder
+    axios
+      .post(process.env.REACT_APP_BACKEND + '/reminders/add', { content }, requestOptions)
+      .catch(err => {
+        console.log(err);
+        // Redirect to the signin page on error in the assumption that the token was incorrect
+        this.props.history.push('/signin');
+      });
   }
 
   // When a card is dropped on another their positions are swapped in the content array

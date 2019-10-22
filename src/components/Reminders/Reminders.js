@@ -92,7 +92,7 @@ class Reminders extends Component {
 
   // When a card is dropped on another their positions are swapped in the content array
   onDrop = index => {
-    const dragged = this.state.dragging;
+    // const dragged = this.state.dragging;
     // const reminders = [...this.state.reminders];
     // // Object destructuring assignment to swap positions
     // [reminders[dragged], reminders[index]] = [reminders[index], reminders[dragged]];
@@ -104,10 +104,12 @@ class Reminders extends Component {
         Authorization: token,
       },
     };
-    console.log({ movedFrom: dragged, movedTo: index });
+    // Change the indices to align with reminders sorted in descending order
+    const movedFrom = this.state.reminders.length - 1 - this.state.dragging;
+    const movedTo = this.state.reminders.length - 1 - index;
     // Send request to switch reminder indices in the database
     axios
-      .post(process.env.REACT_APP_BACKEND + '/reminders/move', { movedFrom: dragged, movedTo: index }, requestOptions)
+      .post(process.env.REACT_APP_BACKEND + '/reminders/move', { movedFrom, movedTo }, requestOptions)
       .then(msg => this.getReminders())
       .catch(err => {
         console.log(err);

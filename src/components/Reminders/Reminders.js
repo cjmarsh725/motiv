@@ -28,6 +28,11 @@ class Reminders extends Component {
 
   // The lifecycle function responsible for populating the initial state if the token is present
   componentDidMount = () => {
+    this.getReminders();
+  }
+
+  // Retrieves all reminders and sorts them according to their index in state
+  getReminders = () => {
     const token = localStorage.getItem('token');
     // Set a request option object to hold the authorization header for the axios request
     const requestOptions = {
@@ -87,11 +92,28 @@ class Reminders extends Component {
 
   // When a card is dropped on another their positions are swapped in the content array
   onDrop = index => {
-    const reminders = [...this.state.reminders];
     const dragged = this.state.dragging;
-    // Object destructuring assignment to swap positions
-    [reminders[dragged], reminders[index]] = [reminders[index], reminders[dragged]];
-    this.setState({ reminders });
+    // const reminders = [...this.state.reminders];
+    // // Object destructuring assignment to swap positions
+    // [reminders[dragged], reminders[index]] = [reminders[index], reminders[dragged]];
+    // this.setState({ reminders });
+    const token = localStorage.getItem('token');
+    // Set a request option object to hold the authorization header for the axios request
+    const requestOptions = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    console.log({ movedFrom: dragged, movedTo: index });
+    // Send request to switch reminder indices in the database
+    axios
+      .post(process.env.REACT_APP_BACKEND + '/reminders/move', { movedFrom: dragged, movedTo: index }, requestOptions)
+      .then(msg => this.getReminders())
+      .catch(err => {
+        console.log(err);
+        // Redirect to the signin page on error in the assumption that the token was incorrect
+        this.props.history.push('/signin');
+      });
   }
 
   render() {

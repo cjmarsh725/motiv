@@ -67,15 +67,12 @@ class Reminders extends Component {
 
   // Deletes a reminder at the specified index
   deleteReminder = index => {
-    // const reminders = [...this.state.reminders];
-    // reminders.splice(index, 1);
-    // this.setState({ reminders });
-
     // Change index to id based on reminders sorted in desc order
     const id = this.state.reminders.length - 1 - index;
     // Send request to delete reminder from a database
     axios
     .post(process.env.REACT_APP_BACKEND + '/reminders/delete', { id }, this.getRequestOptions())
+    .then(msg => this.getReminders())
     .catch(err => {
       console.log(err);
       // Redirect to the signin page on error in the assumption that the token was incorrect
@@ -85,12 +82,10 @@ class Reminders extends Component {
 
   // Adds a new reminder with the specified content at the begginning of the content array
   addReminder = content => {
-    const reminders = [...this.state.reminders];
-    reminders.unshift(content);
-    this.setState({ reminders });
     // Send request to populate database with new reminder
     axios
       .post(process.env.REACT_APP_BACKEND + '/reminders/add', { content }, this.getRequestOptions())
+      .then(msg => this.getReminders())
       .catch(err => {
         console.log(err);
         // Redirect to the signin page on error in the assumption that the token was incorrect
@@ -100,12 +95,6 @@ class Reminders extends Component {
 
   // When a card is dropped on another their positions are swapped in the content array
   onDrop = index => {
-    // const dragged = this.state.dragging;
-    // const reminders = [...this.state.reminders];
-    // // Object destructuring assignment to swap positions
-    // [reminders[dragged], reminders[index]] = [reminders[index], reminders[dragged]];
-    // this.setState({ reminders });
-
     // Change the indices to align with reminders sorted in descending order
     const movedFrom = this.state.reminders.length - 1 - this.state.dragging;
     const movedTo = this.state.reminders.length - 1 - index;

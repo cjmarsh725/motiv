@@ -70,6 +70,17 @@ class Reminders extends Component {
     // const reminders = [...this.state.reminders];
     // reminders.splice(index, 1);
     // this.setState({ reminders });
+
+    // Change index to id based on reminders sorted in desc order
+    const id = this.state.reminders.length - 1 - index;
+    // Send request to delete reminder from a database
+    axios
+    .post(process.env.REACT_APP_BACKEND + '/reminders/delete', { id }, this.getRequestOptions())
+    .catch(err => {
+      console.log(err);
+      // Redirect to the signin page on error in the assumption that the token was incorrect
+      this.props.history.push('/signin');
+    });
   }
 
   // Adds a new reminder with the specified content at the begginning of the content array
@@ -94,7 +105,7 @@ class Reminders extends Component {
     // // Object destructuring assignment to swap positions
     // [reminders[dragged], reminders[index]] = [reminders[index], reminders[dragged]];
     // this.setState({ reminders });
-    
+
     // Change the indices to align with reminders sorted in descending order
     const movedFrom = this.state.reminders.length - 1 - this.state.dragging;
     const movedTo = this.state.reminders.length - 1 - index;

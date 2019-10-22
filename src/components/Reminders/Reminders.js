@@ -33,16 +33,9 @@ class Reminders extends Component {
 
   // Retrieves all reminders and sorts them according to their index in state
   getReminders = () => {
-    const token = localStorage.getItem('token');
-    // Set a request option object to hold the authorization header for the axios request
-    const requestOptions = {
-      headers: {
-        Authorization: token,
-      },
-    };
     // Retrieve the list of reminders from the backend and extract the content
     axios
-      .get(process.env.REACT_APP_BACKEND + '/reminders/', requestOptions)
+      .get(process.env.REACT_APP_BACKEND + '/reminders/', this.getRequestOptions())
       .then(response => {
         this.setState({ reminders: response.data.map(r => r.content) });
       })
@@ -51,6 +44,17 @@ class Reminders extends Component {
         // Redirect to the signin page on error in the assumption that the token was incorrect
         this.props.history.push('/signin');
       });
+  }
+
+  // Get a request option object to hold the authorization header for the axios request
+  getRequestOptions = () => {
+    const token = localStorage.getItem('token');
+    const requestOptions = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    return requestOptions;
   }
 
   // Helper functions for the delete and add modals
@@ -63,9 +67,9 @@ class Reminders extends Component {
 
   // Deletes a reminder at the specified index
   deleteReminder = index => {
-    const reminders = [...this.state.reminders];
-    reminders.splice(index, 1);
-    this.setState({ reminders });
+    // const reminders = [...this.state.reminders];
+    // reminders.splice(index, 1);
+    // this.setState({ reminders });
   }
 
   // Adds a new reminder with the specified content at the begginning of the content array
@@ -73,16 +77,9 @@ class Reminders extends Component {
     const reminders = [...this.state.reminders];
     reminders.unshift(content);
     this.setState({ reminders });
-    const token = localStorage.getItem('token');
-    // Set a request option object to hold the authorization header for the axios request
-    const requestOptions = {
-      headers: {
-        Authorization: token,
-      },
-    };
     // Send request to populate database with new reminder
     axios
-      .post(process.env.REACT_APP_BACKEND + '/reminders/add', { content }, requestOptions)
+      .post(process.env.REACT_APP_BACKEND + '/reminders/add', { content }, this.getRequestOptions())
       .catch(err => {
         console.log(err);
         // Redirect to the signin page on error in the assumption that the token was incorrect
@@ -97,19 +94,13 @@ class Reminders extends Component {
     // // Object destructuring assignment to swap positions
     // [reminders[dragged], reminders[index]] = [reminders[index], reminders[dragged]];
     // this.setState({ reminders });
-    const token = localStorage.getItem('token');
-    // Set a request option object to hold the authorization header for the axios request
-    const requestOptions = {
-      headers: {
-        Authorization: token,
-      },
-    };
+    
     // Change the indices to align with reminders sorted in descending order
     const movedFrom = this.state.reminders.length - 1 - this.state.dragging;
     const movedTo = this.state.reminders.length - 1 - index;
     // Send request to switch reminder indices in the database
     axios
-      .post(process.env.REACT_APP_BACKEND + '/reminders/move', { movedFrom, movedTo }, requestOptions)
+      .post(process.env.REACT_APP_BACKEND + '/reminders/move', { movedFrom, movedTo }, this.getRequestOptions())
       .then(msg => this.getReminders())
       .catch(err => {
         console.log(err);

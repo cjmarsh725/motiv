@@ -14,12 +14,7 @@ reminders positions.
 */
 class Reminders extends Component {
   state = {
-    reminders: [
-      "Schedule dentist appointment",
-      "Talk to Joe about Bob",
-      "Go to the grocery store and get milk, eggs, cereal, chips, bread, and soda",
-      "Sign up for next meetup",
-    ],
+    reminders: [],
     isDeleteOpen: false,
     isAddOpen: false,
     deleteIndex: null,

@@ -32,7 +32,7 @@ class Reminders extends Component {
     axios
       .get(process.env.REACT_APP_BACKEND + '/reminders/', this.getRequestOptions())
       .then(response => {
-        this.setState({ reminders: response.data.map(r => r.content) });
+        this.setState({ reminders: response.data });
       })
       .catch(err => {
         console.log(err);
@@ -62,8 +62,8 @@ class Reminders extends Component {
 
   // Deletes a reminder at the specified index
   deleteReminder = index => {
-    // Change index to id based on reminders sorted in desc order
-    const id = this.state.reminders.length - 1 - index;
+    // Change index to id based on reminder data
+    const id = this.state.reminders[index].id;
     // Send request to delete reminder from a database
     axios
     .post(process.env.REACT_APP_BACKEND + '/reminders/delete', { id }, this.getRequestOptions())

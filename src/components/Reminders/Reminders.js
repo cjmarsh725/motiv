@@ -63,7 +63,7 @@ class Reminders extends Component {
   // Deletes a reminder at the specified index
   deleteReminder = index => {
     // Change index to id based on reminder data
-    const id = this.state.reminders[index].id;
+    const id = index;
     // Send request to delete reminder from a database
     axios
     .post(process.env.REACT_APP_BACKEND + '/reminders/delete', { id }, this.getRequestOptions())
@@ -91,8 +91,8 @@ class Reminders extends Component {
   // When a card is dropped on another their positions are swapped in the content array
   onDrop = index => {
     // Change the indices to align with reminder's id
-    const movedFrom = this.state.reminders[this.state.dragging].id;
-    const movedTo = this.state.reminders[index].id;
+    const movedFrom = this.state.dragging;
+    const movedTo = index;
     // Send request to switch reminder indices in the database
     axios
       .post(process.env.REACT_APP_BACKEND + '/reminders/move', { movedFrom, movedTo }, this.getRequestOptions())
@@ -115,12 +115,12 @@ class Reminders extends Component {
         </div>
         {/* List of reminder cards */}
         <div className="reminders-container">
-          {this.state.reminders.map((content, i) => { return (
-            <RemindersCard key={content + i} 
-                            delete={() => this.setState({deleteIndex: i, isDeleteOpen: true})} 
-                            content={content}
-                            index={i}
-                            drag={() => this.setState({dragging: i})}
+          {this.state.reminders.map((reminder, i) => { return (
+            <RemindersCard key={"Reminder " + i} 
+                            delete={() => this.setState({deleteIndex: reminder.id, isDeleteOpen: true})} 
+                            content={reminder.content}
+                            index={reminder.id}
+                            drag={() => this.setState({dragging: reminder.id})}
                             drop={this.onDrop} />
           )})}
         </div>

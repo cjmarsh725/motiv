@@ -14,7 +14,13 @@ class Account extends Component {
 
   getButtons = signedIn => {
     if (signedIn) return ( <>
-      <div className="account-btn">Sign Out</div>
+      <div className="account-btn"
+          onClick={() => { 
+            localStorage.removeItem('token');
+            this.forceUpdate();
+          }}>
+        Sign Out
+      </div>
       <div className="account-btn">Delete</div>
     </>); else return ( <>
       <div className="account-btn"
@@ -29,7 +35,7 @@ class Account extends Component {
   }
 
   render() {
-    const signedIn = false;
+    const signedIn = localStorage.getItem('token');
     return (
       <div className="account">
         <div className="account-labels">

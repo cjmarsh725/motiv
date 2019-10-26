@@ -10,12 +10,12 @@ const ModalDeleteAccount = props => {
   return (
     <div className="modaldeleteaccount-container">
       <div className="modaldeleteaccount-title">
-        Are you sure you want to permanently delete this item?
+        Are you sure you want to permanently delete your account?
       </div>
       <div className="modaldeleteaccount-btns">
         <div className="modal-btn-primary"
              onClick={() => {
-               props.deleteNode(props.deletingPath);
+               props.deleteAccount();
                props.toggle();
               }}>
           Delete

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Account.css';
+import axios from 'axios';
 import Modal from '../Modal/Modal';
 import ModalDeleteAccount from '../Modal/ModalDeleteAccount/ModalDeleteAccount';
 
@@ -13,7 +14,22 @@ class Account extends Component {
   }
 
   deleteAccount = () => {
-    console.log("Delete Account");
+    // Retrieve the token and format it for the authorization header
+    const token = localStorage.getItem('token');
+    const requestOptions = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    // Send request to delete account from the database
+    axios
+    .post(process.env.REACT_APP_BACKEND + '/users/delete', {}, requestOptions)
+    .then(msg => this.props.history.push('/signup'))
+    .catch(err => {
+      console.log(err);
+      // Redirect to the signin page on error in the assumption that the token was incorrect
+      this.props.history.push('/signin');
+    });
   }
 
   getLabels = signedIn => {

@@ -35,7 +35,10 @@ class Account extends Component {
           }}>
         Sign Out
       </div>
-      <div className="account-btn">Delete</div>
+      <div className="account-btn"
+          onClick={this.toggleDeleteModal}>
+        Delete
+      </div>
     </>); else return ( <>
       <div className="account-btn"
           onClick={() => this.props.history.push('/signin')}>

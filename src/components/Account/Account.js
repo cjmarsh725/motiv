@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
-import './Account.css'
+import './Account.css';
+import Modal from '../Modal/Modal';
+import ModalDeleteAccount from '../Modal/ModalDeleteAccount/ModalDeleteAccount';
 
 class Account extends Component {
+  state = {
+    isDeleteOpen: false
+  }
+
+  toggleDeleteModal = () => {
+    this.setState({ isDeleteOpen: !this.state.isDeleteOpen });
+  }
+
+  deleteAccount = () => {
+    console.log("Delete Account");
+  }
+
   getLabels = signedIn => {
     if (signedIn) return ( <>
       <div>Sign out of your account:</div>
@@ -36,7 +50,7 @@ class Account extends Component {
 
   render() {
     const signedIn = localStorage.getItem('token');
-    return (
+    return ( <>
       <div className="account">
         <div className="account-labels">
           {this.getLabels(signedIn)}
@@ -45,7 +59,15 @@ class Account extends Component {
           {this.getButtons(signedIn)}
         </div>
       </div>
-    );
+      {/* The delete account modal is the confirmation to permanently delete an account */}
+      <Modal 
+          isOpen={this.state.isDeleteOpen} 
+          toggle={this.toggleDeleteModal}>
+        <ModalDeleteAccount
+            deleteAccount={this.deleteAccount}
+            toggle={this.toggleDeleteModal} />
+      </Modal>
+    </>);
   }
 }
 

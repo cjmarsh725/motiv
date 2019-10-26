@@ -30,6 +30,12 @@ class Account extends Component {
       // Redirect to the signin page on error in the assumption that the token was incorrect
       this.props.history.push('/signin');
     });
+    // Send request to delete journal file for the user from the database
+    axios.post(process.env.REACT_APP_BACKEND + '/files/delete', {}, requestOptions);
+    // Send request to delete all appointments for the user from the database
+    axios.post(process.env.REACT_APP_BACKEND + '/appointments/deleteall', {}, requestOptions);
+    // Send request to delete all reminders for the user from the database
+    axios.post(process.env.REACT_APP_BACKEND + '/reminders/deleteall', {}, requestOptions);
   }
 
   getLabels = signedIn => {

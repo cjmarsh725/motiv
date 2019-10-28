@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ScheduleCalendar from './ScheduleCalendar/ScheduleCalendar';
 import ScheduleList from './ScheduleList/ScheduleList';
 import moment from 'moment';
+import axios from 'axios';
 import './Schedule.css';
 
 class Schedule extends Component {
@@ -58,6 +59,32 @@ class Schedule extends Component {
         },
       ]
     }
+  }
+
+  // Retrieves all appointments and updates state
+  getAppointments = () => {
+    // Retrieve the list of appointments from the backend and extract the content
+    axios
+      .get(process.env.REACT_APP_BACKEND + '/appointments/', this.getRequestOptions())
+      .then(response => {
+        this.setState({ schedule: response.data });
+      })
+      .catch(err => {
+        console.log(err);
+        // Redirect to the signin page on error in the assumption that the token was incorrect
+        this.props.history.push('/signin');
+      });
+  }
+
+  // Get a request option object to hold the authorization header for the axios request
+  getRequestOptions = () => {
+    const token = localStorage.getItem('token');
+    const requestOptions = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    return requestOptions;
   }
 
   changeMonth = delta => {

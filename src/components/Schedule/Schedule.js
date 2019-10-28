@@ -12,52 +12,7 @@ class Schedule extends Component {
       m: moment(),
       mNow: moment(),
       mSelected: moment(),
-      schedule: [
-        {
-          label: "Coding Preparation Meetup",
-          date: "9-5-2019 6:00 PM"
-        },
-        {
-          label: "Bob's Birthday Party",
-          date: "9-7-2019 9:00 PM"
-        },
-        {
-          label: "Dentist Appointment",
-          date: "9-8-2019 8:00 AM"
-        },
-        {
-          label: "Doctor Appointment",
-          date: "9-8-2019 10:00 AM"
-        },
-        {
-          label: "Mike's Party",
-          date: "9-8-2019 7:00 PM"
-        },
-        {
-          label: "Conference",
-          date: "9-10-2019 11:00 AM"
-        },
-        {
-          label: "Jane's Birthday",
-          date: "9-10-2019 4:00 PM"
-        },
-        {
-          label: "Skydiving",
-          date: "9-10-2019 6:00 PM"
-        },
-        {
-          label: "Javascript Presentation",
-          date: "9-10-2019 8:00 PM"
-        },
-        {
-          label: "Lunch w/ Sarah",
-          date: "9-13-2019 12:30 PM"
-        },
-        {
-          label: "Dinner w/ Jim",
-          date: "9-13-2019 6:30 PM"
-        },
-      ]
+      schedule: []
     }
   }
 

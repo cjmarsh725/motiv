@@ -16,6 +16,10 @@ class Schedule extends Component {
     }
   }
 
+  componentDidMount() {
+    this.getAppointments();
+  }
+
   // Retrieves all appointments and updates state
   getAppointments = () => {
     // Retrieve the list of appointments from the backend and extract the content

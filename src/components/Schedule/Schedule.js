@@ -16,6 +16,7 @@ class Schedule extends Component {
     }
   }
 
+  // Lifecycle method called when the component is finished mounting in the browser
   componentDidMount() {
     this.getAppointments();
   }
@@ -46,14 +47,18 @@ class Schedule extends Component {
     return requestOptions;
   }
 
+  // Sets the moment object in state based on the number of months changed
   changeMonth = delta => {
     this.setState({ m: this.state.m.clone().add(delta, "M") });
   }
 
+  // Helper function to set a moment in state based on a month and year string
   setMonth = date => {
     this.setState({ m: moment(date, "MMMM-YYYY") });
   }
 
+  // Helper function to set the selected moment to the argument or the current moment
+  //  if the selected and input moments are on the same day
   setSelected = m => {
     if (this.state.mSelected.isSame(m, "day"))
       this.setState({ mSelected: this.state.mNow.clone() })

@@ -67,25 +67,34 @@ class Schedule extends Component {
   }
 
   addAppointment = (label, m) => {
-    const schedule = [...this.state.schedule];
-    const newApp = { 
+    const newAppt = { 
       label: label, 
       date: m.format("MM-DD-YYYY h:mm A")
     };
-    if (schedule.length === 0) schedule.push(newApp);
-    else {
-      for (let i = 0; i < schedule.length; i++) {
-        console.log(moment(schedule[i].date, "MM-DD-YYYY h:mm A").isAfter(m, "minute"));
-        if (moment(schedule[i].date, "MM-DD-YYYY h:mm A").isAfter(m, "minute")) {
-          schedule.splice(i, 0, newApp);
-          break;
-        } else if (i === schedule.length - 1) {
-          schedule.push(newApp);
-          break;
-        }
-      }
-    }
-    this.setState({ schedule });
+    axios
+      .post(process.env.REACT_APP_BACKEND + '/appointments/add', newAppt, this.getRequestOptions())
+      .then(response => {
+        this.getAppointments();
+      })
+      .catch(err => {
+        console.log(err);
+        // Redirect to the signin page on error in the assumption that the token was incorrect
+        this.props.history.push('/signin');
+      });
+    // if (schedule.length === 0) schedule.push(newApp);
+    // else {
+    //   for (let i = 0; i < schedule.length; i++) {
+    //     console.log(moment(schedule[i].date, "MM-DD-YYYY h:mm A").isAfter(m, "minute"));
+    //     if (moment(schedule[i].date, "MM-DD-YYYY h:mm A").isAfter(m, "minute")) {
+    //       schedule.splice(i, 0, newApp);
+    //       break;
+    //     } else if (i === schedule.length - 1) {
+    //       schedule.push(newApp);
+    //       break;
+    //     }
+    //   }
+    // }
+    // this.setState({ schedule });
   }
 
   deleteAppointment = indexArray => {

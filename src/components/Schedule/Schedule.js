@@ -66,14 +66,18 @@ class Schedule extends Component {
       this.setState({ mSelected: m });
   }
 
+  // Adds a new appointment in the database then gets all appointments again to update state
   addAppointment = (label, m) => {
+    // Object with label and date fields for creating a new appointment
     const newAppt = { 
       label: label, 
       date: m.format("MM-DD-YYYY h:mm A")
     };
+    // Axios request to the backend to make a new appointment given the data provided
     axios
       .post(process.env.REACT_APP_BACKEND + '/appointments/add', newAppt, this.getRequestOptions())
       .then(response => {
+        // Get all appointments again including the one that was just made to update state
         this.getAppointments();
       })
       .catch(err => {
@@ -81,20 +85,6 @@ class Schedule extends Component {
         // Redirect to the signin page on error in the assumption that the token was incorrect
         this.props.history.push('/signin');
       });
-    // if (schedule.length === 0) schedule.push(newApp);
-    // else {
-    //   for (let i = 0; i < schedule.length; i++) {
-    //     console.log(moment(schedule[i].date, "MM-DD-YYYY h:mm A").isAfter(m, "minute"));
-    //     if (moment(schedule[i].date, "MM-DD-YYYY h:mm A").isAfter(m, "minute")) {
-    //       schedule.splice(i, 0, newApp);
-    //       break;
-    //     } else if (i === schedule.length - 1) {
-    //       schedule.push(newApp);
-    //       break;
-    //     }
-    //   }
-    // }
-    // this.setState({ schedule });
   }
 
   deleteAppointment = indexArray => {

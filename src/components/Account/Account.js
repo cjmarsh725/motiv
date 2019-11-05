@@ -4,6 +4,12 @@ import axios from 'axios';
 import Modal from '../Modal/Modal';
 import ModalDeleteAccount from '../Modal/ModalDeleteAccount/ModalDeleteAccount';
 
+/*
+The Account route contains the functionality for managing accounts and the login process.
+There are two main states the page can be in depending on whether or not the user is logged
+in. When not logged in the sign in and sign up options appear and when logged in the abilities
+to sign out or permanently delete the account are visible.
+*/
 class Account extends Component {
   state = {
     isDeleteOpen: false

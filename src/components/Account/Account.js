@@ -15,10 +15,12 @@ class Account extends Component {
     isDeleteOpen: false
   }
 
+  // Helper function to toggle the delete modal's visibility
   toggleDeleteModal = () => {
     this.setState({ isDeleteOpen: !this.state.isDeleteOpen });
   }
 
+  // Permanently deletes an account from the database along with all its associated files
   deleteAccount = () => {
     // Retrieve the token and format it for the authorization header
     const token = localStorage.getItem('token');
@@ -44,6 +46,7 @@ class Account extends Component {
     axios.post(process.env.REACT_APP_BACKEND + '/reminders/deleteall', {}, requestOptions);
   }
 
+  // Helper function to set the labels based on whether the user is signed in or not
   getLabels = signedIn => {
     if (signedIn) return ( <>
       <div>Sign out of your account:</div>
@@ -54,6 +57,7 @@ class Account extends Component {
     </>);
   }
 
+  // Helper function to get the buttons based on whether the user is signed in or not
   getButtons = signedIn => {
     if (signedIn) return ( <>
       <div className="account-btn"
@@ -80,6 +84,7 @@ class Account extends Component {
   }
 
   render() {
+    // Get the token from local storage to determine whether the user is signed in or not
     const signedIn = localStorage.getItem('token');
     return ( <>
       <div className="account">
